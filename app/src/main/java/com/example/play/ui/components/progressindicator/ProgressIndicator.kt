@@ -2,11 +2,18 @@ package com.example.play.ui.components.progressindicator
 
 import androidx.compose.animation.core.TransitionState
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.Icon
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope.align
+import androidx.compose.foundation.layout.Stack
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.preferredSize
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.progressSemantics
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -50,4 +57,42 @@ fun AnimatedProgressIndicator(
         size = Size(state[appRatingBar] * size.width, size.height)
     )
   }
+}
+
+@Composable
+fun StarRatings() {
+  Stack {
+    Row {
+      Star()
+      Star()
+      Star()
+      Star()
+      Star()
+    }
+    Row {
+      StarFilled()
+      StarFilled()
+      StarFilled()
+    }
+  }
+}
+
+@Composable
+fun Star() {
+  Icon(
+      asset = Icons.Filled.Star, tint = PlayTheme.colors.progressIndicatorBg,
+      modifier = Modifier
+          .height(15.dp)
+          .width(15.dp)
+  )
+}
+
+@Composable
+fun StarFilled() {
+  Icon(
+      asset = Icons.Filled.Star, tint = PlayTheme.colors.accent,
+      modifier = Modifier
+          .height(15.dp)
+          .width(15.dp)
+  )
 }

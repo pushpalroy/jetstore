@@ -26,6 +26,7 @@ import com.example.play.theme.PlayTheme
 import com.example.play.theme.Typography
 import com.example.play.ui.components.PlaySurface
 import com.example.play.ui.components.progressindicator.AnimatedProgressIndicator
+import com.example.play.ui.components.progressindicator.StarRatings
 
 @Composable
 fun RatingsAndReviews() {
@@ -56,16 +57,28 @@ fun RatingsAndReviews() {
       }
     }
     Row(modifier = Modifier.padding(top = 16.dp)) {
-      Text(
-          text = "4.7",
-          style = TextStyle(
-              fontWeight = FontWeight.SemiBold,
-              fontSize = 50.sp,
-              letterSpacing = 0.15.sp
-          ),
-          color = PlayTheme.colors.textPrimary,
-          modifier = Modifier.align(Alignment.Top)
-      )
+      Column(modifier = Modifier.align(Alignment.Top)) {
+        Text(
+            text = "4.7",
+            style = TextStyle(
+                fontWeight = FontWeight.SemiBold,
+                fontSize = 45.sp,
+                letterSpacing = 0.15.sp
+            ),
+            color = PlayTheme.colors.textPrimary,
+            modifier = Modifier.align(Alignment.Start)
+        )
+        StarRatings()
+        Text(
+            text = "2,907,517",
+            style = TextStyle(
+                fontWeight = FontWeight.Normal,
+                fontSize = 11.sp,
+                letterSpacing = 0.70.sp
+            ),
+            color = PlayTheme.colors.textSecondary
+        )
+      }
       Column(modifier = Modifier.padding(start = 24.dp)) {
         Row {
           Text(
