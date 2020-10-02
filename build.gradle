@@ -1,0 +1,47 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+import com.example.play.buildsrc.Libs
+import com.example.play.buildsrc.Versions
+
+buildscript {
+  repositories {
+    google()
+    jcenter()
+  }
+  dependencies {
+    classpath Libs.androidGradlePlugin
+    classpath Libs.Kotlin.gradlePlugin
+
+    // NOTE: Do not place your application dependencies here; they belong
+    // in the individual module build.gradle files
+  }
+}
+
+subprojects {
+  repositories {
+    google()
+    jcenter()
+
+    if (!Libs.AndroidX.Compose.snapshot.isEmpty()) {
+      maven {
+        url "https://androidx.dev/snapshots/builds/${Libs.AndroidX.Compose.snapshot}/artifacts/ui/repository/"
+      }
+    }
+
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+  }
+
+  tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+    kotlinOptions {
+      jvmTarget = '1.8'
+      allWarningsAsErrors = true
+      freeCompilerArgs += '-Xallow-jvm-ir-dependencies'
+      // Opt-in to experimental compose APIs
+      freeCompilerArgs += '-Xopt-in=kotlin.RequiresOptIn'
+    }
+  }
+}
+
+task clean(type: Delete) {
+  delete rootProject.buildDir
+}

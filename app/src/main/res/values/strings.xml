@@ -1,0 +1,21 @@
+<resources>
+  <string name="app_name">PlayApp</string>
+
+  <!-- Home Tabs -->
+  <string name="home_games">Games</string>
+  <string name="home_apps">Apps</string>
+  <string name="home_movies">Movies</string>
+  <string name="home_books">Books</string>
+
+  <!-- Search -->
+  <string name="search_app">Search App</string>
+  <string name="search_no_matches">No matches for “%1s”</string>
+  <string name="search_no_matches_retry">Try broadening your search</string>
+  <string name="search_count">%1d items</string>
+
+  <string name="for_you">For You</string>
+  <string name="top_charts">Top Charts</string>
+  <string name="categories">Categories</string>
+  <string name="editors_choice">Editor\'s Choice</string>
+  <string name="early_access">Early Access</string>
+</resources>
