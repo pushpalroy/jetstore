@@ -28,7 +28,7 @@ fun PlayApp(backDispatcher: OnBackPressedDispatcher) {
                     Home -> Home(actions.selectApp)
           is Destination.AppDetail -> AppDetails(
               appId = destination.appId,
-              upPress = actions.upPress
+              backPress = actions.upPress
           )
                 }
             }

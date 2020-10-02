@@ -17,8 +17,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.ui.tooling.preview.Preview
 import com.example.play.R.drawable
+import com.example.play.data.apps
 import com.example.play.data.models.App
-import com.example.play.data.models.apps
 import com.example.play.ui.components.PlayCard
 import com.example.play.ui.components.RoundedCornerAppImage
 import com.example.play.theme.PlayTheme

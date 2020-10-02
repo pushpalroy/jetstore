@@ -29,8 +29,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
 import com.example.play.R
-import com.example.play.data.models.AppCollection
-import com.example.play.data.models.AppRepo
+import com.example.play.data.AppCollection
+import com.example.play.data.AppRepo
 import com.example.play.ui.main.AppsCategoryTabs
 import com.example.play.ui.apps.applist.AppsCollection
 import com.example.play.ui.components.CircularLocalImage

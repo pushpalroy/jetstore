@@ -20,8 +20,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.play.data.models.App
-import com.example.play.data.models.AppCollection
-import com.example.play.data.models.CollectionType
+import com.example.play.data.AppCollection
+import com.example.play.data.CollectionType
 import com.example.play.theme.PlayTheme
 
 @Composable
