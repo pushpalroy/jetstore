@@ -7,7 +7,6 @@ import androidx.compose.animation.core.transitionDefinition
 import androidx.compose.ui.unit.dp
 import com.example.play.anim.AppIconState.IDLE
 import com.example.play.anim.AppIconState.INSTALLING
-import com.example.play.ui.components.installbutton.animated.appIconSize
 
 enum class AppIconState {
   IDLE,

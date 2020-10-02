@@ -12,17 +12,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.play.anim.ButtonState.IDLE
 import com.example.play.anim.ButtonState.PRESSED
-import com.example.play.ui.components.installbutton.animated.buttonsGapWidth
-import com.example.play.ui.components.installbutton.animated.iconOpacity
-import com.example.play.ui.components.installbutton.animated.idleIconSize
-import com.example.play.ui.components.installbutton.animated.installButtonBgColor
-import com.example.play.ui.components.installbutton.animated.installButtonBorderColor
-import com.example.play.ui.components.installbutton.animated.installButtonBorderWidth
-import com.example.play.ui.components.installbutton.animated.installButtonCorners
-import com.example.play.ui.components.installbutton.animated.installButtonTextColor
-import com.example.play.ui.components.installbutton.animated.installButtonWidth
-import com.example.play.ui.components.installbutton.animated.openButtonWidth
-import com.example.play.ui.components.installbutton.animated.pressedIconSize
 
 enum class ButtonState {
   IDLE,

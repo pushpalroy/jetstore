@@ -6,11 +6,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.savedinstancestate.rememberSavedInstanceState
 import com.example.play.ui.Destination.Home
-import com.example.play.ui.appdetails.AppDetails
-import com.example.play.ui.home.Home
-import com.example.play.ui.theme.PlayTheme
-import com.example.play.ui.utils.Navigator
-import com.example.play.ui.utils.ProvideDisplayInsets
+import com.example.play.ui.details.AppDetails
+import com.example.play.ui.main.Home
+import com.example.play.theme.PlayTheme
+import com.example.play.utils.Navigator
+import com.example.play.utils.ProvideDisplayInsets
 
 
 @Composable

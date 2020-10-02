@@ -16,7 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
-import com.example.play.ui.theme.PlayTheme
+import com.example.play.theme.PlayTheme
 
 /**
  * Wrap Material [androidx.compose.material.Scaffold] and set [PlayTheme] colors.

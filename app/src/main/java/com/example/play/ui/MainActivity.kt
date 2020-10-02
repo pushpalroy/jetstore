@@ -6,8 +6,8 @@ import androidx.compose.runtime.Providers
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.setContent
 import androidx.core.view.WindowCompat
-import com.example.play.ui.utils.SysUiController
-import com.example.play.ui.utils.SystemUiController
+import com.example.play.utils.SysUiController
+import com.example.play.utils.SystemUiController
 
 class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {

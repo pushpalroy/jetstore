@@ -15,8 +15,8 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.example.play.ui.components.installbutton.animated.appRatingBar
-import com.example.play.ui.theme.PlayTheme
+import com.example.play.anim.appRatingBar
+import com.example.play.theme.PlayTheme
 
 /**
  * A custom animated determinate linear progress indicator that represents progress by drawing a rounded rectangle.

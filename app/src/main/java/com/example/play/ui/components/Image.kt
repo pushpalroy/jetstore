@@ -13,7 +13,7 @@ import androidx.compose.ui.res.loadImageResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
-import com.example.play.ui.theme.PlayTheme
+import com.example.play.theme.PlayTheme
 import dev.chrisbanes.accompanist.coil.CoilImage
 
 @Composable

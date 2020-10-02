@@ -7,7 +7,6 @@ import androidx.compose.animation.core.transitionDefinition
 import androidx.compose.animation.core.tween
 import com.example.play.anim.AppRatingBarState.END
 import com.example.play.anim.AppRatingBarState.START
-import com.example.play.ui.components.installbutton.animated.appRatingBar
 
 enum class AppRatingBarState {
   START,

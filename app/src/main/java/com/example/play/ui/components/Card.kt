@@ -8,7 +8,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.example.play.ui.theme.PlayTheme
+import com.example.play.theme.PlayTheme
 
 @Composable
 fun PlayCard(

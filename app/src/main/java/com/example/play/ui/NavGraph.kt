@@ -18,7 +18,7 @@ package com.example.play.ui
 
 import android.os.Parcelable
 import androidx.compose.runtime.Immutable
-import com.example.play.ui.utils.Navigator
+import com.example.play.utils.Navigator
 import kotlinx.android.parcel.Parcelize
 
 /**
