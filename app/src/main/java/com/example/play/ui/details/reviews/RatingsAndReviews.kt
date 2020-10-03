@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.sp
 import androidx.ui.tooling.preview.Preview
 import com.example.play.anim.AppRatingBarState
 import com.example.play.anim.getAppRatingBarTransitionDefinition
+import com.example.play.data.AppRepo
 import com.example.play.theme.PlayTheme
 import com.example.play.theme.Typography
 import com.example.play.ui.components.PlaySurface
@@ -58,6 +59,13 @@ fun RatingsAndReviews() {
         )
       }
       AppRatingBars()
+    }
+    Spacer(modifier = Modifier.height(16.dp))
+    val reviews = AppRepo.getReviews()
+    Column {
+      reviews.forEach {
+        ReviewItem(review = it)
+      }
     }
   }
 }
