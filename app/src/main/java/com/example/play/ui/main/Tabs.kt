@@ -11,28 +11,28 @@ import androidx.compose.material.Tab
 import androidx.compose.material.TabConstants.defaultTabIndicatorOffset
 import androidx.compose.material.TabPosition
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.ui.tooling.preview.Preview
 import com.example.play.R
+import com.example.play.theme.PlayTheme
 import com.example.play.ui.apps.AppsCategory
 import com.example.play.ui.apps.AppsCategory.Categories
 import com.example.play.ui.apps.AppsCategory.EarlyAccess
 import com.example.play.ui.apps.AppsCategory.EditorsChoice
 import com.example.play.ui.apps.AppsCategory.ForYou
 import com.example.play.ui.apps.AppsCategory.TopCharts
-import com.example.play.theme.PlayTheme
-import com.example.play.theme.Typography
 
 @Composable
 fun AppsCategoryTabs(
   categories: List<AppsCategory>,
   selectedCategory: AppsCategory,
-  onCategorySelected: (AppsCategory) -> Unit,
-  modifier: Modifier = Modifier
+  onCategorySelected: (AppsCategory) -> Unit
 ) {
   val selectedIndex = categories.indexOfFirst { it == selectedCategory }
   val indicator = @Composable { tabPositions: List<TabPosition> ->
@@ -44,8 +44,8 @@ fun AppsCategoryTabs(
   ScrollableTabRow(
       selectedTabIndex = selectedIndex,
       indicator = indicator,
-      modifier = modifier,
-      backgroundColor = PlayTheme.colors.uiBackground
+      backgroundColor = PlayTheme.colors.uiBackground,
+      edgePadding = 32.dp
   ) {
     categories.forEachIndexed { index, category ->
       Tab(
@@ -66,7 +66,10 @@ fun AppsCategoryTabs(
                 } else {
                   PlayTheme.colors.textPrimary
                 },
-                style = Typography.body2
+                style = TextStyle(
+                    fontWeight = FontWeight.Normal,
+                    fontSize = 12.sp
+                )
             )
           }
       )
@@ -80,8 +83,8 @@ fun HomeCategoryTabIndicator(
   color: Color = PlayTheme.colors.accent
 ) {
   Spacer(
-      modifier.preferredWidth(112.dp)
-          .preferredHeight(4.dp)
+      modifier.preferredWidth(5.dp)
+          .preferredHeight(3.dp)
           .background(color, RoundedCornerShape(topLeftPercent = 100, topRightPercent = 100))
   )
 }
@@ -90,6 +93,20 @@ fun HomeCategoryTabIndicator(
 @Composable
 fun AppCategoryTabsPreview() {
   PlayTheme {
+    AppsCategoryTabs(
+        categories = listOf(
+            ForYou, TopCharts, Categories, EditorsChoice, EarlyAccess
+        ),
+        selectedCategory = ForYou,
+        onCategorySelected = {}
+    )
+  }
+}
+
+@Preview
+@Composable
+fun AppCategoryTabsDarkPreview() {
+  PlayTheme(darkTheme = true) {
     AppsCategoryTabs(
         categories = listOf(
             ForYou, TopCharts, Categories, EditorsChoice, EarlyAccess
