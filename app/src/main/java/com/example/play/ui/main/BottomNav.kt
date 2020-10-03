@@ -291,7 +291,7 @@ private fun PlayBottomNavLayout(
 // Bottom Navigation Indicator
 @Composable
 private fun PLayBottomNavIndicator(
-  strokeWidth: Dp = 2.dp,
+  strokeWidth: Dp = 1.dp,
   color: Color = PlayTheme.colors.iconInteractive,
   shape: Shape = BottomNavIndicatorShape
 ) {
