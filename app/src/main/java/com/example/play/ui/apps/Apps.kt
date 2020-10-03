@@ -1,6 +1,8 @@
 package com.example.play.ui.apps
 
 import androidx.compose.animation.Crossfade
+import androidx.compose.animation.core.LinearOutSlowInEasing
+import androidx.compose.animation.core.TweenSpec
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -46,7 +48,13 @@ fun Apps(
           selectedCategory = currentCategory,
           onCategorySelected = setCurrentCategory
       )
-      Crossfade(currentCategory) { category ->
+      val tweenSpec = remember {
+        TweenSpec<Float>(
+            durationMillis = 600,
+            easing = LinearOutSlowInEasing
+        )
+      }
+      Crossfade(currentCategory, animation = tweenSpec) { category ->
         when (category) {
           ForYou -> AppList(forYouData, onAppClick)
           TopCharts -> AppList(topChartsData, onAppClick)
