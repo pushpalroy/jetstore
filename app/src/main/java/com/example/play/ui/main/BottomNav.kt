@@ -6,11 +6,11 @@ import androidx.compose.animation.animate
 import androidx.compose.animation.animatedFloat
 import androidx.compose.animation.core.AnimationSpec
 import androidx.compose.animation.core.SpringSpec
-import androidx.compose.foundation.Box
-import androidx.compose.foundation.ContentGravity
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.Icon
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -22,6 +22,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.onCommit
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Layout
 import androidx.compose.ui.MeasureScope
 import androidx.compose.ui.Modifier
@@ -119,8 +120,8 @@ fun PlayBottomNav(
 // Bottom Navigation Item
 @Composable
 fun PlayBottomNavigationItem(
-  icon: @Composable () -> Unit,
-  text: @Composable () -> Unit,
+  icon: @Composable BoxScope.() -> Unit,
+  text: @Composable BoxScope.() -> Unit,
   selected: Boolean,
   onSelected: () -> Unit,
   animSpec: AnimationSpec<Float>,
@@ -128,7 +129,7 @@ fun PlayBottomNavigationItem(
 ) {
   Box(
       modifier = modifier.selectable(selected = selected, onClick = onSelected),
-      gravity = ContentGravity.Center
+      alignment = Alignment.Center
   ) {
     // Animate the icon/text positions within the item based on selection
     val animationProgress = animate(if (selected) 1f else 0f, animSpec)
@@ -143,8 +144,8 @@ fun PlayBottomNavigationItem(
 // Bottom Navigation Item Layout
 @Composable
 private fun PlayBottomNavItemLayout(
-  icon: @Composable () -> Unit,
-  text: @Composable () -> Unit,
+  icon: @Composable BoxScope.() -> Unit,
+  text: @Composable BoxScope.() -> Unit,
   @FloatRange(from = 0.0, to = 1.0) animationProgress: Float
 ) {
   Layout(
@@ -153,6 +154,7 @@ private fun PlayBottomNavItemLayout(
         val scale = lerp(start = 0.6f, stop = 1f, fraction = animationProgress)
         Box(
             modifier = Modifier
+                .padding(start = TextIconSpacing)
                 .layoutId("text")
                 .drawLayer(
                     alpha = animationProgress,
@@ -160,7 +162,6 @@ private fun PlayBottomNavItemLayout(
                     scaleY = scale,
                     transformOrigin = BottomNavLabelTransformOrigin
                 ),
-            paddingStart = TextIconSpacing,
             children = text
         )
       }
@@ -209,7 +210,7 @@ private fun PlayBottomNavLayout(
   selectedIndex: Int,
   itemCount: Int,
   animSpec: AnimationSpec<Float>,
-  indicator: @Composable () -> Unit,
+  indicator: @Composable BoxScope.() -> Unit,
   modifier: Modifier = Modifier,
   content: @Composable () -> Unit
 ) {

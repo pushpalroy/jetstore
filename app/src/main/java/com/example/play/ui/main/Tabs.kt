@@ -2,7 +2,6 @@ package com.example.play.ui.main
 
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.ColumnScope.align
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.preferredHeight
 import androidx.compose.foundation.layout.preferredWidth
@@ -83,7 +82,6 @@ fun HomeCategoryTabIndicator(
   Spacer(
       modifier.preferredWidth(112.dp)
           .preferredHeight(4.dp)
-          .align(Alignment.CenterHorizontally)
           .background(color, RoundedCornerShape(topLeftPercent = 100, topRightPercent = 100))
   )
 }

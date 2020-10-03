@@ -4,7 +4,6 @@ import androidx.compose.foundation.Icon
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope.align
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -21,7 +20,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
 import com.example.play.R.drawable
-import com.example.play.data.models.App
+import com.example.play.data.App
 import com.example.play.data.AppRepo
 import com.example.play.theme.PlayTheme
 import com.example.play.ui.components.PlaySurface
@@ -31,7 +30,6 @@ fun Stats(app: App) {
   Row(
       modifier = Modifier
           .padding(top = 8.dp, start = 16.dp, end = 16.dp)
-          .align(Alignment.CenterHorizontally)
   ) {
     Column(modifier = Modifier.padding(end = 12.dp)) {
       Row(modifier = Modifier.align(Alignment.CenterHorizontally)) {

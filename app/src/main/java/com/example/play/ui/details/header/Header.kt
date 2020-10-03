@@ -3,6 +3,7 @@ package com.example.play.ui.details.header
 import android.annotation.SuppressLint
 import androidx.compose.animation.transition
 import androidx.compose.foundation.Text
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Stack
@@ -23,7 +24,7 @@ import com.example.play.anim.AppIconState
 import com.example.play.anim.AppIconState.INSTALLING
 import com.example.play.anim.appIconSize
 import com.example.play.anim.getAppIconTransitionDefinition
-import com.example.play.data.models.App
+import com.example.play.data.App
 import com.example.play.data.AppRepo
 import com.example.play.theme.PlayTheme
 import com.example.play.theme.Typography
@@ -50,7 +51,7 @@ fun Header(
   )
 
   Row(modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 8.dp)) {
-    Stack(
+    Box(
         modifier = Modifier
             .preferredHeight(100.dp)
             .preferredWidth(100.dp)

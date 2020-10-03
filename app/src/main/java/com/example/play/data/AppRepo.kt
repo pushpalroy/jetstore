@@ -3,7 +3,6 @@ package com.example.play.data
 import androidx.compose.runtime.Immutable
 import com.example.play.data.CollectionType.Featured
 import com.example.play.data.CollectionType.Normal
-import com.example.play.data.models.App
 
 @Immutable
 data class AppCollection(
@@ -22,13 +21,17 @@ enum class CollectionType {
  * A fake repo
  */
 object AppRepo {
-  fun getApps(): List<AppCollection> = appCollections
+  fun getApps() = appCollections
   fun getApp(appId: Long) = apps.find { it.id == appId }!!
   fun getRelated(@Suppress("UNUSED_PARAMETER") appId: Long) = related
 
   fun getForYouApps(): List<AppCollection> = forYouCollection
   fun getTopChartsApps(): List<AppCollection> = topChartsCollection
   fun getCategoriesApps(): List<AppCollection> = categoriesCollection
+
+  fun getReviews() = reviews
+  fun getReview(reviewId: Long) = reviews.find { it.id == reviewId }!!
+  fun getReviewsForApp(appId: Long) = reviews.filter { it.appId == appId }
 }
 
 /**
@@ -170,6 +173,72 @@ val apps = listOf(
         name = "Reaction training",
         size = "125 MB",
         imageUrl = "https://lh3.googleusercontent.com/arUzvoXLTbT0bLu-NyZ4nGZk23ttD2yaUfhciycaIEhilAMiqyb_6h5RDAIrbjvS1g=s360"
+    )
+)
+
+val reviews = listOf(
+    Review(
+        id = 1L,
+        userName = "Alicia Mayer",
+        userAvatarUrl = "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=1234&q=80",
+        reviewDesc = "Nice app. Like using it. Feels like I'm using the playstore app. But since I've updated the app to the latest version, it has become laggy and gets crashed frequently.",
+        ratings = 3.0,
+        date = "9/25/20",
+        appId = 1L
+    ),
+    Review(
+        id = 1L,
+        userName = "Edward Frost",
+        userAvatarUrl = "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60",
+        reviewDesc = "Amazing experience. The animations are really smooth. A true joy ride! Would suggest to have more features in the future.",
+        ratings = 4.0,
+        date = "9/25/20",
+        appId = 1L
+    ),
+    Review(
+        id = 1L,
+        userName = "Vicky Sharma",
+        userAvatarUrl = "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1600&q=80",
+        reviewDesc = "Bag experience. App keeps on crashing whenever I go to Apps section. I don't know what happened to this app . It was one of the best apps but now it's the worst. Sometimes not able to navigate to Movies section from Apps, also search option doesn't work everytime.",
+        ratings = 2.5,
+        date = "9/25/20",
+        appId = 1L
+    ),
+    Review(
+        id = 1L,
+        userName = "Christopher Julie",
+        userAvatarUrl = "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80",
+        reviewDesc = "Nice app, needs lots of improvement though. Would love to use it for the rest of my life. ",
+        ratings = 3.0,
+        date = "9/25/20",
+        appId = 1L
+    ),
+    Review(
+        id = 1L,
+        userName = "Mohit Singh",
+        userAvatarUrl = "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60",
+        reviewDesc = "Worst app! Uninstalled it. Thank you.",
+        ratings = 2.0,
+        date = "9/25/20",
+        appId = 1L
+    ),
+    Review(
+        id = 1L,
+        userName = "Tom Hanks",
+        userAvatarUrl = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80",
+        reviewDesc = "App is good but I'm not feeling comfortable with so many permissions, especially fine location and camera, I read the explanation for the necessity but I'm not buying it, camera & location permissions could have been asked when and if I wanted to share something to friends.",
+        ratings = 4.0,
+        date = "9/25/20",
+        appId = 1L
+    ),
+    Review(
+        id = 1L,
+        userName = "R Chandler",
+        userAvatarUrl = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80",
+        reviewDesc = "A true delight. Never stop development, its wonderful. Amazing app! Just love it!",
+        ratings = 4.5,
+        date = "9/25/20",
+        appId = 1L
     )
 )
 

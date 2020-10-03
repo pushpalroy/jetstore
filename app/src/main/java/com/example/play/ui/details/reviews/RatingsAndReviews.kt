@@ -33,29 +33,7 @@ fun RatingsAndReviews() {
   Column(
       modifier = Modifier.padding(top = 4.dp, start = 24.dp, end = 16.dp, bottom = 8.dp)
   ) {
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-      Text(
-          text = "Ratings and reviews",
-          style = TextStyle(
-              fontWeight = FontWeight.Medium,
-              fontSize = 16.sp,
-              letterSpacing = 0.15.sp
-          ),
-          color = PlayTheme.colors.textSecondaryDark,
-          modifier = Modifier.weight(1f)
-      )
-      IconButton(
-          onClick = {},
-          modifier = Modifier.align(Alignment.Top)
-      ) {
-        Icon(
-            asset = Outlined.ArrowForward,
-            tint = PlayTheme.colors.iconTint
-        )
-      }
-    }
+    RatingsAndReviewsHeader()
     Row(modifier = Modifier.padding(top = 16.dp)) {
       Column(modifier = Modifier.align(Alignment.Top)) {
         Text(
@@ -79,72 +57,104 @@ fun RatingsAndReviews() {
             color = PlayTheme.colors.textSecondary
         )
       }
-      Column(modifier = Modifier.padding(start = 24.dp)) {
-        Row {
-          Text(
-              text = "5",
-              style = Typography.caption,
-              color = PlayTheme.colors.textSecondaryDark,
-              modifier = Modifier.align(Alignment.CenterVertically)
-          )
-          AnimatedProgressIndicator(
-              state = getAppRatingBarState(progress = 0.8f, 4000),
-              color = PlayTheme.colors.accent
-          )
-        }
-        Spacer(modifier = Modifier.height(3.dp))
-        Row {
-          Text(
-              text = "4",
-              style = Typography.caption,
-              color = PlayTheme.colors.textSecondaryDark,
-              modifier = Modifier.align(Alignment.CenterVertically)
-          )
-          AnimatedProgressIndicator(
-              state = getAppRatingBarState(progress = 0.5f),
-              color = PlayTheme.colors.accent
-          )
-        }
-        Spacer(modifier = Modifier.height(3.dp))
-        Row {
-          Text(
-              text = "3",
-              style = Typography.caption,
-              color = PlayTheme.colors.textSecondaryDark,
-              modifier = Modifier.align(Alignment.CenterVertically)
-          )
-          AnimatedProgressIndicator(
-              state = getAppRatingBarState(progress = 0.3f, 4000),
-              color = PlayTheme.colors.accent
-          )
-        }
-        Spacer(modifier = Modifier.height(3.dp))
-        Row {
-          Text(
-              text = "2",
-              style = Typography.caption,
-              color = PlayTheme.colors.textSecondaryDark,
-              modifier = Modifier.align(Alignment.CenterVertically)
-          )
-          AnimatedProgressIndicator(
-              state = getAppRatingBarState(progress = 0.1f),
-              color = PlayTheme.colors.accent
-          )
-        }
-        Spacer(modifier = Modifier.height(3.dp))
-        Row {
-          Text(
-              text = "1",
-              style = Typography.caption,
-              color = PlayTheme.colors.textSecondaryDark,
-              modifier = Modifier.align(Alignment.CenterVertically)
-          )
-          AnimatedProgressIndicator(
-              state = getAppRatingBarState(progress = 0.2f, 4000),
-              color = PlayTheme.colors.accent
-          )
-        }
-      }
+      AppRatingBars()
+    }
+  }
+}
+
+@Composable
+private fun RatingsAndReviewsHeader() {
+  Row(
+      verticalAlignment = Alignment.CenterVertically,
+  ) {
+    Text(
+        text = "Ratings and reviews",
+        style = TextStyle(
+            fontWeight = FontWeight.Medium,
+            fontSize = 16.sp,
+            letterSpacing = 0.15.sp
+        ),
+        color = PlayTheme.colors.textSecondaryDark,
+        modifier = Modifier.weight(1f)
+    )
+    IconButton(
+        onClick = {},
+        modifier = Modifier.align(Alignment.Top)
+    ) {
+      Icon(
+          asset = Outlined.ArrowForward,
+          tint = PlayTheme.colors.iconTint
+      )
+    }
+  }
+}
+
+@Composable
+private fun AppRatingBars() {
+  Column(modifier = Modifier.padding(start = 24.dp)) {
+    Row {
+      Text(
+          text = "5",
+          style = Typography.caption,
+          color = PlayTheme.colors.textSecondaryDark,
+          modifier = Modifier.align(Alignment.CenterVertically)
+      )
+      AnimatedProgressIndicator(
+          state = getAppRatingBarState(progress = 0.8f, 4000),
+          color = PlayTheme.colors.accent
+      )
+    }
+    Spacer(modifier = Modifier.height(3.dp))
+    Row {
+      Text(
+          text = "4",
+          style = Typography.caption,
+          color = PlayTheme.colors.textSecondaryDark,
+          modifier = Modifier.align(Alignment.CenterVertically)
+      )
+      AnimatedProgressIndicator(
+          state = getAppRatingBarState(progress = 0.5f),
+          color = PlayTheme.colors.accent
+      )
+    }
+    Spacer(modifier = Modifier.height(3.dp))
+    Row {
+      Text(
+          text = "3",
+          style = Typography.caption,
+          color = PlayTheme.colors.textSecondaryDark,
+          modifier = Modifier.align(Alignment.CenterVertically)
+      )
+      AnimatedProgressIndicator(
+          state = getAppRatingBarState(progress = 0.3f, 4000),
+          color = PlayTheme.colors.accent
+      )
+    }
+    Spacer(modifier = Modifier.height(3.dp))
+    Row {
+      Text(
+          text = "2",
+          style = Typography.caption,
+          color = PlayTheme.colors.textSecondaryDark,
+          modifier = Modifier.align(Alignment.CenterVertically)
+      )
+      AnimatedProgressIndicator(
+          state = getAppRatingBarState(progress = 0.1f),
+          color = PlayTheme.colors.accent
+      )
+    }
+    Spacer(modifier = Modifier.height(3.dp))
+    Row {
+      Text(
+          text = "1",
+          style = Typography.caption,
+          color = PlayTheme.colors.textSecondaryDark,
+          modifier = Modifier.align(Alignment.CenterVertically)
+      )
+      AnimatedProgressIndicator(
+          state = getAppRatingBarState(progress = 0.2f, 4000),
+          color = PlayTheme.colors.accent
+      )
     }
   }
 }

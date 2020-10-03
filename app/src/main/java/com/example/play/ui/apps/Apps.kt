@@ -2,7 +2,6 @@ package com.example.play.ui.apps
 
 import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.Icon
-import androidx.compose.foundation.ScrollableColumn
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -11,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.preferredHeight
 import androidx.compose.foundation.layout.preferredSizeIn
+import androidx.compose.foundation.lazy.LazyColumnFor
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
@@ -31,17 +31,17 @@ import androidx.ui.tooling.preview.Preview
 import com.example.play.R
 import com.example.play.data.AppCollection
 import com.example.play.data.AppRepo
-import com.example.play.ui.main.AppsCategoryTabs
-import com.example.play.ui.apps.applist.AppsCollection
-import com.example.play.ui.components.CircularLocalImage
-import com.example.play.ui.components.PlaySurface
+import com.example.play.theme.AlphaNearOpaque
+import com.example.play.theme.PlayTheme
 import com.example.play.ui.apps.AppsCategory.Categories
 import com.example.play.ui.apps.AppsCategory.EarlyAccess
 import com.example.play.ui.apps.AppsCategory.EditorsChoice
 import com.example.play.ui.apps.AppsCategory.ForYou
 import com.example.play.ui.apps.AppsCategory.TopCharts
-import com.example.play.theme.AlphaNearOpaque
-import com.example.play.theme.PlayTheme
+import com.example.play.ui.apps.applist.AppsCollection
+import com.example.play.ui.components.CircularLocalImage
+import com.example.play.ui.components.PlaySurface
+import com.example.play.ui.main.AppsCategoryTabs
 import com.example.play.utils.navigationBarsPadding
 import com.example.play.utils.statusBarsPadding
 
@@ -84,26 +84,23 @@ fun AppList(
   onAppClick: (Long) -> Unit,
   modifier: Modifier = Modifier
 ) {
-  ScrollableColumn(modifier = modifier) {
-    Spacer(
-        modifier = Modifier
-            .preferredHeight(4.dp)
-    )
-    //FilterBar(filters)
-    data.forEach { appCollection ->
-      key(appCollection.id) {
-        AppsCollection(
-            appCollection = appCollection,
-            onAppClick = onAppClick,
-        )
-      }
+  Spacer(
+      modifier = Modifier
+          .preferredHeight(4.dp)
+  )
+  LazyColumnFor(items = data, modifier = modifier) { appCollection ->
+    key(appCollection.id) {
+      AppsCollection(
+          appCollection = appCollection,
+          onAppClick = onAppClick,
+      )
     }
-    Spacer(
-        modifier = Modifier
-            .navigationBarsPadding(left = false, right = false)
-            .preferredHeight(8.dp)
-    )
   }
+  Spacer(
+      modifier = Modifier
+          .navigationBarsPadding(left = false, right = false)
+          .preferredHeight(8.dp)
+  )
 }
 
 @Composable

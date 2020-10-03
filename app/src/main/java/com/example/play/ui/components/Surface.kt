@@ -1,10 +1,10 @@
 package com.example.play.ui.components
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Box
 import androidx.compose.foundation.ContentColorAmbient
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Providers
 import androidx.compose.ui.Modifier
@@ -52,7 +52,7 @@ private fun getBackgroundColorForElevation(
   color: Color,
   elevation: Dp
 ): Color {
-  return if (elevation > 0.dp // && https://issuetracker.google.com/issues/161429530
+  return if (elevation > 0.dp
   ) {
     color.withElevation(elevation)
   } else {

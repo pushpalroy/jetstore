@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.sp
 import androidx.ui.tooling.preview.Preview
 import com.example.play.R.drawable
 import com.example.play.data.apps
-import com.example.play.data.models.App
+import com.example.play.data.App
 import com.example.play.ui.components.PlayCard
 import com.example.play.ui.components.RoundedCornerAppImage
 import com.example.play.theme.PlayTheme
@@ -53,7 +53,7 @@ fun PlayFeaturedAppItem(
           cornerPercent = 10
       )
       Row {
-        Stack(
+        Box(
             modifier = Modifier
                 .preferredHeight(80.dp)
                 .preferredWidth(80.dp)
@@ -177,7 +177,7 @@ fun AppItem(
             .clickable(onClick = { onAppClick(app.id) })
             .fillMaxSize()
     ) {
-      Stack(
+      Box(
           modifier = Modifier
               .preferredHeight(120.dp)
               .fillMaxWidth()
