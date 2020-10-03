@@ -67,8 +67,8 @@ fun PlayBottomNav(
     val springSpec = remember {
       SpringSpec<Float>(
           // Determined experimentally
-          stiffness = 800f,
-          dampingRatio = 0.8f
+          stiffness = 200f,
+          dampingRatio = 0.9f
       )
     }
     Column {
@@ -151,7 +151,7 @@ private fun PlayBottomNavItemLayout(
   Layout(
       children = {
         Box(Modifier.layoutId("icon"), children = icon)
-        val scale = lerp(start = 0.6f, stop = 1f, fraction = animationProgress)
+        val scale = lerp(start = 0.2f, stop = 1f, fraction = animationProgress)
         Box(
             modifier = Modifier
                 .padding(start = TextIconSpacing)
