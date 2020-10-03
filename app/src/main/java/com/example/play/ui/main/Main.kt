@@ -2,6 +2,7 @@ package com.example.play.ui.main
 
 import androidx.annotation.StringRes
 import androidx.compose.animation.Crossfade
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.savedinstancestate.savedInstanceState
@@ -12,6 +13,7 @@ import com.example.play.ui.components.PlayScaffold
 import com.example.play.ui.apps.*
 import com.example.play.theme.PlayTheme
 import com.example.play.ui.books.Books
+import com.example.play.ui.components.ToolBar
 import com.example.play.ui.games.Games
 import com.example.play.ui.movies.Movies
 
@@ -30,15 +32,18 @@ fun Home(onAppSelected: (Long) -> Unit) {
       }
   ) { innerPadding ->
     val modifier = Modifier.padding(innerPadding)
-    Crossfade(currentSection) { section ->
-      when (section) {
-        NavSections.Apps -> Apps(
-            onAppClick = onAppSelected,
-            modifier = modifier
-        )
-        NavSections.Games -> Games()
-        NavSections.Movies -> Movies()
-        NavSections.Books -> Books()
+    Column {
+      ToolBar()
+      Crossfade(currentSection) { section ->
+        when (section) {
+          NavSections.Apps -> Apps(
+              onAppClick = onAppSelected,
+              modifier = modifier
+          )
+          NavSections.Games -> Games()
+          NavSections.Movies -> Movies()
+          NavSections.Books -> Books()
+        }
       }
     }
   }
