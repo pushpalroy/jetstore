@@ -2,11 +2,13 @@ package com.example.play.ui.details
 
 import androidx.compose.foundation.ScrollableColumn
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
 import com.example.play.anim.AppIconState.INSTALLING
 import com.example.play.data.AppRepo
@@ -32,11 +34,12 @@ fun AppDetails(
   PlaySurface(
       modifier = Modifier.fillMaxSize()
   ) {
+    BackButton(backPress)
     ScrollableColumn(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.fillMaxSize()
+            .padding(top = 56.dp)
     ) {
-      BackButton(backPress)
       Header(app, progressState, appIconSizeState)
       Stats(app)
       InstallButtonLayout(updateProgress, updateAppIconSize)

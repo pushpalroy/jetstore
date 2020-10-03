@@ -19,8 +19,8 @@ fun BackButton(upPress: () -> Unit) {
       onClick = upPress,
       modifier = Modifier
           .statusBarsPadding()
-          .padding(horizontal = 16.dp, vertical = 10.dp)
-          .preferredSize(16.dp)
+          .padding(horizontal = 16.dp, vertical = 16.dp)
+          .preferredSize(24.dp)
   ) {
     Icon(
         asset = Outlined.ArrowBack,
