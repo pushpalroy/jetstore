@@ -36,13 +36,13 @@ fun RatingsAndReviews() {
   ) {
     RatingsAndReviewsHeader()
     Row(modifier = Modifier.padding(top = 16.dp)) {
-      Column(modifier = Modifier.align(Alignment.Top)) {
+      Column(modifier = Modifier.align(Alignment.CenterVertically)) {
         Text(
             text = "4.7",
             style = TextStyle(
                 fontWeight = FontWeight.SemiBold,
                 fontSize = 45.sp,
-                letterSpacing = 0.15.sp
+                letterSpacing = 1.sp
             ),
             color = PlayTheme.colors.textPrimary,
             modifier = Modifier.align(Alignment.Start)
@@ -58,12 +58,16 @@ fun RatingsAndReviews() {
             color = PlayTheme.colors.textSecondary
         )
       }
-      AppRatingBars()
+      AppRatingBars(
+          modifier = Modifier.padding(start = 24.dp)
+              .align(Alignment.CenterVertically)
+      )
     }
     Spacer(modifier = Modifier.height(16.dp))
     val reviews = AppRepo.getReviews()
     Column {
       reviews.forEach {
+        Spacer(modifier = Modifier.height(16.dp))
         ReviewItem(review = it)
       }
     }
@@ -98,8 +102,8 @@ private fun RatingsAndReviewsHeader() {
 }
 
 @Composable
-private fun AppRatingBars() {
-  Column(modifier = Modifier.padding(start = 24.dp)) {
+private fun AppRatingBars(modifier: Modifier) {
+  Column(modifier = modifier) {
     Row {
       Text(
           text = "5",

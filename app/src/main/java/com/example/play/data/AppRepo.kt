@@ -181,8 +181,8 @@ val reviews = listOf(
         id = 1L,
         userName = "Alicia Mayer",
         userAvatarUrl = "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=1234&q=80",
-        reviewDesc = "Nice app. Like using it. Feels like I'm using the playstore app. But since I've updated the app to the latest version, it has become laggy and gets crashed frequently.",
-        ratings = 3.0,
+        reviewDesc = "A true delight. Never stop development, its wonderful. Amazing app! Just love it!",
+        ratings = 4.5,
         date = "9/25/20",
         appId = 1L
     ),
@@ -234,9 +234,9 @@ val reviews = listOf(
     Review(
         id = 1L,
         userName = "R Chandler",
-        userAvatarUrl = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80",
-        reviewDesc = "A true delight. Never stop development, its wonderful. Amazing app! Just love it!",
-        ratings = 4.5,
+        userAvatarUrl = "https://images.unsplash.com/photo-1601568544619-b03062ca528a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2500&q=80",
+        reviewDesc = "Nice app. Like using it. Feels like I'm using the playstore app. But since I've updated the app to the latest version, it has become laggy and gets crashed frequently.",
+        ratings = 3.0,
         date = "9/25/20",
         appId = 1L
     )

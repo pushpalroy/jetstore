@@ -2,20 +2,27 @@ package com.example.play.ui.details.reviews
 
 import androidx.compose.foundation.Icon
 import androidx.compose.foundation.Text
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign.Center
 import androidx.compose.ui.text.style.TextOverflow.Ellipsis
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.ui.tooling.preview.Preview
@@ -38,9 +45,8 @@ fun ReviewItem(review: Review) {
         CircularAppImage(
             imageUrl = review.userAvatarUrl,
             modifier = Modifier
-                .height(45.dp)
-                .width(45.dp)
-                .padding(8.dp)
+                .height(35.dp)
+                .width(35.dp)
                 .align(Alignment.CenterVertically)
                 .weight(2f, false)
         )
@@ -55,7 +61,8 @@ fun ReviewItem(review: Review) {
             maxLines = 1,
             overflow = Ellipsis,
             modifier = Modifier.align(Alignment.CenterVertically)
-                .weight(10f, true)
+                .weight(12f, true)
+                .padding(start = 8.dp)
         )
         Icon(
             asset = Icons.Filled.MoreVert, modifier = Modifier
@@ -69,7 +76,6 @@ fun ReviewItem(review: Review) {
       ) {
         StarRatings(
             ratings = review.ratings, modifier = Modifier
-            .padding(start = 8.dp)
             .align(Alignment.CenterVertically),
             sizeInDp = 10.dp
         )
@@ -91,11 +97,10 @@ fun ReviewItem(review: Review) {
               fontSize = 12.sp,
               letterSpacing = 0.15.sp
           ),
-          color = PlayTheme.colors.textSecondaryDark,
-          modifier = Modifier.padding(start = 8.dp)
+          color = PlayTheme.colors.textSecondaryDark
       )
       Row(
-          modifier = Modifier.padding(start = 8.dp, top = 24.dp)
+          modifier = Modifier.padding(top = 24.dp)
       ) {
         Text(
             text = "Was this review helpful?",
@@ -104,11 +109,47 @@ fun ReviewItem(review: Review) {
                 fontSize = 10.sp,
                 letterSpacing = 0.15.sp
             ),
-            color = PlayTheme.colors.textSecondary
+            color = PlayTheme.colors.textSecondary,
+            modifier = Modifier.align(Alignment.CenterVertically)
+                .weight(3f, true)
         )
+        Row(
+            modifier = Modifier.align(Alignment.CenterVertically)
+                .weight(1f, false)
+        ) {
+          Chip(text = "Yes")
+          Spacer(modifier = Modifier.width(8.dp))
+          Chip(text = "No")
+        }
       }
     }
   }
+}
+
+// Chip
+@Composable
+private fun Chip(
+  strokeWidth: Dp = 1.dp,
+  color: Color = PlayTheme.colors.uiBorder,
+  shape: Shape = RoundedCornerShape(50),
+  text: String = "Yes"
+) {
+  Text(
+      text = text,
+      style = TextStyle(
+          fontWeight = FontWeight.Normal,
+          fontSize = 10.sp,
+          textAlign = Center,
+          letterSpacing = 0.15.sp
+      ),
+      color = PlayTheme.colors.textSecondary,
+      modifier = Modifier
+          .border(strokeWidth, color, shape)
+          .padding(top = 2.dp, bottom = 2.dp)
+          .width(40.dp)
+          .height(15.dp)
+          .clickable(onClick = {})
+  )
 }
 
 @Preview("Review Item")
