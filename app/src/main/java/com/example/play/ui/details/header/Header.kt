@@ -6,7 +6,7 @@ import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Stack
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.preferredHeight
 import androidx.compose.foundation.layout.preferredSize
@@ -73,7 +73,9 @@ fun Header(
           cornerPercent = 20
       )
     }
-    Column {
+    Column(
+        modifier = Modifier.fillMaxWidth()
+    ) {
       Text(
           text = app.name,
           style = TextStyle(

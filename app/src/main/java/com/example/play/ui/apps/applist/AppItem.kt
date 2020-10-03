@@ -34,8 +34,8 @@ fun PlayFeaturedAppItem(
       elevation = 0.dp,
       modifier = modifier
           .preferredSize(
-              width = 280.dp,
-              height = 250.dp
+              width = 250.dp,
+              height = 230.dp
           )
           .padding(bottom = 8.dp)
   ) {
@@ -48,15 +48,15 @@ fun PlayFeaturedAppItem(
           imageUrl = app.imageUrl,
           modifier = Modifier
               .fillMaxWidth()
-              .preferredHeightIn(max = 155.dp)
+              .preferredHeightIn(max = 145.dp)
               .padding(8.dp),
-          cornerPercent = 10
+          cornerPercent = 8
       )
       Row {
         Box(
             modifier = Modifier
-                .preferredHeight(80.dp)
-                .preferredWidth(80.dp)
+                .preferredHeight(72.dp)
+                .preferredWidth(72.dp)
         ) {
           RoundedCornerAppImage(
               imageUrl = app.imageUrl,
@@ -68,7 +68,7 @@ fun PlayFeaturedAppItem(
           )
         }
         Column(
-            modifier = Modifier.padding(start = 16.dp, top = 8.dp)
+            modifier = Modifier.padding(start = 8.dp, top = 8.dp)
         ) {
           Text(
               text = app.name,
@@ -86,11 +86,11 @@ fun PlayFeaturedAppItem(
             Text(
                 text = app.type,
                 style = TextStyle(
-                    fontWeight = FontWeight.Normal,
+                    fontWeight = FontWeight.Light,
                     fontSize = 12.sp,
                     letterSpacing = 0.15.sp
                 ),
-                color = PlayTheme.colors.textSecondary,
+                color = PlayTheme.colors.textSecondaryDark,
                 maxLines = 1,
                 overflow = Ellipsis,
                 modifier = Modifier.padding(end = 8.dp)
@@ -100,17 +100,17 @@ fun PlayFeaturedAppItem(
                 maxLines = 1,
                 overflow = Ellipsis,
                 style = MaterialTheme.typography.subtitle2,
-                color = PlayTheme.colors.textSecondary,
+                color = PlayTheme.colors.textSecondaryDark,
                 modifier = Modifier.align(Alignment.CenterVertically)
             )
             Text(
                 text = app.category,
                 style = TextStyle(
-                    fontWeight = FontWeight.Normal,
+                    fontWeight = FontWeight.Light,
                     fontSize = 12.sp,
                     letterSpacing = 0.15.sp
                 ),
-                color = PlayTheme.colors.textSecondary,
+                color = PlayTheme.colors.textSecondaryDark,
                 maxLines = 1,
                 overflow = Ellipsis,
                 modifier = Modifier.padding(start = 8.dp)
@@ -121,11 +121,11 @@ fun PlayFeaturedAppItem(
             Text(
                 text = app.ratings,
                 style = TextStyle(
-                    fontWeight = FontWeight.Normal,
+                    fontWeight = FontWeight.Light,
                     fontSize = 12.sp,
                     letterSpacing = 0.15.sp
                 ),
-                color = PlayTheme.colors.textSecondary,
+                color = PlayTheme.colors.textSecondaryDark,
                 maxLines = 1,
                 overflow = Ellipsis
             )
@@ -133,19 +133,19 @@ fun PlayFeaturedAppItem(
                 asset = vectorResource(id = drawable.ic_star_solid),
                 tint = PlayTheme.colors.iconTint,
                 modifier = Modifier
-                    .padding(end = 8.dp)
-                    .preferredWidth(10.dp)
-                    .preferredHeight(10.dp)
+                    .padding(start = 2.dp, end = 8.dp)
+                    .preferredWidth(8.dp)
+                    .preferredHeight(8.dp)
                     .align(Alignment.CenterVertically)
             )
             Text(
                 text = app.size,
                 style = TextStyle(
-                    fontWeight = FontWeight.Normal,
+                    fontWeight = FontWeight.Light,
                     fontSize = 12.sp,
                     letterSpacing = 0.15.sp
                 ),
-                color = PlayTheme.colors.textSecondary,
+                color = PlayTheme.colors.textSecondaryDark,
                 maxLines = 1,
                 overflow = Ellipsis
             )
@@ -199,7 +199,7 @@ fun AppItem(
               fontSize = 12.sp,
               letterSpacing = 0.15.sp
           ),
-          color = PlayTheme.colors.textSecondary,
+          color = PlayTheme.colors.textPrimary,
           maxLines = 1,
           overflow = Ellipsis,
           modifier = Modifier.padding(start = 8.dp)
@@ -208,11 +208,11 @@ fun AppItem(
       Text(
           text = app.size,
           style = TextStyle(
-              fontWeight = FontWeight.Normal,
+              fontWeight = FontWeight.Light,
               fontSize = 12.sp,
               letterSpacing = 0.15.sp
           ),
-          color = PlayTheme.colors.textSecondary,
+          color = PlayTheme.colors.textSecondaryDark,
           maxLines = 1,
           overflow = Ellipsis,
           modifier = Modifier.padding(start = 8.dp)
