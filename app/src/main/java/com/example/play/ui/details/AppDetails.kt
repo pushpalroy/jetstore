@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.ui.tooling.preview.Preview
 import com.example.play.anim.AppIconState.INSTALLING
@@ -31,7 +32,10 @@ fun AppDetails(
   PlaySurface(
       modifier = Modifier.fillMaxSize()
   ) {
-    ScrollableColumn(Modifier.fillMaxSize()) {
+    ScrollableColumn(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.fillMaxSize()
+    ) {
       BackButton(backPress)
       Header(app, progressState, appIconSizeState)
       Stats(app)

@@ -49,14 +49,14 @@ fun getInstallButtonTransitions(): TransitionDefinition<ButtonState> {
       this[pressedIconSize] = 48.dp
       this[idleIconSize] = 24.dp
       this[openButtonWidth] = 150.dp
-      this[buttonsGapWidth] = 16.dp
+      this[buttonsGapWidth] = 8.dp
     }
 
     // Transition from Idle to Pressed
     transition(IDLE to PRESSED) {
       installButtonWidth using tween(durationMillis = 1500)
-      openButtonWidth using tween(durationMillis = 800, delayMillis = 2000)
-      buttonsGapWidth using tween(durationMillis = 800, delayMillis = 2000)
+      buttonsGapWidth using tween(durationMillis = 800, delayMillis = 1500)
+      openButtonWidth using tween(durationMillis = 800, delayMillis = 1500)
       installButtonCorners using tween(durationMillis = 3000, easing = FastOutLinearInEasing)
       installButtonBgColor using tween(durationMillis = 3000)
       installButtonTextColor using tween(durationMillis = 500)
@@ -76,9 +76,9 @@ fun getInstallButtonTransitions(): TransitionDefinition<ButtonState> {
 
     // Transition from Pressed to Idle
     transition(PRESSED to IDLE) {
-      installButtonWidth using tween(durationMillis = 1500)
-      openButtonWidth using tween(durationMillis = 800, delayMillis = 2000)
-      buttonsGapWidth using tween(durationMillis = 800, delayMillis = 2000)
+      installButtonWidth using tween(durationMillis = 1500, delayMillis = 800)
+      buttonsGapWidth using tween(durationMillis = 800, delayMillis = 800)
+      openButtonWidth using tween(durationMillis = 800)
       installButtonCorners using tween(
           durationMillis = 3000,
           easing = FastOutLinearInEasing

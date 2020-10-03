@@ -26,100 +26,107 @@ import com.example.play.theme.PlayTheme
 @SuppressLint("Range")
 @Composable
 fun AnimatedInstallButton(
-    updateProgress: (Boolean) -> Unit,
-    updateAppIconSize: (AppIconState) -> Unit
+  updateProgress: (Boolean) -> Unit,
+  updateAppIconSize: (AppIconState) -> Unit
 ) {
-    val installButtonState = remember { mutableStateOf(PRESSED) }
-    val transitionDefinition = getInstallButtonTransitions()
+  val installButtonState = remember { mutableStateOf(PRESSED) }
+  val transitionDefinition = getInstallButtonTransitions()
 
-    val toState = if (installButtonState.value == IDLE) {
-        PRESSED
-    } else {
-        IDLE
-    }
+  val toState = if (installButtonState.value == IDLE) {
+    PRESSED
+  } else {
+    IDLE
+  }
 
-    val transitionState = transition(
-        definition = transitionDefinition,
-        initState = installButtonState.value,
-        toState = toState
-    )
+  val transitionState = transition(
+      definition = transitionDefinition,
+      initState = installButtonState.value,
+      toState = toState
+  )
 
-    InstallButtonPanel(
-        installButtonState,
-        transitionState = transitionState,
-        updateProgress,
-        updateAppIconSize
-    )
+  InstallButtonPanel(
+      installButtonState,
+      transitionState = transitionState,
+      updateProgress,
+      updateAppIconSize
+  )
 }
 
 @Composable
 fun InstallButtonPanel(
-    installButtonState: MutableState<ButtonState>,
-    transitionState: TransitionState,
-    updateProgress: (Boolean) -> Unit,
-    updateAppIconSize: (AppIconState) -> Unit
+  installButtonState: MutableState<ButtonState>,
+  transitionState: TransitionState,
+  updateProgress: (Boolean) -> Unit,
+  updateAppIconSize: (AppIconState) -> Unit
 ) {
-    Row(
-        modifier = Modifier.padding(8.dp)
-    ) {
-        if (installButtonState.value == IDLE) {
-            OpenButton(transitionState = transitionState)
-        }
-        InstallButton(
-            installButtonState = installButtonState,
-            transitionState = transitionState,
-            updateProgress = updateProgress,
-            updateAppIconSize = updateAppIconSize
-        )
-    }
+  Row(
+      modifier = Modifier.padding(8.dp)
+  ) {
+    OpenButton(
+        transitionState = transitionState,
+        modifier = Modifier.size(transitionState[openButtonWidth], 38.dp)
+    )
+    InstallButton(
+        installButtonState = installButtonState,
+        transitionState = transitionState,
+        updateProgress = updateProgress,
+        updateAppIconSize = updateAppIconSize,
+        modifier = Modifier.size(transitionState[installButtonWidth], 38.dp)
+            .weight(1f, true)
+    )
+  }
 }
 
 @Composable
 fun InstallButton(
-    installButtonState: MutableState<ButtonState>,
-    transitionState: TransitionState,
-    updateProgress: (Boolean) -> Unit,
-    updateAppIconSize: (AppIconState) -> Unit
+  installButtonState: MutableState<ButtonState>,
+  transitionState: TransitionState,
+  updateProgress: (Boolean) -> Unit,
+  updateAppIconSize: (AppIconState) -> Unit,
+  modifier: Modifier
 ) {
-    Button(
-        border = BorderStroke(
-            transitionState[installButtonBorderWidth],
-            transitionState[installButtonBorderColor]
-        ),
-        backgroundColor = transitionState[installButtonBgColor],
-        shape = RoundedCornerShape(transitionState[installButtonCorners]),
-        modifier = Modifier.size(transitionState[installButtonWidth], 38.dp),
-        onClick = {
-            if (installButtonState.value == IDLE) {
-                installButtonState.value = PRESSED
-                updateAppIconSize(AppIconState.INSTALLING)
-                updateProgress(false)
-            } else {
-                installButtonState.value = IDLE
-                updateAppIconSize(AppIconState.IDLE)
-                updateProgress(true)
-            }
+  Button(
+      border = BorderStroke(
+          transitionState[installButtonBorderWidth],
+          transitionState[installButtonBorderColor]
+      ),
+      backgroundColor = transitionState[installButtonBgColor],
+      shape = RoundedCornerShape(transitionState[installButtonCorners]),
+      modifier = modifier,
+      onClick = {
+        if (installButtonState.value == IDLE) {
+          installButtonState.value = PRESSED
+          updateAppIconSize(AppIconState.INSTALLING)
+          updateProgress(false)
+        } else {
+          installButtonState.value = IDLE
+          updateAppIconSize(AppIconState.IDLE)
+          updateProgress(true)
         }
-    ) {
-        ButtonContent(installButtonState, transitionState)
-    }
+      }
+  ) {
+    ButtonContent(installButtonState, transitionState)
+  }
 }
 
 @Composable
-fun OpenButton(transitionState: TransitionState) {
-    Button(
-        border = BorderStroke(1.dp, PlayTheme.colors.accent),
-        backgroundColor = PlayTheme.colors.uiBackground,
-        shape = RoundedCornerShape(50),
-        modifier = Modifier.size(transitionState[openButtonWidth], 38.dp),
-        onClick = {}
-    ) {
-        Text(
-            "Open",
-            softWrap = false,
-            color = PlayTheme.colors.accent
-        )
-    }
-    Spacer(modifier = Modifier.width(transitionState[buttonsGapWidth]))
+fun OpenButton(
+  transitionState: TransitionState,
+  modifier: Modifier
+) {
+  Button(
+      border = BorderStroke(1.dp, PlayTheme.colors.accent),
+      backgroundColor = PlayTheme.colors.uiBackground,
+      shape = RoundedCornerShape(50),
+      modifier = modifier,
+      onClick = {}
+  ) {
+    Text(
+        "Open",
+        softWrap = false,
+        color = PlayTheme.colors.accent
+    )
+  }
+  Spacer(modifier = Modifier.width(transitionState[buttonsGapWidth]))
 }
 
