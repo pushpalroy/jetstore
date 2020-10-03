@@ -32,6 +32,8 @@ object AppRepo {
   fun getReviews() = reviews
   fun getReview(reviewId: Long) = reviews.find { it.id == reviewId }!!
   fun getReviewsForApp(appId: Long) = reviews.filter { it.appId == appId }
+
+  fun getScreenshots() = screenshots
 }
 
 /**
@@ -39,6 +41,18 @@ object AppRepo {
  */
 
 val apps = listOf(
+    App(
+        id = 10L,
+        name = "Steam Link",
+        org = "Valve Corporation",
+        size = "23 MB",
+        info = "Contains Ads",
+        category = "Arcade",
+        type = "Action",
+        ratings = "3.9",
+        imageUrl = "https://lh3.googleusercontent.com/LJp18yPRgdNRXSykeH2rJtaqWH-wrR0S1amiwm1KTWKwe7bwblwzGpCsPg4Rqz19VDs=s360",
+        featureImageUrl = "https://steamcdn-a.akamaihd.net/store/about/social-og.jpg"
+    ),
     App(
         id = 1L,
         name = "Chess - Play and Learn",
@@ -48,7 +62,38 @@ val apps = listOf(
         category = "Arcade",
         type = "Action",
         ratings = "4.4",
-        imageUrl = "https://lh3.googleusercontent.com/K9J_fanyAQcYPpoXqFhJPT8Uo7GT6KkQAraJEQFtOeinuZSZhRr5k9cnhOq3LcMT1_y0=s360"
+        imageUrl = "https://lh3.googleusercontent.com/K9J_fanyAQcYPpoXqFhJPT8Uo7GT6KkQAraJEQFtOeinuZSZhRr5k9cnhOq3LcMT1_y0=s360",
+        featureImageUrl = "https://lh3.googleusercontent.com/Hh7To4ss_l7t7_2P6qJ0AneK11Cq-6Vuv3PR1e6oLZ3dCJHUuCYkrVwGBriv1jTZ4voQ"
+    ),
+    App(
+        id = 19L,
+        name = "Morse Mania: Learn Morse Code",
+        size = "125 MB",
+        category = "Puzzle",
+        type = "Merge",
+        ratings = "4.2",
+        imageUrl = "https://lh3.googleusercontent.com/jtfbQ3eY_UewdSHxbCbFNBCV7tPKjjEH8CqJKJLiEARlXgpDNsvP5WV_jrLUapPKXA=s360",
+        featureImageUrl = "https://images.unsplash.com/photo-1548268770-66184a21657e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=882&q=80"
+    ),
+    App(
+        id = 20L,
+        name = "Reaction training",
+        size = "12 MB",
+        category = "Puzzle",
+        type = "Merge",
+        ratings = "4.4",
+        imageUrl = "https://lh3.googleusercontent.com/arUzvoXLTbT0bLu-NyZ4nGZk23ttD2yaUfhciycaIEhilAMiqyb_6h5RDAIrbjvS1g=s360",
+        featureImageUrl = "https://images.unsplash.com/photo-1516663713099-37eb6d60c825?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80"
+    ),
+    App(
+        id = 5L,
+        name = "Binance - Buy & Sell Bitcoin Securely",
+        category = "Finance",
+        size = "8 MB",
+        type = "Utility",
+        ratings = "4.3",
+        imageUrl = "https://lh3.googleusercontent.com/YaJVsuv4cxsegY_VYcsWpKY-4nt7g2il77XVWZrm_z9Knd3PJAGaBlBuQyahlm85aic=s360",
+        featureImageUrl = "https://images.unsplash.com/photo-1597781914467-a5b93258e748?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80"
     ),
     App(
         id = 2L,
@@ -57,38 +102,6 @@ val apps = listOf(
         type = "Merge",
         ratings = "4.6",
         imageUrl = "https://lh3.googleusercontent.com/62OzNxLonba70XxMFP3X3dsdNS9lvG2xf5TqfhYDaw9iFn5as9gVSU23ExfCLoZXkMWA=s360"
-    ),
-    App(
-        id = 3L,
-        name = "Subway Surfers",
-        size = "5.1 MB",
-        category = "Puzzle",
-        type = "casual",
-        ratings = "4.4",
-        imageUrl = "https://lh3.googleusercontent.com/jUsiig3d-ntQuAg5fttEZtLBycPhm2Jjpj6OOyFzjUQ6JTlLzyFjbDsOhi9faQjZNz4=s360"
-    ),
-    App(
-        id = 4L,
-        name = "Coin by Zerodha",
-        size = "34 MB",
-        category = "Simulation",
-        type = "Offline",
-        ratings = "4.7",
-        imageUrl = "https://lh3.googleusercontent.com/_Bg6_dqP19XKe4riOzHwYFuLkplOTqjAv78DoZmKE2DOgIMvdsGyvd8V-SlKOjhfXw=s360"
-    ),
-    App(
-        id = 5L,
-        name = "Binance - Buy & Sell Bitcoin Securely",
-        category = "Board",
-        type = "Chess",
-        ratings = "4.3",
-        imageUrl = "https://lh3.googleusercontent.com/YaJVsuv4cxsegY_VYcsWpKY-4nt7g2il77XVWZrm_z9Knd3PJAGaBlBuQyahlm85aic=s360"
-    ),
-    App(
-        id = 6L,
-        name = "edX: Online Courses by Harvard, Imperial, MIT, IBM",
-        size = "5.5 MB",
-        imageUrl = "https://lh3.googleusercontent.com/gdytTaswCeQyqxcK-CS3BClqz7C3U0X6vLUbMOfq-91pgc0RReMOLIJLpYhsPsnzE2M=s360"
     ),
     App(
         id = 7L,
@@ -107,12 +120,6 @@ val apps = listOf(
         name = "9GAG: Funny gifs, pics, fresh memes & viral videos",
         size = "125 MB",
         imageUrl = "https://lh3.googleusercontent.com/QiE-x76mMbIxT5W2sBCdORRnz-YJys2ridssRJZmiE540_5ADuFnOg-9I0H6bTQOuw=s360"
-    ),
-    App(
-        id = 10L,
-        name = "Steam Link",
-        size = "85 MB",
-        imageUrl = "https://lh3.googleusercontent.com/LJp18yPRgdNRXSykeH2rJtaqWH-wrR0S1amiwm1KTWKwe7bwblwzGpCsPg4Rqz19VDs=s360"
     ),
     App(
         id = 11L,
@@ -163,16 +170,28 @@ val apps = listOf(
         imageUrl = "https://lh3.googleusercontent.com/vHw1Qv2MNAzoXiuJb8lNkybyHBzCsiWblKCefKnsukJlV9z4G0hGL_4uXzLUwxyT7a_q=s360"
     ),
     App(
-        id = 19L,
-        name = "Morse Mania: Learn Morse Code",
-        size = "125 MB",
-        imageUrl = "https://lh3.googleusercontent.com/jtfbQ3eY_UewdSHxbCbFNBCV7tPKjjEH8CqJKJLiEARlXgpDNsvP5WV_jrLUapPKXA=s360"
+        id = 3L,
+        name = "Subway Surfers",
+        size = "5.1 MB",
+        category = "Puzzle",
+        type = "casual",
+        ratings = "4.4",
+        imageUrl = "https://lh3.googleusercontent.com/jUsiig3d-ntQuAg5fttEZtLBycPhm2Jjpj6OOyFzjUQ6JTlLzyFjbDsOhi9faQjZNz4=s360"
     ),
     App(
-        id = 20L,
-        name = "Reaction training",
-        size = "125 MB",
-        imageUrl = "https://lh3.googleusercontent.com/arUzvoXLTbT0bLu-NyZ4nGZk23ttD2yaUfhciycaIEhilAMiqyb_6h5RDAIrbjvS1g=s360"
+        id = 4L,
+        name = "Coin by Zerodha",
+        size = "34 MB",
+        category = "Simulation",
+        type = "Offline",
+        ratings = "4.7",
+        imageUrl = "https://lh3.googleusercontent.com/_Bg6_dqP19XKe4riOzHwYFuLkplOTqjAv78DoZmKE2DOgIMvdsGyvd8V-SlKOjhfXw=s360"
+    ),
+    App(
+        id = 6L,
+        name = "edX: Online Courses by Harvard, Imperial, MIT, IBM",
+        size = "5.5 MB",
+        imageUrl = "https://lh3.googleusercontent.com/gdytTaswCeQyqxcK-CS3BClqz7C3U0X6vLUbMOfq-91pgc0RReMOLIJLpYhsPsnzE2M=s360"
     )
 )
 
@@ -180,7 +199,7 @@ val reviews = listOf(
     Review(
         id = 1L,
         userName = "Alicia Mayer",
-        userAvatarUrl = "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=1234&q=80",
+        userAvatarUrl = "https://i.pinimg.com/564x/33/a2/d4/33a2d4e2aef856528a8696e83651e5a9.jpg",
         reviewDesc = "A true delight. Never stop development, its wonderful. Amazing app! Just love it!",
         ratings = 4.5,
         date = "9/25/20",
@@ -207,7 +226,7 @@ val reviews = listOf(
     Review(
         id = 1L,
         userName = "Christopher Julie",
-        userAvatarUrl = "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80",
+        userAvatarUrl = "https://i.pinimg.com/236x/e7/1f/fc/e71ffc23cf4c38cf1eea484c344d2e22.jpg",
         reviewDesc = "Nice app, needs lots of improvement though. Would love to use it for the rest of my life. ",
         ratings = 3.0,
         date = "9/25/20",
@@ -240,6 +259,13 @@ val reviews = listOf(
         date = "9/25/20",
         appId = 1L
     )
+)
+
+val screenshots = listOf(
+    "https://i.pinimg.com/564x/7c/3a/d8/7c3ad851224a3a66f887ac19d5afe4a6.jpg",
+    "https://i.pinimg.com/564x/6d/16/62/6d1662ba3f9c1af5652ce32664342a10.jpg",
+    "https://i.pinimg.com/564x/85/7c/c2/857cc2ded3f279d12f99f2543634f441.jpg",
+    "https://i.pinimg.com/564x/87/ce/9f/87ce9fdf662bea4ae4c79b383c029345.jpg"
 )
 
 /**

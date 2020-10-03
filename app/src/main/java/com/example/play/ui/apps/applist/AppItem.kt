@@ -45,7 +45,7 @@ fun PlayFeaturedAppItem(
             .fillMaxSize()
     ) {
       RoundedCornerAppImage(
-          imageUrl = app.imageUrl,
+          imageUrl = app.featureImageUrl,
           modifier = Modifier
               .fillMaxWidth()
               .preferredHeightIn(max = 145.dp)

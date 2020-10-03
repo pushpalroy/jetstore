@@ -7,6 +7,7 @@ data class App(
   val id: Long,
   val name: String,
   val imageUrl: String,
+  val featureImageUrl: String = "",
   val size: String = "",
   val category: String = "",
   val type: String = "",
