@@ -17,7 +17,8 @@ import com.example.play.ui.apps.AppsCategory.EarlyAccess
 import com.example.play.ui.apps.AppsCategory.EditorsChoice
 import com.example.play.ui.apps.AppsCategory.ForYou
 import com.example.play.ui.apps.AppsCategory.TopCharts
-import com.example.play.ui.apps.applist.ForYouList
+import com.example.play.ui.apps.applist.ForYouLayout
+import com.example.play.ui.apps.applist.TopChartsLayout
 import com.example.play.ui.components.PlaySurface
 import com.example.play.ui.main.AppsCategoryTabs
 import com.example.play.utils.navigationBarsPadding
@@ -50,10 +51,10 @@ fun Apps(
       }
       Crossfade(currentCategory, animation = tweenSpec) { category ->
         when (category) {
-          ForYou -> ForYouList(forYouData, onAppClick)
-          TopCharts -> ForYouList(topChartsData, onAppClick)
-          Categories -> ForYouList(categoriesData, onAppClick)
-          else -> ForYouList(forYouData, onAppClick)
+          ForYou -> ForYouLayout(forYouData, onAppClick)
+          TopCharts -> TopChartsLayout(topChartsData, onAppClick)
+          Categories -> ForYouLayout(categoriesData, onAppClick)
+          else -> ForYouLayout(forYouData, onAppClick)
         }
       }
     }

@@ -26,7 +26,7 @@ object AppRepo {
   fun getRelated(@Suppress("UNUSED_PARAMETER") appId: Long) = related
 
   fun getForYouApps(): List<AppCollection> = forYouCollection
-  fun getTopChartsApps(): List<AppCollection> = topChartsCollection
+  fun getTopChartsApps(): List<App> = topChartsCollection
   fun getCategoriesApps(): List<AppCollection> = categoriesCollection
 
   fun getReviews() = reviews
@@ -320,11 +320,7 @@ val forYouCollection = listOf(
     greatIndie
 )
 
-val topChartsCollection = listOf(
-    greatIndie,
-    newAndUpdated,
-    suggestedForYou
-)
+val topChartsCollection = apps
 
 val categoriesCollection = listOf(
     strategy,

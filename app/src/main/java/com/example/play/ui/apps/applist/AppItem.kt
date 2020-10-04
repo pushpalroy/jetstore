@@ -12,15 +12,18 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign.Center
 import androidx.compose.ui.text.style.TextOverflow.Ellipsis
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.ui.tooling.preview.Preview
 import com.example.play.R.drawable
 import com.example.play.data.App
+import com.example.play.data.AppRepo
 import com.example.play.data.apps
 import com.example.play.theme.PlayTheme
 import com.example.play.ui.components.PlayCard
+import com.example.play.ui.components.PlaySurface
 import com.example.play.ui.components.RoundedCornerAppImage
 
 @Composable
@@ -221,6 +224,132 @@ fun AppItem(
   }
 }
 
+@Composable
+fun TopChartAppItem(
+  app: App,
+  onAppClick: (Long) -> Unit,
+  modifier: Modifier = Modifier
+) {
+  PlaySurface(
+      modifier = modifier
+          .fillMaxWidth()
+          .clickable(onClick = { onAppClick(app.id) })
+  ) {
+    Row(modifier = Modifier.padding(start = 16.dp, end = 8.dp, top = 4.dp, bottom = 4.dp)) {
+      Text(
+          text = app.id.toString(),
+          style = TextStyle(
+              fontWeight = FontWeight.Normal,
+              fontSize = 14.sp
+          ),
+          textAlign = Center,
+          color = PlayTheme.colors.textSecondary,
+          modifier = Modifier
+              .align(Alignment.CenterVertically)
+              .preferredWidth(30.dp)
+              .padding(end = 8.dp)
+      )
+      Box(
+          modifier = Modifier
+              .preferredHeight(65.dp)
+              .preferredWidth(65.dp)
+      ) {
+        RoundedCornerAppImage(
+            imageUrl = app.imageUrl,
+            modifier = Modifier
+                .fillMaxWidth()
+                .align(Alignment.TopStart)
+                .padding(8.dp),
+            cornerPercent = 20
+        )
+      }
+      Column(
+          modifier = Modifier.padding(start = 8.dp)
+              .align(Alignment.CenterVertically)
+      ) {
+        Text(
+            text = app.name,
+            style = TextStyle(
+                fontWeight = FontWeight.Normal,
+                fontSize = 14.sp,
+                letterSpacing = 0.15.sp
+            ),
+            color = PlayTheme.colors.textPrimary,
+            maxLines = 1,
+            overflow = Ellipsis
+        )
+        Row {
+          Text(
+              text = app.type,
+              style = TextStyle(
+                  fontWeight = FontWeight.Light,
+                  fontSize = 12.sp,
+                  letterSpacing = 0.15.sp
+              ),
+              color = PlayTheme.colors.textSecondaryDark,
+              maxLines = 1,
+              overflow = Ellipsis,
+              modifier = Modifier.padding(end = 8.dp)
+          )
+          Text(
+              text = ".",
+              maxLines = 1,
+              overflow = Ellipsis,
+              style = MaterialTheme.typography.subtitle2,
+              color = PlayTheme.colors.textSecondaryDark,
+              modifier = Modifier.align(Alignment.CenterVertically)
+          )
+          Text(
+              text = app.category,
+              style = TextStyle(
+                  fontWeight = FontWeight.Light,
+                  fontSize = 12.sp,
+                  letterSpacing = 0.15.sp
+              ),
+              color = PlayTheme.colors.textSecondaryDark,
+              maxLines = 1,
+              overflow = Ellipsis,
+              modifier = Modifier.padding(start = 8.dp)
+          )
+        }
+        Row {
+          Text(
+              text = app.ratings,
+              style = TextStyle(
+                  fontWeight = FontWeight.Light,
+                  fontSize = 12.sp,
+                  letterSpacing = 0.15.sp
+              ),
+              color = PlayTheme.colors.textSecondaryDark,
+              maxLines = 1,
+              overflow = Ellipsis
+          )
+          Icon(
+              asset = vectorResource(id = drawable.ic_star_solid),
+              tint = PlayTheme.colors.iconTint,
+              modifier = Modifier
+                  .padding(start = 2.dp, end = 8.dp)
+                  .preferredWidth(8.dp)
+                  .preferredHeight(8.dp)
+                  .align(Alignment.CenterVertically)
+          )
+          Text(
+              text = app.size,
+              style = TextStyle(
+                  fontWeight = FontWeight.Light,
+                  fontSize = 12.sp,
+                  letterSpacing = 0.15.sp
+              ),
+              color = PlayTheme.colors.textSecondaryDark,
+              maxLines = 1,
+              overflow = Ellipsis
+          )
+        }
+      }
+    }
+  }
+}
+
 @Preview("Featured App Item")
 @Composable
 fun PlayFeaturedAppItemPreview() {
@@ -239,6 +368,18 @@ fun PlayAppItemPreview() {
   PlayTheme {
     val app = apps.first()
     AppItem(
+        app = app,
+        onAppClick = { }
+    )
+  }
+}
+
+@Preview("Top Chart App Item")
+@Composable
+fun TopChartAppItemPreview() {
+  PlayTheme {
+    val app = AppRepo.getApp(2L)
+    TopChartAppItem(
         app = app,
         onAppClick = { }
     )

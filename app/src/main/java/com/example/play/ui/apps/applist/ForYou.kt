@@ -31,7 +31,7 @@ import com.example.play.theme.PlayTheme
 import com.example.play.utils.navigationBarsPadding
 
 @Composable
-fun ForYouList(
+fun ForYouLayout(
   data: List<AppCollection>,
   onAppClick: (Long) -> Unit,
   modifier: Modifier = Modifier
@@ -91,15 +91,15 @@ fun ForYou(
       }
     }
     if (featured && appCollection.type == CollectionType.Featured) {
-      FeaturedApps(appCollection.apps, onAppClick)
+      FeaturedAppsList(appCollection.apps, onAppClick)
     } else {
-      Apps(appCollection.apps, onAppClick)
+      AppsList(appCollection.apps, onAppClick)
     }
   }
 }
 
 @Composable
-private fun FeaturedApps(
+private fun FeaturedAppsList(
   apps: List<App>,
   onAppClick: (Long) -> Unit,
   modifier: Modifier = Modifier.padding(start = 16.dp)
@@ -111,7 +111,7 @@ private fun FeaturedApps(
 }
 
 @Composable
-private fun Apps(
+private fun AppsList(
   apps: List<App>,
   onAppClick: (Long) -> Unit,
   modifier: Modifier = Modifier.padding(start = 16.dp)
@@ -126,7 +126,7 @@ private fun Apps(
 @Composable
 fun ForYouListPreview() {
   PlayTheme {
-    ForYouList(data = AppRepo.getApps(), onAppClick = {})
+    ForYouLayout(data = AppRepo.getApps(), onAppClick = {})
   }
 }
 
@@ -134,6 +134,6 @@ fun ForYouListPreview() {
 @Composable
 fun ForYouListDarkPreview() {
   PlayTheme(darkTheme = true) {
-    ForYouList(data = AppRepo.getApps(), onAppClick = {})
+    ForYouLayout(data = AppRepo.getApps(), onAppClick = {})
   }
 }

@@ -36,11 +36,11 @@ fun Home(onAppSelected: (Long) -> Unit) {
       ToolBar()
       Crossfade(currentSection) { section ->
         when (section) {
+          NavSections.Games -> Games()
           NavSections.Apps -> Apps(
               onAppClick = onAppSelected,
               modifier = modifier
           )
-          NavSections.Games -> Games()
           NavSections.Movies -> Movies()
           NavSections.Books -> Books()
         }
@@ -53,8 +53,8 @@ enum class NavSections(
   @StringRes val title: Int,
   val icon: Int
 ) {
-  Apps(R.string.home_apps, R.drawable.ic_apps),
   Games(R.string.home_games, R.drawable.ic_games),
+  Apps(R.string.home_apps, R.drawable.ic_apps),
   Movies(R.string.home_movies, R.drawable.ic_movies),
   Books(R.string.home_books, R.drawable.ic_books_otlined)
 }

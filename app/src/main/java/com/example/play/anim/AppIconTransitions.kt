@@ -24,7 +24,7 @@ fun getAppIconTransitionDefinition(): TransitionDefinition<AppIconState> {
 
     // State of app icon size when pressed
     state(INSTALLING) {
-      this[appIconSize] = 80.dp
+      this[appIconSize] = 70.dp
     }
 
     // Transition from Idle to Installing
@@ -35,7 +35,7 @@ fun getAppIconTransitionDefinition(): TransitionDefinition<AppIconState> {
         95.dp at 400
         90.dp at 600
         85.dp at 800
-        80.dp at 1000
+        70.dp at 1000
       }
     }
 
@@ -43,7 +43,7 @@ fun getAppIconTransitionDefinition(): TransitionDefinition<AppIconState> {
     transition(INSTALLING to IDLE) {
       appIconSize using keyframes {
         durationMillis = 1000
-        80.dp at 200
+        70.dp at 200
         85.dp at 400
         90.dp at 600
         95.dp at 800
