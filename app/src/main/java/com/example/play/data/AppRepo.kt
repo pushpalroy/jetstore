@@ -34,6 +34,7 @@ object AppRepo {
   fun getReviewsForApp(appId: Long) = reviews.filter { it.appId == appId }
 
   fun getScreenshots() = screenshots
+  fun getFilters() = filters
 }
 
 /**
@@ -271,6 +272,13 @@ val screenshots = listOf(
 /**
  * Fake static data
  */
+
+val filters = listOf(
+    Filter(name = "Top free"),
+    Filter(name = "Top grossing"),
+    Filter(name = "Trending"),
+    Filter(name = "Top paid")
+)
 
 val discoverRecommended = AppCollection(
     id = 1L,

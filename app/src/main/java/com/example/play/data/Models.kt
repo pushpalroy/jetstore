@@ -1,6 +1,8 @@
 package com.example.play.data
 
 import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.Stable
+import androidx.compose.runtime.mutableStateOf
 
 @Immutable
 data class App(
@@ -28,3 +30,11 @@ data class Review(
   val date: String = "9/25/20",
   val appId: Long = 1
 )
+
+@Stable
+class Filter(
+  val name: String,
+  enabled: Boolean = false
+) {
+  val enabled = mutableStateOf(enabled)
+}

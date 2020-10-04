@@ -18,9 +18,10 @@ import com.example.play.utils.SysUiController
 private val LightColorPalette = PlayColorPalette(
     brand = White,
     accent = DeepGreen,
+    accentDark = DarkGreen,
     iconTint = Grey,
     uiBackground = Neutral0,
-    uiBorder = Neutral4,
+    uiBorder = VeryLightGrey,
     uiFloated = FunctionalGrey,
     textPrimary = TextPrimary,
     textSecondary = TextSecondary,
@@ -45,6 +46,7 @@ private val LightColorPalette = PlayColorPalette(
 private val DarkColorPalette = PlayColorPalette(
     brand = Shadow1,
     accent = DeepGreen,
+    accentDark = DarkGreen,
     iconTint = Shadow1,
     uiBackground = Neutral8,
     uiBorder = Neutral3,
@@ -113,6 +115,7 @@ class PlayColorPalette(
     gradient2_2: List<Color>,
     brand: Color,
     accent: Color,
+    accentDark: Color,
     iconTint: Color,
     uiBackground: Color,
     uiBorder: Color,
@@ -150,6 +153,8 @@ class PlayColorPalette(
     var brand by mutableStateOf(brand)
         private set
     var accent by mutableStateOf(accent)
+        private set
+    var accentDark by mutableStateOf(accentDark)
         private set
     var iconTint by mutableStateOf(iconTint)
         private set

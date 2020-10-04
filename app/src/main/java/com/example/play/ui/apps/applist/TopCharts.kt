@@ -3,7 +3,10 @@ package com.example.play.ui.apps.applist
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.preferredHeight
+import androidx.compose.foundation.layout.preferredWidth
 import androidx.compose.foundation.lazy.LazyColumnFor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -18,6 +21,7 @@ import androidx.ui.tooling.preview.Preview
 import com.example.play.data.App
 import com.example.play.data.AppRepo
 import com.example.play.theme.PlayTheme
+import com.example.play.ui.components.FilterBar
 import com.example.play.ui.components.Switch
 
 @Composable
@@ -34,26 +38,29 @@ fun TopChartsLayout(
 
 @Composable
 private fun TopChartsHeader() {
-  val (switchState, updateSwitchState) = remember { mutableStateOf(false) }
-  Row(
-      verticalAlignment = Alignment.CenterVertically,
-      modifier = Modifier
-          .padding(24.dp)
-  ) {
-    Text(
-        text = "Show installed apps",
-        style = TextStyle(
-            fontWeight = FontWeight.Normal,
-            fontSize = 14.sp
-        ),
-        color = PlayTheme.colors.textSecondary,
-        modifier = Modifier.weight(1f)
-    )
-    Switch(
-        switchState = switchState,
-        updateSwitchState = updateSwitchState,
-        modifier = Modifier.align(Alignment.CenterVertically)
-    )
+  val (switchState, updateSwitchState) = remember { mutableStateOf(true) }
+  Column {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier
+            .padding(start = 24.dp, end = 24.dp, top = 16.dp, bottom = 8.dp)
+    ) {
+      Text(
+          text = "Show installed apps",
+          style = TextStyle(
+              fontWeight = FontWeight.Normal,
+              fontSize = 14.sp
+          ),
+          color = PlayTheme.colors.textSecondary,
+          modifier = Modifier.weight(1f)
+      )
+      Switch(
+          switchState = switchState,
+          updateSwitchState = updateSwitchState,
+          modifier = Modifier.align(Alignment.CenterVertically)
+      )
+    }
+    FilterBar(filters = AppRepo.getFilters())
   }
 }
 
