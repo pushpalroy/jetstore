@@ -6,12 +6,15 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.preferredHeight
 import androidx.compose.foundation.layout.preferredWidth
+import androidx.compose.foundation.lazy.LazyColumnFor
 import androidx.compose.foundation.lazy.LazyRowFor
 import androidx.compose.material.IconButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ArrowForward
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.key
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
@@ -19,13 +22,41 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.ui.tooling.preview.Preview
 import com.example.play.data.App
 import com.example.play.data.AppCollection
+import com.example.play.data.AppRepo
 import com.example.play.data.CollectionType
 import com.example.play.theme.PlayTheme
+import com.example.play.utils.navigationBarsPadding
 
 @Composable
-fun AppsCollection(
+fun ForYouList(
+  data: List<AppCollection>,
+  onAppClick: (Long) -> Unit,
+  modifier: Modifier = Modifier
+) {
+  Spacer(
+      modifier = Modifier
+          .preferredHeight(4.dp)
+  )
+  LazyColumnFor(items = data, modifier = modifier) { appCollection ->
+    key(appCollection.id) {
+      ForYou(
+          appCollection = appCollection,
+          onAppClick = onAppClick,
+      )
+    }
+  }
+  Spacer(
+      modifier = Modifier
+          .navigationBarsPadding(left = false, right = false)
+          .preferredHeight(8.dp)
+  )
+}
+
+@Composable
+fun ForYou(
   appCollection: AppCollection,
   onAppClick: (Long) -> Unit,
   modifier: Modifier = Modifier,
@@ -50,7 +81,7 @@ fun AppsCollection(
           modifier = Modifier.weight(1f)
       )
       IconButton(
-          onClick = { /* todo */ },
+          onClick = {},
           modifier = Modifier.align(Alignment.CenterVertically)
       ) {
         Icon(
@@ -88,5 +119,21 @@ private fun Apps(
   LazyRowFor(items = apps, modifier = modifier) { app ->
     AppItem(app, onAppClick)
     Spacer(modifier = Modifier.preferredWidth(1.dp))
+  }
+}
+
+@Preview("For You list preview")
+@Composable
+fun ForYouListPreview() {
+  PlayTheme {
+    ForYouList(data = AppRepo.getApps(), onAppClick = {})
+  }
+}
+
+@Preview("For You list dark preview")
+@Composable
+fun ForYouListDarkPreview() {
+  PlayTheme(darkTheme = true) {
+    ForYouList(data = AppRepo.getApps(), onAppClick = {})
   }
 }
