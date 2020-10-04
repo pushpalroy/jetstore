@@ -13,6 +13,8 @@ import androidx.compose.foundation.layout.preferredWidth
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
@@ -29,10 +31,16 @@ import com.example.play.theme.PlayTheme
 fun FilterBar(filters: List<Filter>) {
   ScrollableRow(modifier = Modifier.preferredHeightIn(min = 56.dp)) {
     Spacer(Modifier.preferredWidth(24.dp))
+    val (filterSelected, setFilterSelected: (Int) -> Unit) = remember { mutableStateOf(0) }
     filters.forEach { filter ->
+      filter.enabled.value = filterSelected == filter.id.value
+      val (selected, setSelected) = remember { filter.enabled }
       FilterChip(
           filter = filter,
-          modifier = Modifier.align(Alignment.CenterVertically)
+          modifier = Modifier.align(Alignment.CenterVertically),
+          selected = selected,
+          setSelected = setSelected,
+          setFilterSelected = setFilterSelected
       )
       Spacer(Modifier.preferredWidth(8.dp))
     }
@@ -43,14 +51,15 @@ fun FilterBar(filters: List<Filter>) {
 fun FilterChip(
   filter: Filter,
   modifier: Modifier = Modifier,
-  shape: Shape = RoundedCornerShape(50)
+  shape: Shape = RoundedCornerShape(50),
+  selected: Boolean = false,
+  setSelected: (Boolean) -> Unit,
+  setFilterSelected: (Int) -> Unit
 ) {
-  val (selected, setSelected) = filter.enabled
 
-  val backgroundColor =
-    animate(
-        if (selected) PlayTheme.colors.accent.copy(alpha = 0.1f) else PlayTheme.colors.uiBackground
-    )
+  val backgroundColor = animate(
+      if (selected) PlayTheme.colors.accent.copy(alpha = 0.1f) else PlayTheme.colors.uiBackground
+  )
   val textColor = animate(
       if (selected) PlayTheme.colors.accentDark else PlayTheme.colors.textSecondary
   )
@@ -69,7 +78,10 @@ fun FilterChip(
     Box(
         modifier = Modifier.toggleable(
             value = selected,
-            onValueChange = setSelected
+            onValueChange = {
+              setSelected(true)
+              setFilterSelected(filter.id.value)
+            }
         )
     ) {
       Text(

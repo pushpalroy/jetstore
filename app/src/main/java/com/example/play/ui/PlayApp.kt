@@ -27,7 +27,7 @@ fun PlayApp(backDispatcher: OnBackPressedDispatcher) {
         SpringSpec<Float>(
             // Determined experimentally
             stiffness = 200f,
-            dampingRatio = 0.9f
+            dampingRatio = 0.4f
         )
       }
       Crossfade(navigator.current, animation = springSpec) { destination ->

@@ -274,10 +274,10 @@ val screenshots = listOf(
  */
 
 val filters = listOf(
-    Filter(name = "Top free"),
-    Filter(name = "Top grossing"),
-    Filter(name = "Trending"),
-    Filter(name = "Top paid")
+    Filter(id = 1, name = "Top free"),
+    Filter(id = 2, name = "Top grossing"),
+    Filter(id = 3, name = "Trending"),
+    Filter(id = 4, name = "Top paid")
 )
 
 val discoverRecommended = AppCollection(

@@ -33,8 +33,10 @@ data class Review(
 
 @Stable
 class Filter(
+  id: Int,
   val name: String,
   enabled: Boolean = false
 ) {
   val enabled = mutableStateOf(enabled)
+  val id = mutableStateOf(id)
 }
