@@ -1,4 +1,4 @@
-package com.example.play.ui.apps.applist
+package com.example.play.ui.applist
 
 import androidx.compose.foundation.Icon
 import androidx.compose.foundation.Text

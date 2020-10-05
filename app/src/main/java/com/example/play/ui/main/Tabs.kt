@@ -21,12 +21,11 @@ import androidx.compose.ui.unit.sp
 import androidx.ui.tooling.preview.Preview
 import com.example.play.R
 import com.example.play.theme.PlayTheme
-import com.example.play.ui.apps.AppsCategory
-import com.example.play.ui.apps.AppsCategory.Categories
-import com.example.play.ui.apps.AppsCategory.EarlyAccess
-import com.example.play.ui.apps.AppsCategory.EditorsChoice
-import com.example.play.ui.apps.AppsCategory.ForYou
-import com.example.play.ui.apps.AppsCategory.TopCharts
+import com.example.play.ui.main.AppsCategory.Categories
+import com.example.play.ui.main.AppsCategory.EarlyAccess
+import com.example.play.ui.main.AppsCategory.EditorsChoice
+import com.example.play.ui.main.AppsCategory.ForYou
+import com.example.play.ui.main.AppsCategory.TopCharts
 
 @Composable
 fun AppsCategoryTabs(

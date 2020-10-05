@@ -9,7 +9,7 @@ import androidx.compose.runtime.savedinstancestate.rememberSavedInstanceState
 import com.example.play.theme.PlayTheme
 import com.example.play.ui.Destination.Home
 import com.example.play.ui.details.AppDetails
-import com.example.play.ui.main.Home
+import com.example.play.ui.main.Main
 import com.example.play.utils.Navigator
 import com.example.play.utils.ProvideDisplayInsets
 
@@ -32,7 +32,7 @@ fun PlayApp(backDispatcher: OnBackPressedDispatcher) {
       }
       Crossfade(navigator.current, animation = springSpec) { destination ->
         when (destination) {
-          Home -> Home(actions.selectApp)
+          Home -> Main(actions.selectApp)
           is Destination.AppDetail -> AppDetails(
               appId = destination.appId,
               backPress = actions.upPress

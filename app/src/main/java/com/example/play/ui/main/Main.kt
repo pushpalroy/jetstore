@@ -18,8 +18,8 @@ import com.example.play.ui.games.Games
 import com.example.play.ui.movies.Movies
 
 @Composable
-fun Home(onAppSelected: (Long) -> Unit) {
-  val (currentSection, setCurrentSection) = savedInstanceState { NavSections.Apps }
+fun Main(onAppSelected: (Long) -> Unit) {
+  val (currentSection, setCurrentSection) = savedInstanceState { NavSections.Games }
   val navItems = NavSections.values()
       .toList()
   PlayScaffold(
@@ -36,7 +36,10 @@ fun Home(onAppSelected: (Long) -> Unit) {
       ToolBar()
       Crossfade(currentSection) { section ->
         when (section) {
-          NavSections.Games -> Games()
+          NavSections.Games -> Games(
+              onAppClick = onAppSelected,
+              modifier = modifier
+          )
           NavSections.Apps -> Apps(
               onAppClick = onAppSelected,
               modifier = modifier
@@ -47,6 +50,14 @@ fun Home(onAppSelected: (Long) -> Unit) {
       }
     }
   }
+}
+
+enum class AppsCategory {
+  ForYou,
+  TopCharts,
+  Categories,
+  EditorsChoice,
+  EarlyAccess
 }
 
 enum class NavSections(
@@ -63,7 +74,7 @@ enum class NavSections(
 @Composable
 private fun PlayBottomNavPreview() {
   PlayTheme {
-    Home(
+    Main(
         onAppSelected = {}
     )
   }

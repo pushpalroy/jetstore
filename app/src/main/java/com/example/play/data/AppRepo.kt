@@ -22,28 +22,294 @@ enum class CollectionType {
  */
 object AppRepo {
   fun getApps() = appCollections
-  fun getApp(appId: Long) = apps.find { it.id == appId }!!
-  fun getRelated(@Suppress("UNUSED_PARAMETER") appId: Long) = related
+  fun getApp(appId: Long) = products.find { it.id == appId }!!
+  fun getForYouApps(): List<AppCollection> = forYouAppsCollection
+  fun getTopChartsApps(): List<App> = topChartsAppCollection
 
-  fun getForYouApps(): List<AppCollection> = forYouCollection
-  fun getTopChartsApps(): List<App> = topChartsCollection
-  fun getCategoriesApps(): List<AppCollection> = categoriesCollection
+  fun getGames() = gamesCollections
+  fun getForYouGames(): List<AppCollection> = forYouGamesCollection
+  fun getTopChartsGames(): List<App> = topChartsGamesCollection
 
   fun getReviews() = reviews
   fun getReview(reviewId: Long) = reviews.find { it.id == reviewId }!!
-  fun getReviewsForApp(appId: Long) = reviews.filter { it.appId == appId }
 
   fun getScreenshots() = screenshots
   fun getFilters() = filters
+  fun getFilter(filterId: Int) = filters.find { it.id.value == filterId }
 }
 
 /**
- * Static data
+ * Static apps data
  */
 
 val apps = listOf(
     App(
+        id = 1L,
+        name = "SoundCloud - Play Music, Audio & New Songs",
+        size = "115 MB",
+        filterCategory = "Trending",
+        imageUrl = "https://lh3.googleusercontent.com/lvYCdrPNFU0Ar_lXln3JShoE-NaYF_V-DNlp4eLRZhUVkj00wAseSIm-60OoCKznpw=s360"
+    ),
+    App(
+        id = 2L,
+        name = "Flipkart Online Shopping App",
+        category = "Puzzle",
+        type = "Merge",
+        size = "12 MB",
+        ratings = "4.6",
+        imageUrl = "https://lh3.googleusercontent.com/q8hxnbpJCYfHipSOG_5tZe5jK_89T6QIsqrEklvGpMFKH8b98pDHJf2tPcn2bxEN96ON=s360-rw"
+    ),
+    App(
+        id = 3L,
+        name = "Duolingo: Learn English Free",
+        filterCategory = "Top grossing",
+        size = "38 MB",
+        imageUrl = "https://lh3.googleusercontent.com/FxlchNPugeC6vhs1_z4qtCVONLxiG-mhKjPanEUKDqCXtR5525dl_PVnn470bBM2xHE=s360"
+    ),
+    App(
+        id = 4L,
+        name = "Binance - Buy & Sell Bitcoin Securely",
+        category = "Finance",
+        size = "8 MB",
+        filterCategory = "Top paid",
+        type = "Utility",
+        ratings = "4.3",
+        imageUrl = "https://lh3.googleusercontent.com/YaJVsuv4cxsegY_VYcsWpKY-4nt7g2il77XVWZrm_z9Knd3PJAGaBlBuQyahlm85aic=s360",
+        featureImageUrl = "https://images.unsplash.com/photo-1597781914467-a5b93258e748?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80"
+    ),
+    App(
+        id = 5L,
+        name = "9GAG: Funny gifs, pics, fresh memes & viral videos",
+        size = "125 MB",
+        filterCategory = "Trending",
+        imageUrl = "https://lh3.googleusercontent.com/QiE-x76mMbIxT5W2sBCdORRnz-YJys2ridssRJZmiE540_5ADuFnOg-9I0H6bTQOuw=s360"
+    ),
+    App(
+        id = 6L,
+        name = "Flutter Tutorials And Quizzes",
+        size = "120 MB",
+        filterCategory = "Top grossing",
+        imageUrl = "https://lh3.googleusercontent.com/s57DrI3ItMHxl5wO0huKBKlWJEFNvYqaXen6jJYNbR9vHhVWWfCvwQLOFyPqxeDBts6C=s360"
+    ),
+    App(
+        id = 7L,
+        name = "MX Player",
+        size = "120 MB",
+        filterCategory = "Top grossing",
+        imageUrl = "https://lh3.googleusercontent.com/e_rNLzyR9i3wwy8BwEsIS4uz0fFu29p5RoXoNZt2L0Ef7cJ2QhAcw1x_K51A19HpzQ=s360"
+    ),
+    App(
+        id = 8L,
+        name = "Spotify Lite",
+        size = "120 MB",
+        filterCategory = "Trending",
+        imageUrl = "https://lh3.googleusercontent.com/FChZKPO457J28-5XfUXjVLWSjNDpOQ28FUPze-icpd0ylt3iraHKdP2125CrL2dnuQ=s360"
+    ),
+    App(
+        id = 9L,
+        name = "Spotify Lite",
+        size = "125 MB",
+        imageUrl = "https://lh3.googleusercontent.com/6K8o8mobG8O-6OYZPUBRQYvCALzkkjjRzLjHCeuB19gRSjdZ9T5djqb1WzmpldCcuVo=s360"
+    ),
+    App(
         id = 10L,
+        name = "Crayon Icon Pack",
+        size = "125 MB",
+        filterCategory = "Trending",
+        imageUrl = "https://lh3.googleusercontent.com/MmLHNN4_lwIN7kMG7XWnOxSYbEju-FBMEn8oDj4Xt8t9EnnH6S6GQeMHJDWpGfeDOSpM=s360"
+    ),
+    App(
+        id = 11L,
+        name = "OLX: Buy & Sell Near You with Online Classifieds",
+        size = "125 MB",
+        imageUrl = "https://lh3.googleusercontent.com/tYdcwxICaq7q-Qe_jmQ-2YIMfZ011Tap8PtWLOOpLx23LJLvqr_YziUqek9nBEdVJE8=s360"
+    ),
+    App(
+        id = 12L,
+        name = "Gaana",
+        size = "125 MB",
+        imageUrl = "https://lh3.googleusercontent.com/vHw1Qv2MNAzoXiuJb8lNkybyHBzCsiWblKCefKnsukJlV9z4G0hGL_4uXzLUwxyT7a_q=s360"
+    ),
+    App(
+        id = 13L,
+        name = "Coin by Zerodha",
+        size = "34 MB",
+        category = "Simulation",
+        filterCategory = "Top grossing",
+        type = "Offline",
+        ratings = "4.7",
+        imageUrl = "https://lh3.googleusercontent.com/_Bg6_dqP19XKe4riOzHwYFuLkplOTqjAv78DoZmKE2DOgIMvdsGyvd8V-SlKOjhfXw=s360"
+    ),
+    App(
+        id = 14L,
+        name = "edX: Online Courses by Harvard, Imperial, MIT, IBM",
+        size = "5.5 MB",
+        filterCategory = "Top grossing",
+        imageUrl = "https://lh3.googleusercontent.com/gdytTaswCeQyqxcK-CS3BClqz7C3U0X6vLUbMOfq-91pgc0RReMOLIJLpYhsPsnzE2M=s360"
+    ),
+    App(
+        id = 15L,
+        name = "LinkedIn Lite: Easy Job Search, Jobs & Networking",
+        category = "Puzzle",
+        size = "8 MB",
+        type = "Merge",
+        filterCategory = "Top grossing",
+        ratings = "4.6",
+        imageUrl = "https://lh3.googleusercontent.com/8r-ZTPoTIywU_aK2OXmLKg5WOdzXRxv7UUpiIk7kY7Du12fXKDwxUb2M_vBFp4pPvmpK=s360-rw"
+    ),
+    App(
+        id = 16L,
+        name = "Recipe book: Recipes & Shopping List",
+        category = "Puzzle",
+        size = "10 MB",
+        type = "Merge",
+        filterCategory = "Top paid",
+        ratings = "4.6",
+        imageUrl = "https://lh3.googleusercontent.com/k0c3sF-Vu8L7ksIZw0mYmzC5k-lk7YAYrj5eDF4aNoQtnVIkmS02Vr6x7zzWYcwqQ9eB=s360-rw"
+    ),
+    App(
+        id = 17L,
+        name = "Uber Lite",
+        category = "Puzzle",
+        type = "Merge",
+        size = "12.5 MB",
+        filterCategory = "Top paid",
+        ratings = "4.6",
+        imageUrl = "https://lh3.googleusercontent.com/WCnDKoA309Xj7K6iZYpilRN5XYjN8BfUo6ieCRJDvRdAGlFO--hCE-BlzKb6qYy691St=s360-rw"
+    ),
+    App(
+        id = 18L,
+        name = "OYO : Book Safe Rooms With Best Hotel Booking App",
+        category = "Puzzle",
+        type = "Merge",
+        filterCategory = "Trending",
+        size = "7 MB",
+        ratings = "4.6",
+        imageUrl = "https://lh3.googleusercontent.com/hXpVzlM5gVL6hMCLacy3Y9zd2ecDVlU7TsHgSDB1R9u8OjUCUJ1bCrsUsT4bP-PyCSo=s360-rw"
+    ),
+    App(
+        id = 19L,
+        name = "Google Tasks: Any Task, Any Goal. Get Things Done",
+        category = "Puzzle",
+        type = "Merge",
+        size = "18 MB",
+        filterCategory = "Top paid",
+        ratings = "4.6",
+        imageUrl = "https://lh3.googleusercontent.com/62OzNxLonba70XxMFP3X3dsdNS9lvG2xf5TqfhYDaw9iFn5as9gVSU23ExfCLoZXkMWA=s360"
+    ),
+    App(
+        id = 20L,
+        name = "YouTube",
+        category = "Puzzle",
+        size = "13 MB",
+        type = "Merge",
+        filterCategory = "Trending",
+        ratings = "4.6",
+        imageUrl = "https://lh3.googleusercontent.com/lMoItBgdPPVDJsNOVtP26EKHePkwBg-PkuY9NOrc-fumRtTFP4XhpUNk_22syN4Datc=s360-rw"
+    ),
+    App(
+        id = 21L,
+        name = "PhonePe – UPI Payments, Recharges & Money Transfer",
+        category = "Puzzle",
+        type = "Merge",
+        ratings = "4.6",
+        filterCategory = "Trending",
+        size = "8.5 MB",
+        imageUrl = "https://lh3.googleusercontent.com/6iyA2zVz5PyyMjK5SIxdUhrb7oh9cYVXJ93q6DZkmx07Er1o90PXYeo6mzL4VC2Gj9s=s360-rw"
+    ),
+    App(
+        id = 22L,
+        name = "Canva: Graphic Design, Video Collage, Logo Maker",
+        category = "Puzzle",
+        type = "Merge",
+        size = "11 MB",
+        filterCategory = "Top paid",
+        ratings = "4.6",
+        imageUrl = "https://lh3.googleusercontent.com/yjs-jdlPQ7nAkhUL8o1NlfmRTbICrhXEWdYYJRs69AgzLlabi5tkhR5x7S9uxaUcvk-v=s360-rw"
+    ),
+    App(
+        id = 23L,
+        name = "Over: Add Text to Photos & Graphic Design Maker",
+        category = "Puzzle",
+        type = "Merge",
+        size = "17 MB",
+        filterCategory = "Top paid",
+        ratings = "4.6",
+        imageUrl = "https://lh3.googleusercontent.com/q8MEeQeJT9o-ypEnADc5JNpJwf9A-v3904DGNXfa-Xr31OUCmC0I1XBImgx0gU9W0No=s360-rw"
+    ),
+    App(
+        id = 24L,
+        name = "Draw Cartoons 2 PRO",
+        category = "Puzzle",
+        type = "Merge",
+        size = "20 MB",
+        filterCategory = "Top paid",
+        ratings = "4.6",
+        imageUrl = "https://lh3.googleusercontent.com/g7u_ULrX0bpkPWucspc0iWfLpe-jcYIsyKDKvuu_41KqM1s2HVvYPdGpVZ9636n-2trq=s360-rw"
+    ),
+    App(
+        id = 25L,
+        name = "Google Meet - Secure Video Meetings",
+        category = "Puzzle",
+        type = "Merge",
+        size = "15 MB",
+        ratings = "4.6",
+        imageUrl = "https://lh3.googleusercontent.com/dNVT9ozasUGWx5L62LYd9qPUkx0PbrjbPZW7nrNbzV96l5n6eJnw_ygT8Mp91PWUEWlB=s360-rw"
+    ),
+    App(
+        id = 26L,
+        name = "ZOOM Cloud Meetings",
+        category = "Puzzle",
+        type = "Merge",
+        size = "19 MB",
+        ratings = "4.6",
+        imageUrl = "https://lh3.googleusercontent.com/1DqxbUca62LmV1ehZirHGWYBef9Jrtl3DhZ4m6YBnWCUX-XNr3lcnYKb31R-7ukpKAw=s360-rw"
+    ),
+    App(
+        id = 27L,
+        name = "Udemy - Online Coursese",
+        category = "Puzzle",
+        type = "Merge",
+        size = "9 MB",
+        ratings = "4.6",
+        imageUrl = "https://lh3.googleusercontent.com/VyIvp4Wl7DOFnIcsxrIw0pq43zUd8Yb4n96DpDRDrSsBkxIodDMMDfQk4XunNT5oDJ7Z=s360-rw"
+    ),
+    App(
+        id = 28L,
+        name = "Yousician - An Award Winning Music Education App",
+        category = "Puzzle",
+        type = "Merge",
+        size = "11 MB",
+        ratings = "4.6",
+        imageUrl = "https://lh3.googleusercontent.com/_guPX0UdwfwdpBYuHgBQsboW3MrkIqdoOFTYRxVTrznMwDmtcqNhpuLDvthX8es3Bg=s360-rw"
+    ),
+    App(
+        id = 29L,
+        name = "Google Classroom",
+        category = "Puzzle",
+        type = "Merge",
+        size = "14.5 MB",
+        ratings = "4.6",
+        imageUrl = "https://lh3.googleusercontent.com/w0s3au7cWptVf648ChCUP7sW6uzdwGFTSTenE178Tz87K_w1P1sFwI6h1CLZUlC2Ug=s360-rw"
+    ),
+    App(
+        id = 30L,
+        name = "BYJU'S – The Learning App",
+        category = "Puzzle",
+        type = "Merge",
+        ratings = "4.6",
+        size = "8 MB",
+        imageUrl = "https://lh3.googleusercontent.com/rFv7fIYW4u6h-M8nt4P-A5R7-8unCYOiswLw14NTKUp6yQRAVTWJQL3I1SRjvfSVLg=s360-rw"
+    )
+)
+
+/**
+ * Static games data
+ */
+
+val games = listOf(
+    App(
+        id = 31L,
         name = "Steam Link",
         org = "Valve Corporation",
         size = "23 MB",
@@ -55,10 +321,47 @@ val apps = listOf(
         featureImageUrl = "https://steamcdn-a.akamaihd.net/store/about/social-og.jpg"
     ),
     App(
-        id = 1L,
+        id = 32L,
+        name = "Call of Duty®: Mobile",
+        size = "120 MB",
+        category = "Puzzle",
+        type = "Merge",
+        imageUrl = "https://lh3.googleusercontent.com/6lEEhm2WZojAbZ1uqRJb-KEmT24xydDd5I0QjABtlNOeDr9NrNxztXe67AArHUFuqSI=s360",
+        featureImageUrl = "https://cdn.images.express.co.uk/img/dynamic/143/590x/Call-of-Duty-Mobile-Vs-PUBG-Mobile-1188640.jpg?r=1570646248837"
+    ),
+    App(
+        id = 33L,
+        name = "Temple Run 2",
+        size = "120 MB",
+        category = "Action",
+        type = "Merge",
+        imageUrl = "https://lh3.googleusercontent.com/VnmCQlMIEtzfZI2ivx_5-eVhhnosH-eQ67p0RWwc8TpbD_jehkUxOejva-oEPcJ8OVi0=s360-rw",
+        featureImageUrl = "https://i.ytimg.com/vi/9aK2zoFBbKY/maxresdefault.jpg"
+    ),
+    App(
+        id = 34L,
+        name = "Subway Surfers",
+        size = "120 MB",
+        category = "Puzzle",
+        type = "Merge",
+        imageUrl = "https://lh3.googleusercontent.com/BZmWHOpvowCFLTqiydafFzcMJ09HKrH-Z50VvCo75eM0WSOKT3RApt2VOW9shuc5SYc=s360-rw",
+        featureImageUrl = "https://lh3.googleusercontent.com/lJwwJ_2bppGIuocVBgpAh8x0wXQf5h0WxW27YsQXwIlqGQTUnS3vlyOj5QBceRlF_5M"
+    ),
+    App(
+        id = 35L,
+        name = "Hill Climb Racing",
+        size = "120 MB",
+        category = "Puzzle",
+        type = "Merge",
+        imageUrl = "https://play-lh.googleusercontent.com/N0UxhBVUmx8s7y3F7Kqre2AcpXyPDKAp8nHjiPPoOONc_sfugHCYMjBpbUKCMlK_XUs=s360-rw",
+        featureImageUrl = "https://venturebeat.com/wp-content/uploads/2017/01/hill-climb-racing-2.jpg?w=1200&strip=all"
+    ),
+    App(
+        id = 36L,
         name = "Chess - Play and Learn",
         org = "Chess.com",
         info = "Contains Ads",
+        filterCategory = "Top paid",
         size = "195 MB",
         category = "Arcade",
         type = "Action",
@@ -67,134 +370,233 @@ val apps = listOf(
         featureImageUrl = "https://lh3.googleusercontent.com/Hh7To4ss_l7t7_2P6qJ0AneK11Cq-6Vuv3PR1e6oLZ3dCJHUuCYkrVwGBriv1jTZ4voQ"
     ),
     App(
-        id = 19L,
+        id = 37L,
         name = "Morse Mania: Learn Morse Code",
         size = "125 MB",
         category = "Puzzle",
+        filterCategory = "Top grossing",
         type = "Merge",
         ratings = "4.2",
         imageUrl = "https://lh3.googleusercontent.com/jtfbQ3eY_UewdSHxbCbFNBCV7tPKjjEH8CqJKJLiEARlXgpDNsvP5WV_jrLUapPKXA=s360",
         featureImageUrl = "https://images.unsplash.com/photo-1548268770-66184a21657e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=882&q=80"
     ),
     App(
-        id = 20L,
+        id = 38L,
         name = "Reaction training",
         size = "12 MB",
         category = "Puzzle",
+        filterCategory = "Top grossing",
         type = "Merge",
         ratings = "4.4",
         imageUrl = "https://lh3.googleusercontent.com/arUzvoXLTbT0bLu-NyZ4nGZk23ttD2yaUfhciycaIEhilAMiqyb_6h5RDAIrbjvS1g=s360",
         featureImageUrl = "https://images.unsplash.com/photo-1516663713099-37eb6d60c825?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80"
     ),
     App(
-        id = 5L,
-        name = "Binance - Buy & Sell Bitcoin Securely",
-        category = "Finance",
-        size = "8 MB",
-        type = "Utility",
-        ratings = "4.3",
-        imageUrl = "https://lh3.googleusercontent.com/YaJVsuv4cxsegY_VYcsWpKY-4nt7g2il77XVWZrm_z9Knd3PJAGaBlBuQyahlm85aic=s360",
-        featureImageUrl = "https://images.unsplash.com/photo-1597781914467-a5b93258e748?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80"
-    ),
-    App(
-        id = 2L,
-        name = "Google Tasks: Any Task, Any Goal. Get Things Done",
+        id = 39L,
+        name = "Pokémon GO",
+        size = "120 MB",
+        filterCategory = "Top grossing",
         category = "Puzzle",
         type = "Merge",
-        ratings = "4.6",
-        imageUrl = "https://lh3.googleusercontent.com/62OzNxLonba70XxMFP3X3dsdNS9lvG2xf5TqfhYDaw9iFn5as9gVSU23ExfCLoZXkMWA=s360"
+        imageUrl = "https://lh3.googleusercontent.com/wPfLmWBJwsPdBhsFXc8X4QZOOvePWjoOBLFXXCwyegjRwYOuabmG5cynthlW0HDgy9s=s360-rw"
     ),
     App(
-        id = 7L,
-        name = "Duolingo: Learn English Free",
-        size = "38 MB",
-        imageUrl = "https://lh3.googleusercontent.com/FxlchNPugeC6vhs1_z4qtCVONLxiG-mhKjPanEUKDqCXtR5525dl_PVnn470bBM2xHE=s360"
-    ),
-    App(
-        id = 8L,
-        name = "SoundCloud - Play Music, Audio & New Songs",
-        size = "115 MB",
-        imageUrl = "https://lh3.googleusercontent.com/lvYCdrPNFU0Ar_lXln3JShoE-NaYF_V-DNlp4eLRZhUVkj00wAseSIm-60OoCKznpw=s360"
-    ),
-    App(
-        id = 9L,
-        name = "9GAG: Funny gifs, pics, fresh memes & viral videos",
-        size = "125 MB",
-        imageUrl = "https://lh3.googleusercontent.com/QiE-x76mMbIxT5W2sBCdORRnz-YJys2ridssRJZmiE540_5ADuFnOg-9I0H6bTQOuw=s360"
-    ),
-    App(
-        id = 11L,
-        name = "Flutter Tutorials And Quizzes",
-        size = "120 MB",
-        imageUrl = "https://lh3.googleusercontent.com/s57DrI3ItMHxl5wO0huKBKlWJEFNvYqaXen6jJYNbR9vHhVWWfCvwQLOFyPqxeDBts6C=s360"
-    ),
-    App(
-        id = 12L,
-        name = "MX Player",
-        size = "120 MB",
-        imageUrl = "https://lh3.googleusercontent.com/e_rNLzyR9i3wwy8BwEsIS4uz0fFu29p5RoXoNZt2L0Ef7cJ2QhAcw1x_K51A19HpzQ=s360"
-    ),
-    App(
-        id = 13L,
+        id = 40L,
         name = "Call of Duty®: Mobile",
         size = "120 MB",
+        category = "Puzzle",
+        filterCategory = "Top grossing",
+        type = "Merge",
         imageUrl = "https://lh3.googleusercontent.com/6lEEhm2WZojAbZ1uqRJb-KEmT24xydDd5I0QjABtlNOeDr9NrNxztXe67AArHUFuqSI=s360"
     ),
     App(
-        id = 14L,
-        name = "Spotify Lite",
+        id = 41L,
+        name = "Hunter Assassin",
         size = "120 MB",
-        imageUrl = "https://lh3.googleusercontent.com/FChZKPO457J28-5XfUXjVLWSjNDpOQ28FUPze-icpd0ylt3iraHKdP2125CrL2dnuQ=s360"
-    ),
-    App(
-        id = 15L,
-        name = "Spotify Lite",
-        size = "125 MB",
-        imageUrl = "https://lh3.googleusercontent.com/6K8o8mobG8O-6OYZPUBRQYvCALzkkjjRzLjHCeuB19gRSjdZ9T5djqb1WzmpldCcuVo=s360"
-    ),
-    App(
-        id = 16L,
-        name = "Crayon Icon Pack",
-        size = "125 MB",
-        imageUrl = "https://lh3.googleusercontent.com/MmLHNN4_lwIN7kMG7XWnOxSYbEju-FBMEn8oDj4Xt8t9EnnH6S6GQeMHJDWpGfeDOSpM=s360"
-    ),
-    App(
-        id = 17L,
-        name = "OLX: Buy & Sell Near You with Online Classifieds",
-        size = "125 MB",
-        imageUrl = "https://lh3.googleusercontent.com/tYdcwxICaq7q-Qe_jmQ-2YIMfZ011Tap8PtWLOOpLx23LJLvqr_YziUqek9nBEdVJE8=s360"
-    ),
-    App(
-        id = 18L,
-        name = "Gaana",
-        size = "125 MB",
-        imageUrl = "https://lh3.googleusercontent.com/vHw1Qv2MNAzoXiuJb8lNkybyHBzCsiWblKCefKnsukJlV9z4G0hGL_4uXzLUwxyT7a_q=s360"
-    ),
-    App(
-        id = 3L,
-        name = "Subway Surfers",
-        size = "5.1 MB",
         category = "Puzzle",
-        type = "casual",
-        ratings = "4.4",
-        imageUrl = "https://lh3.googleusercontent.com/jUsiig3d-ntQuAg5fttEZtLBycPhm2Jjpj6OOyFzjUQ6JTlLzyFjbDsOhi9faQjZNz4=s360"
+        type = "Merge",
+        imageUrl = "https://lh3.googleusercontent.com/lfGhy-VzmH1GDXparQE-vJ1JfxpwMlmTe8pf4A6qNFkxC3kTvH6fS5o1YufFdqxiOns=s360-rw"
     ),
     App(
-        id = 4L,
-        name = "Coin by Zerodha",
-        size = "34 MB",
-        category = "Simulation",
-        type = "Offline",
-        ratings = "4.7",
-        imageUrl = "https://lh3.googleusercontent.com/_Bg6_dqP19XKe4riOzHwYFuLkplOTqjAv78DoZmKE2DOgIMvdsGyvd8V-SlKOjhfXw=s360"
+        id = 42L,
+        name = "8 Ball Pool",
+        size = "120 MB",
+        category = "Puzzle",
+        type = "Merge",
+        imageUrl = "https://lh3.googleusercontent.com/m7UzuFoXqeQUzdI0FRjI4peJo901tFPDgHJpnFEXHgywmgPJMYa55g6Yr-ZrmQ6DcPg=s360-rw"
     ),
     App(
-        id = 6L,
-        name = "edX: Online Courses by Harvard, Imperial, MIT, IBM",
-        size = "5.5 MB",
-        imageUrl = "https://lh3.googleusercontent.com/gdytTaswCeQyqxcK-CS3BClqz7C3U0X6vLUbMOfq-91pgc0RReMOLIJLpYhsPsnzE2M=s360"
+        id = 43L,
+        name = "Drop Stack Ball - Fall Helix Blast Crash 3D",
+        size = "120 MB",
+        category = "Puzzle",
+        filterCategory = "Top grossing",
+        type = "Merge",
+        imageUrl = "https://lh3.googleusercontent.com/SHDsApVesAmjVVGqX8TEh5kXyPJ02TlttTRSKpnTmBel5MPTgBF58a5-uRhZK8ZzAW4=s360-rw"
+    ),
+    App(
+        id = 44L,
+        name = "Call of Duty®: Mobile",
+        size = "120 MB",
+        category = "Puzzle",
+        filterCategory = "Top grossing",
+        type = "Merge",
+        imageUrl = "https://lh3.googleusercontent.com/6lEEhm2WZojAbZ1uqRJb-KEmT24xydDd5I0QjABtlNOeDr9NrNxztXe67AArHUFuqSI=s360"
+    ),
+    App(
+        id = 45L,
+        name = "My Talking Tom Friends",
+        size = "120 MB",
+        category = "Puzzle",
+        filterCategory = "Top grossing",
+        type = "Merge",
+        imageUrl = "https://lh3.googleusercontent.com/hdoAZSg01No2pfqgyh1b6uXC0gcqCwh55Jtl7KrJjiTREcOdr-BYYXQ0tcIQOAgl9Xo=s360-rw"
+    ),
+    App(
+        id = 46L,
+        name = "Encounter Strike:Real Commando Secret Mission 2020",
+        size = "120 MB",
+        category = "Puzzle",
+        type = "Merge",
+        imageUrl = "https://lh3.googleusercontent.com/lmUd79-D_inHLBUuyVna2CwYdlaI9HJv7Z0VABM_1JSZqHS_9bF82Cv6TSwH9Qw-uB4=s360-rw"
+    ),
+    App(
+        id = 47L,
+        name = "My Restaurant Empire - 3D Decorating Cooking Game",
+        size = "120 MB",
+        category = "Puzzle",
+        filterCategory = "Top grossing",
+        type = "Merge",
+        imageUrl = "https://lh3.googleusercontent.com/Pic8hEeJiDZqQEZXB5xIKKGKpLY9VqV_Az9nuIJJvmgTPcjsytByma7Cq8K3O7l_1TcU=s360-rw"
+    ),
+    App(
+        id = 48L,
+        name = "Minion Rush: Despicable Me Official Game",
+        size = "120 MB",
+        category = "Puzzle",
+        filterCategory = "Top paid",
+        type = "Merge",
+        imageUrl = "https://lh3.googleusercontent.com/NHE-zsGu_Gh_7fF9u2owPQKrXvEI0oU6wQCnbTDp20vrggqyMiuAgEtoRwRMf3TJ499C=s360-rw"
+    ),
+    App(
+        id = 49L,
+        name = "Red Ball 4",
+        size = "120 MB",
+        category = "Puzzle",
+        filterCategory = "Top paid",
+        type = "Merge",
+        imageUrl = "https://lh3.googleusercontent.com/_2RsmTzfPHkBeSmDVOzgKaSQGLNqYep9mRsuYErzIcQslzAt_0hQDgoP4wJCwvMJkizT=s360-rw"
+    ),
+    App(
+        id = 50L,
+        name = "Robbery Bob",
+        size = "120 MB",
+        category = "Puzzle",
+        filterCategory = "Trending",
+        type = "Merge",
+        imageUrl = "https://lh3.googleusercontent.com/oojEzXAk52vIZwKvn8l21rhgA88MEVAqJdtUgDTT_oyr232a72JrguxvQbjC34MVEzY=s360-rw"
+    ),
+    App(
+        id = 51L,
+        name = "Color Roll 3D",
+        size = "120 MB",
+        category = "Puzzle",
+        filterCategory = "Top paid",
+        type = "Merge",
+        imageUrl = "https://lh3.googleusercontent.com/lHWilWQkmvm043AIhd3-r1dltPIzve94oQBjTTdbRdavfQkTeqVAFfZO9Vo7w7SlkYg=s360-rw"
+    ),
+    App(
+        id = 52L,
+        name = "Zooba: Free-for-all Zoo Combat Battle Royale Games",
+        size = "120 MB",
+        category = "Puzzle",
+        filterCategory = "Trending",
+        type = "Merge",
+        imageUrl = "https://lh3.googleusercontent.com/2EKQP3Li2baLX2koNGZGypUUx1YRyZoC6h_fAKtdybOaPo-iRLM2rAF0dBGHRsm7O2M=s360-rw"
+    ),
+    App(
+        id = 53L,
+        name = "Cut the Rope FULL FREE",
+        size = "120 MB",
+        category = "Puzzle",
+        filterCategory = "Top paid",
+        type = "Merge",
+        imageUrl = "https://lh3.googleusercontent.com/8hBtAlIHv8Ga1TeFVlCNxk1-pw4eKKyGWs0FsmI0mmIvl0iJ512PQQVQB0o90afWkV8=s360-rw"
+    ),
+    App(
+        id = 54L,
+        name = "Block Craft 3D: Building Simulator Games For Free",
+        size = "120 MB",
+        category = "Puzzle",
+        filterCategory = "Top paid",
+        type = "Merge",
+        imageUrl = "https://lh3.googleusercontent.com/o1US_4bdFr8LZezyp5IQ0n3yAnmskur9iXxhM4xKFKfiE9k85_PsVd7fs2IiJie2H9Vj=s360-rw"
+    ),
+    App(
+        id = 55L,
+        name = "2 Player games : the Challenge",
+        size = "120 MB",
+        category = "Puzzle",
+        filterCategory = "Top paid",
+        type = "Merge",
+        imageUrl = "https://lh3.googleusercontent.com/T3_DvXNVrVL6MgXXWKeMEnUj5iM4QUTf3-5EAv6jqAMl9SlF7Xdo8InJup3LYoPUw1Q=s360-rw"
+    ),
+    App(
+        id = 56L,
+        name = "Tic Tac Toe Glow",
+        size = "120 MB",
+        category = "Puzzle",
+        filterCategory = "Trending",
+        type = "Merge",
+        imageUrl = "https://lh3.googleusercontent.com/7k1wSfnstoNib_lmlfIfFTcHOE4oypb-mmuzvhPLpfFRz55CnNJFagyd6u6G4fFrlDI=s360-rw"
+    ),
+    App(
+        id = 57L,
+        name = "Moto X3M Bike Race Game",
+        size = "120 MB",
+        category = "Puzzle",
+        filterCategory = "Trending",
+        type = "Merge",
+        imageUrl = "https://lh3.googleusercontent.com/45etI4KOM_2Isg7IZfi9jn1fNBG6PlXyuONCUUOgrErsiOXCNX6snUVp3KMNXYTcR429=s360-rw"
+    ),
+    App(
+        id = 58L,
+        name = "Super Mario Run",
+        size = "120 MB",
+        category = "Puzzle",
+        filterCategory = "Trending",
+        type = "Merge",
+        imageUrl = "https://lh3.googleusercontent.com/5LIMaa7WTNy34bzdFhBETa2MRj7mFJZWb8gCn_uyxQkUvFx_uOFCeQjcK16c6WpBA3E=s360-rw"
+    ),
+    App(
+        id = 59L,
+        name = "Parkour Race - Freerun Game",
+        size = "120 MB",
+        category = "Puzzle",
+        filterCategory = "Trending",
+        type = "Merge",
+        imageUrl = "https://lh3.googleusercontent.com/qnYxsgX9_3M6vgpt4ejsSTZCJz7M1sdJi084XTqwmN26oty2AmSihVbujWn2VF6bkQ=s360-rw"
+    ),
+    App(
+        id = 60L,
+        name = "PAC-MAN",
+        size = "120 MB",
+        category = "Puzzle",
+        filterCategory = "Trending",
+        type = "Merge",
+        imageUrl = "https://lh3.googleusercontent.com/V-lvUzA5kK0Xw3wdg8Ct3vfIMXUX5vXYcNLPmudaZ-eyQjedYz-luqIuLmJO6KodE0Y=s360-rw"
     )
 )
+
+/**
+ * Static apps + games data
+ */
+
+val products = apps + games
+
+/**
+ * Static reviews data
+ */
 
 val reviews = listOf(
     Review(
@@ -262,6 +664,10 @@ val reviews = listOf(
     )
 )
 
+/**
+ * Static screenshots data
+ */
+
 val screenshots = listOf(
     "https://i.pinimg.com/564x/7c/3a/d8/7c3ad851224a3a66f887ac19d5afe4a6.jpg",
     "https://i.pinimg.com/564x/6d/16/62/6d1662ba3f9c1af5652ce32664342a10.jpg",
@@ -270,7 +676,7 @@ val screenshots = listOf(
 )
 
 /**
- * Fake static data
+ * Static filters data
  */
 
 val filters = listOf(
@@ -280,63 +686,86 @@ val filters = listOf(
     Filter(id = 4, name = "Top paid")
 )
 
-val discoverRecommended = AppCollection(
+/**
+ * Static apps collections
+ */
+
+val recommendedApps = AppCollection(
     id = 1L,
-    name = "Discover recommended games",
-    type = Featured,
-    apps = apps.subList(0, 5)
+    name = "Recommended for you",
+    type = Normal,
+    apps = apps.subList(0, 8)
 )
 
-val suggestedForYou = AppCollection(
+val suggestedApps = AppCollection(
     id = 2L,
     name = "Suggested for you",
     type = Normal,
-    apps = apps.subList(6, 12)
+    apps = apps.subList(8, 16)
 )
 
-val greatIndie = AppCollection(
+val recentlyUpdatedApps = AppCollection(
     id = 3L,
-    name = "Great indie games",
+    name = "Recently updated",
     type = Normal,
-    apps = apps.subList(12, 20)
+    apps = apps.subList(16, 24)
 )
 
-val newAndUpdated = suggestedForYou.copy(
-    id = 4L,
-    name = "New and updated games"
-)
-
-val puzzle = discoverRecommended.copy(
-    id = 5L,
-    name = "Puzzle games"
-)
-
-val strategy = discoverRecommended.copy(
-    id = 6L,
-    name = "Strategy games"
+val entertainmentApps = AppCollection(
+    id = 3L,
+    name = "Entertainment",
+    type = Normal,
+    apps = apps.subList(24, 30)
 )
 
 val appCollections = listOf(
-    discoverRecommended,
-    suggestedForYou,
-    greatIndie
+    recommendedApps,
+    suggestedApps,
+    recentlyUpdatedApps,
+    entertainmentApps
 )
 
-val forYouCollection = listOf(
-    discoverRecommended,
-    suggestedForYou,
-    greatIndie
+val forYouAppsCollection = appCollections
+val topChartsAppCollection = apps
+
+/**
+ * Static games collections
+ */
+
+val recommendedGames = AppCollection(
+    id = 1L,
+    name = "Discover recommended games",
+    type = Featured,
+    apps = games.subList(0, 8)
 )
 
-val topChartsCollection = apps
-
-val categoriesCollection = listOf(
-    strategy,
-    puzzle,
-    discoverRecommended
+val suggestedGames = AppCollection(
+    id = 2L,
+    name = "Suggested for you",
+    type = Normal,
+    apps = games.subList(8, 16)
 )
 
-val related = listOf(
-    strategy,
-    suggestedForYou
+val recentlyUpdatedGames = AppCollection(
+    id = 3L,
+    name = "New and updated games",
+    type = Normal,
+    apps = games.subList(16, 24)
 )
+
+val topRatedGames = AppCollection(
+    id = 3L,
+    name = "Top rated games",
+    type = Normal,
+    apps = games.subList(24, 30)
+)
+
+val gamesCollections = listOf(
+    recommendedGames,
+    suggestedGames,
+    recentlyUpdatedGames,
+    topRatedGames
+)
+
+val forYouGamesCollection = gamesCollections
+val topChartsGamesCollection = games

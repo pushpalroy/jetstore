@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.preferredWidth
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,10 +27,12 @@ import com.example.play.data.Filter
 import com.example.play.theme.PlayTheme
 
 @Composable
-fun FilterBar(filters: List<Filter>) {
+fun FilterBar(
+  filters: List<Filter>,
+  filterSelected: Int = AppRepo.getFilters().first().id.value,
+  setFilterSelected: (Int) -> Unit = {}) {
   ScrollableRow(modifier = Modifier.preferredHeightIn(min = 56.dp)) {
     Spacer(Modifier.preferredWidth(24.dp))
-    val (filterSelected, setFilterSelected: (Int) -> Unit) = remember { mutableStateOf(0) }
     filters.forEach { filter ->
       filter.enabled.value = filterSelected == filter.id.value
       val (selected, setSelected) = remember { filter.enabled }

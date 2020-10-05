@@ -1,12 +1,9 @@
-package com.example.play.ui.apps.applist
+package com.example.play.ui.applist
 
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.preferredHeight
-import androidx.compose.foundation.layout.preferredWidth
 import androidx.compose.foundation.lazy.LazyColumnFor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -30,14 +27,20 @@ fun TopChartsLayout(
   onAppClick: (Long) -> Unit,
   modifier: Modifier = Modifier
 ) {
+  val (filterSelected, setFilterSelected: (Int) -> Unit) = remember { mutableStateOf(1) }
   Column(modifier = modifier) {
-    TopChartsHeader()
-    TopChartAppsList(appCollection, onAppClick)
+    TopChartsHeader(filterSelected, setFilterSelected)
+    TopChartAppsList(appCollection.filter { app ->
+      app.filterCategory == AppRepo.getFilter(filterSelected)?.name
+    }, onAppClick)
   }
 }
 
 @Composable
-private fun TopChartsHeader() {
+private fun TopChartsHeader(
+  filterSelected: Int,
+  setFilterSelected: (Int) -> Unit
+) {
   val (switchState, updateSwitchState) = remember { mutableStateOf(true) }
   Column {
     Row(
@@ -60,7 +63,7 @@ private fun TopChartsHeader() {
           modifier = Modifier.align(Alignment.CenterVertically)
       )
     }
-    FilterBar(filters = AppRepo.getFilters())
+    FilterBar(filters = AppRepo.getFilters(), filterSelected, setFilterSelected)
   }
 }
 

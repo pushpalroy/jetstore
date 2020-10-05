@@ -12,14 +12,15 @@ import androidx.compose.ui.Modifier
 import androidx.ui.tooling.preview.Preview
 import com.example.play.data.AppRepo
 import com.example.play.theme.PlayTheme
-import com.example.play.ui.apps.AppsCategory.Categories
-import com.example.play.ui.apps.AppsCategory.EarlyAccess
-import com.example.play.ui.apps.AppsCategory.EditorsChoice
-import com.example.play.ui.apps.AppsCategory.ForYou
-import com.example.play.ui.apps.AppsCategory.TopCharts
-import com.example.play.ui.apps.applist.ForYouLayout
-import com.example.play.ui.apps.applist.TopChartsLayout
+import com.example.play.ui.applist.ForYouLayout
+import com.example.play.ui.applist.TopChartsLayout
 import com.example.play.ui.components.PlaySurface
+import com.example.play.ui.main.AppsCategory
+import com.example.play.ui.main.AppsCategory.Categories
+import com.example.play.ui.main.AppsCategory.EarlyAccess
+import com.example.play.ui.main.AppsCategory.EditorsChoice
+import com.example.play.ui.main.AppsCategory.ForYou
+import com.example.play.ui.main.AppsCategory.TopCharts
 import com.example.play.ui.main.AppsCategoryTabs
 import com.example.play.utils.navigationBarsPadding
 
@@ -33,7 +34,6 @@ fun Apps(
 ) {
   val forYouData = remember { AppRepo.getForYouApps() }
   val topChartsData = remember { AppRepo.getTopChartsApps() }
-  val categoriesData = remember { AppRepo.getCategoriesApps() }
   val (currentCategory, setCurrentCategory) = savedInstanceState { ForYou }
 
   PlaySurface(modifier = modifier.fillMaxSize()) {
@@ -53,7 +53,6 @@ fun Apps(
         when (category) {
           ForYou -> ForYouLayout(forYouData, onAppClick)
           TopCharts -> TopChartsLayout(topChartsData, onAppClick)
-          Categories -> ForYouLayout(categoriesData, onAppClick)
           else -> ForYouLayout(forYouData, onAppClick)
         }
       }
@@ -61,25 +60,17 @@ fun Apps(
   }
 }
 
-enum class AppsCategory {
-  ForYou,
-  TopCharts,
-  Categories,
-  EditorsChoice,
-  EarlyAccess
-}
-
-@Preview("Home")
+@Preview("Apps")
 @Composable
-fun HomePreview() {
+fun AppsPreview() {
   PlayTheme {
     Apps(onAppClick = {})
   }
 }
 
-@Preview("Home • Dark Theme")
+@Preview("Apps • Dark Theme")
 @Composable
-fun HomeDarkPreview() {
+fun AppsDarkPreview() {
   PlayTheme(darkTheme = true) {
     Apps(onAppClick = {})
   }
