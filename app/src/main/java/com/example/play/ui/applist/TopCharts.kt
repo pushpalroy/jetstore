@@ -30,9 +30,12 @@ fun TopChartsLayout(
   val (filterSelected, setFilterSelected: (Int) -> Unit) = remember { mutableStateOf(1) }
   Column(modifier = modifier) {
     TopChartsHeader(filterSelected, setFilterSelected)
-    TopChartAppsList(appCollection.filter { app ->
-      app.filterCategory == AppRepo.getFilter(filterSelected)?.name
-    }, onAppClick)
+    TopChartAppsList(
+        appCollection.filter { app ->
+          app.filterCategory == AppRepo.getFilter(filterSelected)?.name
+        },
+        onAppClick
+    )
   }
 }
 

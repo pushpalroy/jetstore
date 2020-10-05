@@ -1,11 +1,24 @@
 package com.example.play.ui.applist
 
+import androidx.compose.animation.transition
 import androidx.compose.foundation.Icon
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.preferredHeight
+import androidx.compose.foundation.layout.preferredHeightIn
+import androidx.compose.foundation.layout.preferredSize
+import androidx.compose.foundation.layout.preferredWidth
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
@@ -18,6 +31,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.ui.tooling.preview.Preview
 import com.example.play.R.drawable
+import com.example.play.anim.AppIconExplodeState.EXPLODED
+import com.example.play.anim.AppIconExplodeState.IDLE
+import com.example.play.anim.appIconExplodePadding
+import com.example.play.anim.getAppIconExplodeTransitionDefinition
 import com.example.play.data.App
 import com.example.play.data.AppRepo
 import com.example.play.data.apps
@@ -165,6 +182,15 @@ fun AppItem(
   onAppClick: (Long) -> Unit,
   modifier: Modifier = Modifier
 ) {
+  val (appIconExplodeState, updateAppIconExplode) =
+    remember { mutableStateOf(IDLE) }
+  val appIconExplodeTransitionDef = getAppIconExplodeTransitionDefinition()
+  val toState = IDLE
+  val state = transition(
+      definition = appIconExplodeTransitionDef,
+      initState = appIconExplodeState,
+      toState = toState
+  )
   PlayCard(
       elevation = 0.dp,
       shape = MaterialTheme.shapes.large,
@@ -177,7 +203,10 @@ fun AppItem(
   ) {
     Column(
         modifier = Modifier
-            .clickable(onClick = { onAppClick(app.id) })
+            .clickable(onClick = {
+              updateAppIconExplode(EXPLODED)
+              onAppClick(app.id)
+            })
             .fillMaxSize()
     ) {
       Box(
@@ -190,7 +219,7 @@ fun AppItem(
             modifier = Modifier
                 .preferredSize(120.dp)
                 .align(Alignment.TopStart)
-                .padding(8.dp),
+                .padding(state[appIconExplodePadding]),
             cornerPercent = 20
         )
       }
