@@ -30,10 +30,16 @@ fun getAppIconExplodeTransitionDefinition(): TransitionDefinition<AppIconExplode
     // Transition from Idle to Installing
     transition(IDLE to EXPLODED) {
       appIconExplodePadding using keyframes {
-        durationMillis = 300
+        durationMillis = 1000
         8.dp at 0
-        3.dp at 150
-        0.dp at 300
+        7.dp at 100
+        6.dp at 200
+        5.dp at 300
+        4.dp at 400
+        3.dp at 500
+        2.dp at 600
+        1.dp at 700
+        0.dp at 1000
       }
     }
   }

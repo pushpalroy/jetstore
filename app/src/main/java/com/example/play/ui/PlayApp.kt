@@ -15,11 +15,12 @@ import com.example.play.utils.ProvideDisplayInsets
 
 @Composable
 fun PlayApp(backDispatcher: OnBackPressedDispatcher) {
-  val navigator: Navigator<Destination> = rememberSavedInstanceState(
-      saver = Navigator.saver(backDispatcher)
-  ) {
-    Navigator(Home, backDispatcher)
-  }
+  val navigator: Navigator<Destination> =
+    rememberSavedInstanceState(
+        saver = Navigator.saver(backDispatcher)
+    ) {
+      Navigator(Home, backDispatcher)
+    }
   val actions = remember(navigator) { Actions(navigator) }
   ProvideDisplayInsets {
     PlayTheme {
