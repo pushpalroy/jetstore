@@ -22,6 +22,17 @@ data class App(
 )
 
 @Immutable
+data class Movie(
+  val id: Long,
+  val name: String,
+  val imageUrl: String = "",
+  val category: String = "Drama",
+  val filterCategory: String = "For You",
+  val ratings: String = "3.5",
+  val price: String = "₹50.00",
+)
+
+@Immutable
 data class Review(
   val id: Long = 1,
   val userName: String = "John Barretto",

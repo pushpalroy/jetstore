@@ -44,7 +44,9 @@ fun Main(onAppSelected: (Long) -> Unit) {
               onAppClick = onAppSelected,
               modifier = modifier
           )
-          NavSections.Movies -> Movies()
+          NavSections.Movies -> Movies(
+              modifier = modifier
+          )
           NavSections.Books -> Books()
         }
       }
@@ -58,6 +60,12 @@ enum class AppsCategory {
   Categories,
   EditorsChoice,
   EarlyAccess
+}
+
+enum class MoviesCategory {
+  ForYou,
+  TopSelling,
+  NewReleases
 }
 
 enum class NavSections(

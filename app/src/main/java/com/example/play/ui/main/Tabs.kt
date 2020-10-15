@@ -26,6 +26,8 @@ import com.example.play.ui.main.AppsCategory.EarlyAccess
 import com.example.play.ui.main.AppsCategory.EditorsChoice
 import com.example.play.ui.main.AppsCategory.ForYou
 import com.example.play.ui.main.AppsCategory.TopCharts
+import com.example.play.ui.main.MoviesCategory.NewReleases
+import com.example.play.ui.main.MoviesCategory.TopSelling
 
 @Composable
 fun AppsCategoryTabs(
@@ -59,6 +61,53 @@ fun AppsCategoryTabs(
                   Categories -> stringResource(R.string.categories)
                   EditorsChoice -> stringResource(R.string.editors_choice)
                   EarlyAccess -> stringResource(R.string.early_access)
+                },
+                color = if (index == selectedIndex) {
+                  PlayTheme.colors.accent
+                } else {
+                  PlayTheme.colors.textPrimary
+                },
+                style = TextStyle(
+                    fontWeight = FontWeight.Normal,
+                    fontSize = 12.sp
+                )
+            )
+          }
+      )
+    }
+  }
+}
+
+@Composable
+fun MoviesCategoryTabs(
+  categories: List<MoviesCategory>,
+  selectedCategory: MoviesCategory,
+  onCategorySelected: (MoviesCategory) -> Unit
+) {
+  val selectedIndex = categories.indexOfFirst { it == selectedCategory }
+  val indicator = @Composable { tabPositions: List<TabPosition> ->
+    HomeCategoryTabIndicator(
+        Modifier.defaultTabIndicatorOffset(tabPositions[selectedIndex])
+    )
+  }
+
+  ScrollableTabRow(
+      selectedTabIndex = selectedIndex,
+      indicator = indicator,
+      backgroundColor = PlayTheme.colors.uiBackground,
+      edgePadding = 32.dp
+  ) {
+    categories.forEachIndexed { index, category ->
+      Tab(
+          selected = index == selectedIndex,
+          onClick = { onCategorySelected(category) },
+          modifier = Modifier.background(color = PlayTheme.colors.uiBackground),
+          text = {
+            Text(
+                text = when (category) {
+                  MoviesCategory.ForYou -> stringResource(R.string.for_you)
+                  TopSelling -> stringResource(R.string.top_selling)
+                  NewReleases -> stringResource(R.string.new_releases)
                 },
                 color = if (index == selectedIndex) {
                   PlayTheme.colors.accent
@@ -111,6 +160,34 @@ fun AppCategoryTabsDarkPreview() {
             ForYou, TopCharts, Categories, EditorsChoice, EarlyAccess
         ),
         selectedCategory = ForYou,
+        onCategorySelected = {}
+    )
+  }
+}
+
+@Preview
+@Composable
+fun MovieCategoryTabsPreview() {
+  PlayTheme {
+    MoviesCategoryTabs(
+        categories = listOf(
+            MoviesCategory.ForYou, TopSelling, NewReleases
+        ),
+        selectedCategory = MoviesCategory.ForYou,
+        onCategorySelected = {}
+    )
+  }
+}
+
+@Preview
+@Composable
+fun MovieCategoryTabsDarkPreview() {
+  PlayTheme(darkTheme = true) {
+    MoviesCategoryTabs(
+        categories = listOf(
+            MoviesCategory.ForYou, TopSelling, NewReleases
+        ),
+        selectedCategory = MoviesCategory.ForYou,
         onCategorySelected = {}
     )
   }

@@ -1,4 +1,4 @@
-package com.example.play.ui.applist
+package com.example.play.ui.movies.movielist
 
 import androidx.compose.foundation.Icon
 import androidx.compose.foundation.Text
@@ -23,28 +23,25 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.ui.tooling.preview.Preview
-import com.example.play.data.App
-import com.example.play.data.AppCollection
 import com.example.play.data.AppRepo
-import com.example.play.data.CollectionType
+import com.example.play.data.Movie
+import com.example.play.data.MovieCollection
 import com.example.play.theme.PlayTheme
 import com.example.play.utils.navigationBarsPadding
 
 @Composable
-fun ForYouLayout(
-  data: List<AppCollection>,
-  onAppClick: (Long) -> Unit,
+fun MoviesForYouLayout(
+  data: List<MovieCollection>,
   modifier: Modifier = Modifier
 ) {
   Spacer(
       modifier = Modifier
           .preferredHeight(4.dp)
   )
-  LazyColumnFor(items = data, modifier = modifier) { appCollection ->
-    key(appCollection.id) {
-      ForYou(
-          appCollection = appCollection,
-          onAppClick = onAppClick,
+  LazyColumnFor(items = data, modifier = modifier) { moviesCollection ->
+    key(moviesCollection.id) {
+      MoviesForYou(
+          moviesCollection = moviesCollection
       )
     }
   }
@@ -56,11 +53,9 @@ fun ForYouLayout(
 }
 
 @Composable
-fun ForYou(
-  appCollection: AppCollection,
-  onAppClick: (Long) -> Unit,
-  modifier: Modifier = Modifier,
-  featured: Boolean = true
+fun MoviesForYou(
+  moviesCollection: MovieCollection,
+  modifier: Modifier = Modifier
 ) {
   Column(modifier = modifier) {
     Row(
@@ -69,7 +64,7 @@ fun ForYou(
             .padding(start = 24.dp)
     ) {
       Text(
-          text = appCollection.name,
+          text = moviesCollection.name,
           style = TextStyle(
               fontWeight = FontWeight.Medium,
               fontSize = 16.sp,
@@ -90,50 +85,33 @@ fun ForYou(
         )
       }
     }
-    if (featured && appCollection.type == CollectionType.Featured) {
-      FeaturedAppsList(appCollection.apps, onAppClick)
-    } else {
-      AppsList(appCollection.apps, onAppClick)
-    }
+    MoviesList(moviesCollection.movies)
   }
 }
 
 @Composable
-private fun FeaturedAppsList(
-  apps: List<App>,
-  onAppClick: (Long) -> Unit,
+private fun MoviesList(
+  movies: List<Movie>,
   modifier: Modifier = Modifier.padding(start = 16.dp)
 ) {
-  LazyRowFor(items = apps, modifier = modifier) { app ->
-    PlayFeaturedAppItem(app, onAppClick)
+  LazyRowFor(items = movies, modifier = modifier) { movie ->
+    MovieItem(movie)
     Spacer(modifier = Modifier.preferredWidth(1.dp))
   }
 }
 
+@Preview("Movies For You list preview")
 @Composable
-private fun AppsList(
-  apps: List<App>,
-  onAppClick: (Long) -> Unit,
-  modifier: Modifier = Modifier.padding(start = 16.dp)
-) {
-  LazyRowFor(items = apps, modifier = modifier) { app ->
-    AppItem(app, onAppClick)
-    Spacer(modifier = Modifier.preferredWidth(1.dp))
-  }
-}
-
-@Preview("For You list preview")
-@Composable
-fun ForYouListPreview() {
+fun MoviesForYouListPreview() {
   PlayTheme {
-    ForYouLayout(data = AppRepo.getApps(), onAppClick = {})
+    MoviesForYouLayout(data = AppRepo.getMovies())
   }
 }
 
-@Preview("For You list dark preview")
+@Preview("Movies For You list dark preview")
 @Composable
-fun ForYouListDarkPreview() {
+fun MoviesForYouListDarkPreview() {
   PlayTheme(darkTheme = true) {
-    ForYouLayout(data = AppRepo.getApps(), onAppClick = {})
+    MoviesForYouLayout(data = AppRepo.getMovies())
   }
 }

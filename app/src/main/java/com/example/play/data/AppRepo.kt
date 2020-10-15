@@ -12,6 +12,14 @@ data class AppCollection(
   val type: CollectionType = Normal
 )
 
+@Immutable
+data class MovieCollection(
+  val id: Long,
+  val name: String,
+  val movies: List<Movie>,
+  val type: CollectionType = Normal
+)
+
 enum class CollectionType {
   Normal,
   Featured
@@ -29,6 +37,12 @@ object AppRepo {
   fun getGames() = gamesCollections
   fun getForYouGames(): List<AppCollection> = forYouGamesCollection
   fun getTopChartsGames(): List<App> = topChartsGamesCollection
+
+  fun getMovies() = moviesCollections
+  fun getMovie(movieId: Long) = movies.find { it.id == movieId }!!
+  fun getForYouMovies(): List<MovieCollection> = forYouMoviesCollection
+  fun getTopSellingMovies(): List<Movie> = topSellingMoviesCollection
+  fun getNewReleasesMovies(): List<Movie> = newReleasesMoviesCollection
 
   fun getReviews() = reviews
   fun getReview(reviewId: Long) = reviews.find { it.id == reviewId }!!
@@ -595,6 +609,90 @@ val games = listOf(
 val products = apps + games
 
 /**
+ * Static movies data
+ */
+
+val movies = listOf(
+    Movie(
+        id = 1L,
+        name = "Superman: Man of Tomorrow",
+        ratings = "3.2",
+        category = "Action & adventure",
+        price = "₹150.00",
+        imageUrl = "https://lh3.googleusercontent.com/dq9PoMponaQ5UFTsAQi0vOn79DFfRsxqZjr8y5yRFt0M_hSHdEwqVGStSmBQm0j5JlLBGCidzSTMRU70oQ=w400-h600-rw",
+    ),
+    Movie(
+        id = 2L,
+        name = "Forensic",
+        ratings = "4.0",
+        category = "Drama",
+        price = "₹25.00",
+        imageUrl = "https://lh3.googleusercontent.com/DzW5k8YSYtq6PBziR4yUqs1wTMMzwGtxMeilrqMX8h356ZleokF4oGuE9HwN82mn10iun8u8WxEK3blVddkR=w400-h600-rw",
+    ),
+    Movie(
+        id = 3L,
+        name = "SCOOB!",
+        ratings = "3.7",
+        category = "Animation",
+        price = "₹150.00",
+        imageUrl = "https://lh3.googleusercontent.com/sPDsM5qC4YT8QvxCzJKN0Q7L2aOdY9pvx538A5Zgf3C3V4oEeAULsglEdcnosdHRl0w-rNcY0eTqB0nHZpU7=w400-h600-rw",
+    ),
+    Movie(
+        id = 4L,
+        name = "Musical Chair",
+        ratings = "4.5",
+        price = "₹25.00",
+        imageUrl = "https://lh3.googleusercontent.com/ZoQLZbZrHac2QtoBKDLNqa7gNvfR2WeOpQFsiUHoP4n2SKs1HZQj2IlqifW1mPRDHhZ3l1OPqdZBTsrW7a0k=w400-h600-rw",
+    ),
+    Movie(
+        id = 5L,
+        name = "The Invisible Man (2020)",
+        ratings = "3.4",
+        price = "₹150.00",
+        imageUrl = "https://lh3.googleusercontent.com/jHBu_2vyE321Z-0gDTAGEaf0QGfDsUTQflbdFhvBLqc0Llz_yivVtnLcD3hQp011J7kXw8aIk6b462eG5I8=w400-h600-rw",
+    ),
+    Movie(
+        id = 6L,
+        name = "Frozen II",
+        ratings = "4.3",
+        category = "Animation",
+        price = "₹150.00",
+        imageUrl = "https://lh3.googleusercontent.com/DyoOARBcD-KqMRlAwCF5QAyJ4gAFDMvYSNRFXDiGcZ2EiUrmqeWX2S_XBqEd4lk8jNQAgg=w400-h600-rw",
+    ),
+    Movie(
+        id = 7L,
+        name = "Southpaw",
+        ratings = "3.9",
+        price = "₹25.00",
+        imageUrl = "https://lh3.googleusercontent.com/I6pQI79ekJOUBHA3I6bxqpD2NFf7HBLAy1BQ8_qdzTwSAm_G5hVvFE7qBTnV0rft4hw=w400-h600-rw",
+    ),
+    Movie(
+        id = 8L,
+        name = "Abominable",
+        ratings = "3.9",
+        category = "Animation",
+        price = "₹120.00",
+        imageUrl = "https://lh3.googleusercontent.com/eMfNdSAdPXVp1y9PHI9BjLmOJIrVosFoqbvGqK_mDUdne5qVNFfXsI-4XPGoOtBA41z2J_lRoKuqm3A7jw=w400-h600-rw",
+    ),
+    Movie(
+        id = 9L,
+        name = "Spider-Man: Homecoming",
+        ratings = "4.5",
+        category = "Action & adventure",
+        price = "₹80.00",
+        imageUrl = "https://lh3.googleusercontent.com/4SDU8LISodRn1IJF81UH8Ql1WsIAvDKojQevt8bNgpnYcEdNeHXS-Kpx7ZWhm792exQ=w400-h600-rw",
+    ),
+    Movie(
+        id = 10L,
+        name = "Oculus",
+        ratings = "4.1",
+        category = "Horror",
+        price = "₹25.00",
+        imageUrl = "https://lh3.googleusercontent.com/5mhpJv1ifXu3S7Cs0h3jQS0OLskwMu9Cf3cMakZ6ITuiPrJ366pEiS9w7HwJQMUTa11X=w400-h600-rw",
+    )
+)
+
+/**
  * Static reviews data
  */
 
@@ -769,3 +867,28 @@ val gamesCollections = listOf(
 
 val forYouGamesCollection = gamesCollections
 val topChartsGamesCollection = games
+
+/**
+ * Static movies collections
+ */
+
+val newReleaseMovies = MovieCollection(
+    id = 1L,
+    name = "New release hit films",
+    movies = movies.subList(0, 4)
+)
+
+val topSellerMovies = MovieCollection(
+    id = 2L,
+    name = "Top sellers",
+    movies = movies.subList(4, 8)
+)
+
+val moviesCollections = listOf(
+    newReleaseMovies,
+    topSellerMovies
+)
+
+val forYouMoviesCollection = moviesCollections
+val topSellingMoviesCollection = movies
+val newReleasesMoviesCollection = movies.reversed()

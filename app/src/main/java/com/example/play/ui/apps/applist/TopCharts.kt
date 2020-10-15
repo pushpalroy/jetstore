@@ -1,4 +1,4 @@
-package com.example.play.ui.applist
+package com.example.play.ui.apps.applist
 
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.Column

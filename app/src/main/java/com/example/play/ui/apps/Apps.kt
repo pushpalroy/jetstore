@@ -12,8 +12,8 @@ import androidx.compose.ui.Modifier
 import androidx.ui.tooling.preview.Preview
 import com.example.play.data.AppRepo
 import com.example.play.theme.PlayTheme
-import com.example.play.ui.applist.ForYouLayout
-import com.example.play.ui.applist.TopChartsLayout
+import com.example.play.ui.apps.applist.ForYouLayout
+import com.example.play.ui.apps.applist.TopChartsLayout
 import com.example.play.ui.components.PlaySurface
 import com.example.play.ui.main.AppsCategory
 import com.example.play.ui.main.AppsCategory.Categories
