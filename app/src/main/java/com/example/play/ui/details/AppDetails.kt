@@ -13,7 +13,7 @@ import androidx.ui.tooling.preview.Preview
 import com.example.play.anim.AppIconState.INSTALLING
 import com.example.play.data.AppRepo
 import com.example.play.theme.PlayTheme
-import com.example.play.ui.components.BackButton
+import com.example.play.ui.components.AppBarLayout
 import com.example.play.ui.components.PlaySurface
 import com.example.play.ui.details.about.About
 import com.example.play.ui.details.header.Header
@@ -34,7 +34,7 @@ fun AppDetails(
   PlaySurface(
       modifier = Modifier.fillMaxSize()
   ) {
-    BackButton(backPress)
+    AppBarLayout(backPress)
     ScrollableColumn(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.fillMaxSize()
