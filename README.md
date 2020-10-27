@@ -1,14 +1,33 @@
 # jetstore
 Building a Google Playstore clone with animations in Android using Jetpack compose.
 
-<img src="screenshots/demo.gif" width=200 />
+### This sample app showcases the following:
 
-## Screenshots
-<img src="screenshots/screenshot_1.png" width=250 /> <img src="screenshots/screenshot_4.png" width=250 />
-<img src="screenshots/screenshot_5.png" width=250 /> <br> <img src="screenshots/screenshot_6.png" width=250 />
-<img src="screenshots/screenshot_2.png" width=250 /> <img src="screenshots/screenshot_3.png" width=250 />
+ * Tab layout with bottom bar layout
+ * Implementation of Chips to filter
+ * Apps, Games and Movies screens (For You & Top Charts)
+ * App details screen
+ * Animations using transitions
 
-## License
+### Screenshots
+<img src="screenshots/demo.gif" width=220 /> <img src="screenshots/screenshot_4.png" width=220 /> <img src="screenshots/screenshot_5.png" width=220 />
+<br>
+<img src="screenshots/screenshot_6.png" width=220 /> <img src="screenshots/screenshot_2.png" width=220 /> <img src="screenshots/screenshot_3.png" width=220 />
+
+### Status: 🚧 In progress
+<p>JetStore is still under development and some screens yet to be designed.</p>
+
+### Libraries used
+
+* [Jetpack Compose]
+* [Accompanist]
+* [Coroutines]
+
+[Jetpack Compose]: https://developer.android.com/jetpack/compose
+[Accompanist]: https://github.com/chrisbanes/accompanist
+[Coroutines]: https://developer.android.com/kotlin/coroutines
+
+### License
 ```
 Copyright 2020 Pushpal Roy
 
