@@ -10,9 +10,9 @@ Building a Google Playstore clone with animations in Android using Jetpack compo
  * Animations using transitions
 
 ### Screenshots
-<img src="screenshots/demo.gif" width=300 /> <img src="screenshots/screenshot_4.png" width=300 /> <img src="screenshots/screenshot_5.png" width=300 />
+<img src="screenshots/demo.gif" width=240 /> <img src="screenshots/screenshot_4.png" width=240 /> <img src="screenshots/screenshot_5.png" width=240 />
 <br>
-<img src="screenshots/screenshot_6.png" width=300 /> <img src="screenshots/screenshot_2.png" width=300 /> <img src="screenshots/screenshot_3.png" width=300 />
+<img src="screenshots/screenshot_6.png" width=240 /> <img src="screenshots/screenshot_2.png" width=240 /> <img src="screenshots/screenshot_3.png" width=240 />
 
 ### Status: 🚧 In progress
 <p>JetStore is still under development and some screens are yet to be designed.</p>
