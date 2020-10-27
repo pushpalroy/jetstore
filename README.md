@@ -3,19 +3,19 @@ Building a Google Playstore clone with animations in Android using Jetpack compo
 
 ### This sample app showcases the following:
 
- * Tab layout with bottom bar layout
+ * Working with bottom nav bar and tabs
  * Implementation of Chips to filter
- * Apps, Games and Movies screens (For You & Top Charts)
- * App details screen
+ * Light and dark theme using custom color palette
+ * Horizontal and vertical scrollable list
  * Animations using transitions
 
 ### Screenshots
-<img src="screenshots/demo.gif" width=220 /> <img src="screenshots/screenshot_4.png" width=220 /> <img src="screenshots/screenshot_5.png" width=220 />
+<img src="screenshots/demo.gif" width=300 /> <img src="screenshots/screenshot_4.png" width=300 /> <img src="screenshots/screenshot_5.png" width=300 />
 <br>
-<img src="screenshots/screenshot_6.png" width=220 /> <img src="screenshots/screenshot_2.png" width=220 /> <img src="screenshots/screenshot_3.png" width=220 />
+<img src="screenshots/screenshot_6.png" width=300 /> <img src="screenshots/screenshot_2.png" width=300 /> <img src="screenshots/screenshot_3.png" width=300 />
 
 ### Status: 🚧 In progress
-<p>JetStore is still under development and some screens yet to be designed.</p>
+<p>JetStore is still under development and some screens are yet to be designed.</p>
 
 ### Libraries used
 
