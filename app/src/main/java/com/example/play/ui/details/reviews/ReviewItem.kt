@@ -1,7 +1,5 @@
 package com.example.play.ui.details.reviews
 
-import androidx.compose.foundation.Icon
-import androidx.compose.foundation.Text
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -11,6 +9,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Icon
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.runtime.Composable
@@ -25,7 +25,7 @@ import androidx.compose.ui.text.style.TextOverflow.Ellipsis
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.Preview
 import com.example.play.data.AppRepo
 import com.example.play.data.Review
 import com.example.play.theme.PlayTheme
@@ -60,15 +60,18 @@ fun ReviewItem(review: Review) {
             color = PlayTheme.colors.textPrimary,
             maxLines = 1,
             overflow = Ellipsis,
-            modifier = Modifier.align(Alignment.CenterVertically)
+            modifier = Modifier
+                .align(Alignment.CenterVertically)
                 .weight(12f, true)
                 .padding(start = 8.dp)
         )
         Icon(
-            asset = Icons.Filled.MoreVert, modifier = Modifier
-            .align(Alignment.CenterVertically)
-            .weight(1f, false)
-            .clickable(onClick = {})
+            imageVector = Icons.Filled.MoreVert,
+            contentDescription = null,
+            modifier = Modifier
+                .align(Alignment.CenterVertically)
+                .weight(1f, false)
+                .clickable(onClick = {})
         )
       }
       Row(
@@ -110,11 +113,13 @@ fun ReviewItem(review: Review) {
                 letterSpacing = 0.15.sp
             ),
             color = PlayTheme.colors.textSecondary,
-            modifier = Modifier.align(Alignment.CenterVertically)
+            modifier = Modifier
+                .align(Alignment.CenterVertically)
                 .weight(3f, true)
         )
         Row(
-            modifier = Modifier.align(Alignment.CenterVertically)
+            modifier = Modifier
+                .align(Alignment.CenterVertically)
                 .weight(1f, false)
         ) {
           Chip(text = "Yes")

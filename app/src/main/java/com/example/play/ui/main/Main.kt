@@ -4,22 +4,31 @@ import androidx.annotation.StringRes
 import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Apps
+import androidx.compose.material.icons.outlined.Book
+import androidx.compose.material.icons.outlined.Games
+import androidx.compose.material.icons.outlined.Movie
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.savedinstancestate.savedInstanceState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
-import androidx.ui.tooling.preview.Preview
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.tooling.preview.Preview
 import com.example.play.R
-import com.example.play.ui.components.PlayScaffold
-import com.example.play.ui.apps.*
 import com.example.play.theme.PlayTheme
+import com.example.play.ui.apps.Apps
 import com.example.play.ui.books.Books
+import com.example.play.ui.components.PlayScaffold
 import com.example.play.ui.components.ToolBar
 import com.example.play.ui.games.Games
 import com.example.play.ui.movies.Movies
 
 @Composable
 fun Main(onAppSelected: (Long) -> Unit) {
-  val (currentSection, setCurrentSection) = savedInstanceState { NavSections.Games }
+  val (currentSection, setCurrentSection) = rememberSaveable {
+    mutableStateOf(NavSections.Games)
+  }
   val navItems = NavSections.values()
       .toList()
   PlayScaffold(
@@ -70,12 +79,12 @@ enum class MoviesCategory {
 
 enum class NavSections(
   @StringRes val title: Int,
-  val icon: Int
+  val icon: ImageVector
 ) {
-  Games(R.string.home_games, R.drawable.ic_games),
-  Apps(R.string.home_apps, R.drawable.ic_apps),
-  Movies(R.string.home_movies, R.drawable.ic_movies),
-  Books(R.string.home_books, R.drawable.ic_books_otlined)
+  Games(R.string.home_games, Icons.Outlined.Games),
+  Apps(R.string.home_apps, Icons.Outlined.Apps),
+  Movies(R.string.home_movies, Icons.Outlined.Movie),
+  Books(R.string.home_books, Icons.Outlined.Book)
 }
 
 @Preview

@@ -1,13 +1,12 @@
 package com.example.play.ui.details.installbutton.animated
 
-import androidx.compose.animation.core.TransitionState
-import androidx.compose.foundation.Icon
-import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material.Icon
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CloudDownload
 import androidx.compose.material.icons.outlined.CloudDownload
@@ -15,7 +14,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.drawOpacity
 import androidx.compose.ui.unit.dp
 import com.example.play.anim.ButtonState
 import com.example.play.anim.ButtonState.PRESSED
@@ -35,9 +33,10 @@ fun ButtonContent(
           horizontalAlignment = Alignment.CenterHorizontally
       ) {
         Icon(
+            imageVector = Icons.Outlined.CloudDownload,
             tint = state[installButtonTextColor],
-            asset = Icons.Outlined.CloudDownload,
-            modifier = Modifier.size(state[idleIconSize])
+            modifier = Modifier.size(state[idleIconSize]),
+            contentDescription = null
         )
       }
       Spacer(modifier = Modifier.width(16.dp))
@@ -54,10 +53,11 @@ fun ButtonContent(
           horizontalAlignment = Alignment.CenterHorizontally
       ) {
         Icon(
+            imageVector = Icons.Default.CloudDownload,
             tint = state[installButtonTextColor],
-            asset = Icons.Default.CloudDownload,
             modifier = Modifier.size(state[idleIconSize])
-                .drawOpacity(state[iconOpacity])
+                .drawOpacity(state[iconOpacity]),
+            contentDescription = null
         )
       }
       Spacer(modifier = Modifier.width(16.dp))

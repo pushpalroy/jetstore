@@ -1,10 +1,7 @@
 package com.example.play.ui.details.installbutton.animated
 
 import android.annotation.SuppressLint
-import androidx.compose.animation.core.TransitionState
-import androidx.compose.animation.transition
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
@@ -12,6 +9,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -71,7 +69,8 @@ fun InstallButtonPanel(
         transitionState = transitionState,
         updateProgress = updateProgress,
         updateAppIconSize = updateAppIconSize,
-        modifier = Modifier.size(transitionState[installButtonWidth], 38.dp)
+        modifier = Modifier
+            .size(transitionState[installButtonWidth], 38.dp)
             .weight(1f, true)
     )
   }

@@ -3,7 +3,6 @@ package com.example.play.ui.components
 import androidx.compose.material.Switch
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.example.play.theme.PlayTheme
 
 @Composable
 fun Switch(
@@ -16,7 +15,6 @@ fun Switch(
       onCheckedChange = { checked ->
         updateSwitchState(checked)
       },
-      color = PlayTheme.colors.accent,
       modifier = modifier
   )
 }

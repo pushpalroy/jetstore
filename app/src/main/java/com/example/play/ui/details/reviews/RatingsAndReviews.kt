@@ -1,15 +1,13 @@
 package com.example.play.ui.details.reviews
 
-import androidx.compose.animation.core.TransitionState
-import androidx.compose.animation.transition
-import androidx.compose.foundation.Icon
-import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons.Outlined
 import androidx.compose.material.icons.outlined.ArrowForward
 import androidx.compose.runtime.Composable
@@ -19,7 +17,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.Preview
 import com.example.play.anim.AppRatingBarState
 import com.example.play.anim.getAppRatingBarTransitionDefinition
 import com.example.play.data.AppRepo
@@ -59,7 +57,8 @@ fun RatingsAndReviews() {
         )
       }
       AppRatingBars(
-          modifier = Modifier.padding(start = 24.dp)
+          modifier = Modifier
+              .padding(start = 24.dp)
               .align(Alignment.CenterVertically)
       )
     }
@@ -94,8 +93,9 @@ private fun RatingsAndReviewsHeader() {
         modifier = Modifier.align(Alignment.Top)
     ) {
       Icon(
-          asset = Outlined.ArrowForward,
-          tint = PlayTheme.colors.iconTint
+          imageVector = Outlined.ArrowForward,
+          tint = PlayTheme.colors.iconTint,
+          contentDescription = null
       )
     }
   }

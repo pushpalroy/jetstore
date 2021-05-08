@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.savedinstancestate.savedInstanceState
 import androidx.compose.ui.Modifier
-import androidx.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.Preview
 import com.example.play.data.AppRepo
 import com.example.play.theme.PlayTheme
 import com.example.play.ui.components.PlaySurface
@@ -20,7 +20,7 @@ import com.example.play.ui.main.MoviesCategory.TopSelling
 import com.example.play.ui.main.MoviesCategoryTabs
 import com.example.play.ui.movies.movielist.MoviesForYouLayout
 import com.example.play.ui.movies.movielist.TopSellingLayout
-import com.example.play.utils.navigationBarsPadding
+import com.google.accompanist.insets.navigationBarsPadding
 
 @Composable
 fun Movies(
@@ -47,7 +47,7 @@ fun Movies(
             easing = LinearOutSlowInEasing
         )
       }
-      Crossfade(currentCategory, animation = tweenSpec) { category ->
+      Crossfade(currentCategory, animationSpec = tweenSpec) { category ->
         when (category) {
           ForYou -> MoviesForYouLayout(forYouData)
           TopSelling -> TopSellingLayout(topSellingData)

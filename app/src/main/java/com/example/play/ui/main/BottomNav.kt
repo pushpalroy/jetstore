@@ -1,48 +1,47 @@
 package com.example.play.ui.main
 
 import androidx.annotation.FloatRange
-import androidx.compose.animation.AnimatedFloatModel
-import androidx.compose.animation.animate
-import androidx.compose.animation.animatedFloat
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.AnimationSpec
 import androidx.compose.animation.core.SpringSpec
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.Icon
-import androidx.compose.foundation.Text
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.preferredHeight
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
+import androidx.compose.ui.util.lerp
+import androidx.compose.ui.layout.MeasureResult
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.onCommit
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Layout
-import androidx.compose.ui.MeasureScope
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.Placeable
-import androidx.compose.ui.TransformOrigin
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.drawLayer
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.layout.id
+import androidx.compose.ui.graphics.TransformOrigin
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.layout.Layout
+import androidx.compose.ui.layout.MeasureScope
+import androidx.compose.ui.layout.Placeable
 import androidx.compose.ui.layout.layoutId
-import androidx.compose.ui.platform.AnimationClockAmbient
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.util.lerp
-import com.example.play.ui.components.PlaySurface
 import com.example.play.theme.PlayTheme
-import com.example.play.utils.navigationBarsPadding
+import com.example.play.ui.components.PlaySurface
+import com.google.accompanist.insets.navigationBarsPadding
 import java.util.Locale
 
 private val TextIconSpacing = 5.dp
@@ -81,7 +80,7 @@ fun PlayBottomNav(
       ) {
         items.forEach { section ->
           val selected = section == currentSection
-          val tint = animate(
+          val tint by animateColorAsState(
               if (selected) {
                 PlayTheme.colors.iconInteractive
               } else {
@@ -92,8 +91,9 @@ fun PlayBottomNav(
           PlayBottomNavigationItem(
               icon = {
                 Icon(
-                    asset = vectorResource(id = section.icon),
-                    tint = tint
+                  imageVector = section.icon,
+                  tint = tint,
+                  contentDescription = null
                 )
               },
               text = {
@@ -129,10 +129,10 @@ fun PlayBottomNavigationItem(
 ) {
   Box(
       modifier = modifier.selectable(selected = selected, onClick = onSelected),
-      alignment = Alignment.Center
+      contentAlignment = Alignment.Center
   ) {
     // Animate the icon/text positions within the item based on selection
-    val animationProgress = animate(if (selected) 1f else 0f, animSpec)
+    val animationProgress by animateFloatAsState(if (selected) 1f else 0f, animSpec)
     PlayBottomNavItemLayout(
         icon = icon,
         text = text,
@@ -149,26 +149,26 @@ private fun PlayBottomNavItemLayout(
   @FloatRange(from = 0.0, to = 1.0) animationProgress: Float
 ) {
   Layout(
-      children = {
-        Box(Modifier.layoutId("icon"), children = icon)
+      content = {
+        Box(Modifier.layoutId("icon"), content = icon)
         val scale = lerp(start = 0.2f, stop = 1f, fraction = animationProgress)
         Box(
             modifier = Modifier
                 .padding(start = TextIconSpacing)
                 .layoutId("text")
-                .drawLayer(
-                    alpha = animationProgress,
-                    scaleX = scale,
-                    scaleY = scale,
-                    transformOrigin = BottomNavLabelTransformOrigin
-                ),
-            children = text
+                .graphicsLayer {
+                  alpha = animationProgress
+                  scaleX = scale
+                  scaleY = scale
+                  transformOrigin = BottomNavLabelTransformOrigin
+                },
+            content = text
         )
       }
   ) { measurable, constraints ->
-    val iconPlaceable = measurable.first { it.id == "icon" }
+    val iconPlaceable = measurable.first { it.layoutId == "icon" }
         .measure(constraints)
-    val textPlaceable = measurable.first { it.id == "text" }
+    val textPlaceable = measurable.first { it.layoutId == "text" }
         .measure(constraints)
 
     placeTextAndIcon(
@@ -188,7 +188,7 @@ private fun MeasureScope.placeTextAndIcon(
   width: Int,
   height: Int,
   @FloatRange(from = 0.0, to = 1.0) animationProgress: Float
-): MeasureScope.MeasureResult {
+): MeasureResult {
   val iconY = (height - iconPlaceable.height) / 2
   val textY = (height - textPlaceable.height) / 2
 
@@ -215,30 +215,31 @@ private fun PlayBottomNavLayout(
   content: @Composable () -> Unit
 ) {
   // Track how "selected" each item is [0, 1]
-  val clock = AnimationClockAmbient.current
   val selectionFractions = remember(itemCount) {
     List(itemCount) { i ->
-      AnimatedFloatModel(if (i == selectedIndex) 1f else 0f, clock)
+      Animatable(if (i == selectedIndex) 1f else 0f)
     }
   }
 
-  // When selection changes, animate the selection fractions
-  onCommit(selectedIndex) {
-    selectionFractions.forEachIndexed { index, selectionFraction ->
-      val target = if (index == selectedIndex) 1f else 0f
-      if (selectionFraction.targetValue != target) {
-        selectionFraction.animateTo(target, animSpec)
-      }
+  selectionFractions.forEachIndexed { index, selectionFraction ->
+    val target = if (index == selectedIndex) 1f else 0f
+    LaunchedEffect(target, animSpec) {
+      selectionFraction.animateTo(target, animSpec)
     }
   }
 
   // Animate the position of the indicator
-  val indicatorLeft = animatedFloat(0f)
+  val indicatorIndex = remember { Animatable(0f) }
+  val targetIndicatorIndex = selectedIndex.toFloat()
+  LaunchedEffect(targetIndicatorIndex) {
+    indicatorIndex.animateTo(targetIndicatorIndex, animSpec)
+  }
+
   Layout(
-      modifier = modifier.preferredHeight(BottomNavHeight),
-      children = {
+      modifier = modifier.height(BottomNavHeight),
+    content = {
         content()
-        Box(Modifier.layoutId("indicator"), children = indicator)
+        Box(Modifier.layoutId("indicator"), content = indicator)
       }
   ) { measurable, constraints ->
     check(itemCount == (measurable.size - 1)) // account for indicator
@@ -246,7 +247,7 @@ private fun PlayBottomNavLayout(
     // Divide the width into n + 1 slots and give the selected item 2 slots
     val unselectedWidth = constraints.maxWidth / (itemCount + 1)
     val selectedWidth = constraints.maxWidth - (itemCount - 1) * unselectedWidth
-    val indicatorMeasurable = measurable.first { it.id == "indicator" }
+    val indicatorMeasurable = measurable.first { it.layoutId == "indicator" }
 
     val itemPlaceable = measurable
         .filterNot { it == indicatorMeasurable }
@@ -268,17 +269,12 @@ private fun PlayBottomNavLayout(
         )
     )
 
-    // Animate the indicator position
-    val targetIndicatorLeft = selectedIndex * unselectedWidth.toFloat()
-    if (indicatorLeft.targetValue != targetIndicatorLeft) {
-      indicatorLeft.animateTo(targetIndicatorLeft, animSpec)
-    }
-
     layout(
         width = constraints.maxWidth,
         height = itemPlaceable.maxByOrNull { it.height }?.height ?: 0
     ) {
-      indicatorPlaceable.place(x = indicatorLeft.value.toInt(), y = 0)
+      val indicatorLeft = indicatorIndex.value * unselectedWidth
+      indicatorPlaceable.place(x = indicatorLeft.toInt(), y = 0)
       var x = 0
       itemPlaceable.forEach { placeable ->
         placeable.place(x = x, y = 0)

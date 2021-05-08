@@ -2,7 +2,7 @@ package com.example.play.ui.components
 
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.material.DrawerConstants
+import androidx.compose.material.DrawerDefaults
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.FabPosition
 import androidx.compose.material.MaterialTheme
@@ -26,15 +26,15 @@ import com.example.play.theme.PlayTheme
 fun PlayScaffold(
     modifier: Modifier = Modifier,
     scaffoldState: ScaffoldState = rememberScaffoldState(),
-    topBar: @Composable (() -> Unit)? = null,
-    bottomBar: @Composable (() -> Unit)? = null,
+    topBar: @Composable (() -> Unit) = {},
+    bottomBar: @Composable (() -> Unit) = {},
     snackBarHost: @Composable (SnackbarHostState) -> Unit = { SnackbarHost(it) },
-    floatingActionButton: @Composable (() -> Unit)? = null,
+    floatingActionButton: @Composable (() -> Unit) = {},
     floatingActionButtonPosition: FabPosition = FabPosition.End,
     isFloatingActionButtonDocked: Boolean = false,
     drawerContent: @Composable (ColumnScope.() -> Unit)? = null,
     drawerShape: Shape = MaterialTheme.shapes.large,
-    drawerElevation: Dp = DrawerConstants.DefaultElevation,
+    drawerElevation: Dp = DrawerDefaults.Elevation,
     drawerBackgroundColor: Color = PlayTheme.colors.uiBackground,
     drawerContentColor: Color = PlayTheme.colors.textSecondary,
     drawerScrimColor: Color = PlayTheme.colors.uiBorder,
@@ -59,6 +59,6 @@ fun PlayScaffold(
         drawerScrimColor = drawerScrimColor,
         backgroundColor = backgroundColor,
         contentColor = contentColor,
-        bodyContent = bodyContent
+        content = bodyContent
     )
 }

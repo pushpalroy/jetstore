@@ -1,12 +1,12 @@
 package com.example.play.ui.details.about
 
-import androidx.compose.foundation.Icon
-import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons.Outlined
 import androidx.compose.material.icons.outlined.ArrowForward
 import androidx.compose.runtime.Composable
@@ -16,7 +16,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.Preview
 import com.example.play.theme.PlayTheme
 import com.example.play.ui.components.PlaySurface
 
@@ -43,8 +43,9 @@ fun About() {
           modifier = Modifier.align(Alignment.CenterVertically)
       ) {
         Icon(
-            asset = Outlined.ArrowForward,
-            tint = PlayTheme.colors.iconTint
+            imageVector = Outlined.ArrowForward,
+            tint = PlayTheme.colors.iconTint,
+            contentDescription = null
         )
       }
     }

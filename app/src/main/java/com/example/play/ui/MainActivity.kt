@@ -1,12 +1,12 @@
 package com.example.play.ui
 
 import android.os.Bundle
+import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.runtime.Providers
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
-import androidx.compose.ui.platform.setContent
 import androidx.core.view.WindowCompat
-import com.example.play.utils.SysUiController
+import com.example.play.utils.LocalSysUiController
 import com.example.play.utils.SystemUiController
 
 class MainActivity : AppCompatActivity() {
@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     setContent {
       val systemUiController = remember { SystemUiController(window) }
-      Providers(SysUiController provides systemUiController) {
+      CompositionLocalProvider(LocalSysUiController provides systemUiController) {
         PlayApp(onBackPressedDispatcher)
       }
     }

@@ -1,12 +1,12 @@
 package com.example.play.ui.components
 
-import androidx.compose.foundation.Icon
-import androidx.compose.foundation.Text
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.preferredSizeIn
+import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
+import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Menu
@@ -18,13 +18,13 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow.Ellipsis
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.ui.tooling.preview.Preview
 import com.example.play.R
 import com.example.play.theme.AlphaNearOpaque
 import com.example.play.theme.PlayTheme
-import com.example.play.utils.statusBarsPadding
+import com.google.accompanist.insets.statusBarsPadding
 
 @Composable
 fun ToolBar(modifier: Modifier = Modifier) {
@@ -45,8 +45,9 @@ fun ToolBar(modifier: Modifier = Modifier) {
                 .weight(1f, false)
         ) {
           Icon(
-              asset = Icons.Outlined.Menu,
-              tint = PlayTheme.colors.iconTint
+              imageVector = Icons.Outlined.Menu,
+              tint = PlayTheme.colors.iconTint,
+              contentDescription = null
           )
         }
         Text(
@@ -69,14 +70,15 @@ fun ToolBar(modifier: Modifier = Modifier) {
                 .weight(1f, false)
         ) {
           Icon(
-              asset = Icons.Outlined.Mic,
-              tint = PlayTheme.colors.iconTint
+              imageVector = Icons.Outlined.Mic,
+              tint = PlayTheme.colors.iconTint,
+              contentDescription = null
           )
         }
         CircularLocalImage(
             resId = R.drawable.user_profile_pic,
             modifier = Modifier
-                .preferredSizeIn(maxHeight = 45.dp, maxWidth = 45.dp)
+                .sizeIn(maxHeight = 45.dp, maxWidth = 45.dp)
                 .align(Alignment.CenterVertically)
                 .padding(end = 8.dp)
                 .weight(1f, false)

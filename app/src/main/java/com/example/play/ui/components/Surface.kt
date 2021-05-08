@@ -1,15 +1,15 @@
 package com.example.play.ui.components
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.ContentColorAmbient
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
+import androidx.compose.material.LocalContentColor
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.Providers
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.drawShadow
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
@@ -34,7 +34,8 @@ fun PlaySurface(
   content: @Composable () -> Unit
 ) {
   Box(
-      modifier = modifier.drawShadow(elevation = elevation, shape = shape, clip = false)
+      modifier = modifier
+          .shadow(elevation = elevation, shape = shape, clip = false)
           .zIndex(elevation.value)
           .then(if (border != null) Modifier.border(border, shape) else Modifier)
           .background(
@@ -43,7 +44,7 @@ fun PlaySurface(
           )
           .clip(shape)
   ) {
-    Providers(ContentColorAmbient provides contentColor, children = content)
+    CompositionLocalProvider(LocalContentColor provides contentColor, content = content)
   }
 }
 
