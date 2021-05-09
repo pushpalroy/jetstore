@@ -28,6 +28,13 @@ object Libs {
     const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version"
   }
 
+  object LottieView {
+    private const val lottieVersion = "3.6.1"
+    private const val lottieComposeVersion = "1.0.0-alpha06"
+    const val lottie = "com.airbnb.android:lottie:${lottieVersion}"
+    const val lottieCompose = "com.airbnb.android:lottie-compose:${lottieComposeVersion}"
+  }
+
   object AndroidX {
     const val appcompat = "androidx.appcompat:appcompat:1.3.0-alpha02"
     const val coreKtx = "androidx.core:core-ktx:1.6.0-alpha01"
@@ -38,7 +45,7 @@ object Libs {
 
     object Compose {
       const val snapshot = ""
-      const val version = "1.0.0-beta06"
+      private const val version = "1.0.0-beta06"
 
       const val runtime = "androidx.compose.runtime:runtime:$version"
       const val foundation = "androidx.compose.foundation:foundation:${version}"
