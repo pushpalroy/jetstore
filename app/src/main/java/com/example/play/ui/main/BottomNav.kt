@@ -1,11 +1,9 @@
 package com.example.play.ui.main
 
 import androidx.annotation.FloatRange
-import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.AnimationSpec
 import androidx.compose.animation.core.SpringSpec
-import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
@@ -19,8 +17,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.ui.util.lerp
-import androidx.compose.ui.layout.MeasureResult
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -33,12 +29,16 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.TransformOrigin
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.Layout
+import androidx.compose.ui.layout.MeasureResult
 import androidx.compose.ui.layout.MeasureScope
 import androidx.compose.ui.layout.Placeable
 import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.util.lerp
+import com.example.play.anim.getBottomNavTintState
+import com.example.play.anim.getProgressState
 import com.example.play.theme.PlayTheme
 import com.example.play.ui.components.PlaySurface
 import com.google.accompanist.insets.navigationBarsPadding
@@ -80,13 +80,7 @@ fun PlayBottomNav(
       ) {
         items.forEach { section ->
           val selected = section == currentSection
-          val tint by animateColorAsState(
-            if (selected) {
-              PlayTheme.colors.iconInteractive
-            } else {
-              PlayTheme.colors.iconInteractiveInactive
-            }
-          )
+          val tint by getBottomNavTintState(selected = selected)
 
           PlayBottomNavigationItem(
             icon = {
@@ -132,7 +126,7 @@ fun PlayBottomNavigationItem(
     contentAlignment = Alignment.Center
   ) {
     // Animate the icon/text positions within the item based on selection
-    val animationProgress by animateFloatAsState(if (selected) 1f else 0f, animSpec)
+    val animationProgress by getProgressState(selected = selected, animSpec = animSpec)
     PlayBottomNavItemLayout(
       icon = icon,
       text = text,

@@ -25,15 +25,9 @@ fun getAppRatingBarState(
     transitionSpec = {
       when {
         AppRatingBarState.START isTransitioningTo AppRatingBarState.END ->
-          tween(
-            easing = FastOutSlowInEasing,
-            durationMillis = durationMillis
-          )
+          tween(easing = FastOutSlowInEasing, durationMillis = durationMillis)
         AppRatingBarState.END isTransitioningTo AppRatingBarState.START -> {
-          tween(
-            easing = FastOutSlowInEasing,
-            durationMillis = durationMillis
-          )
+          tween(easing = FastOutSlowInEasing, durationMillis = durationMillis)
         }
         else -> snap()
       }

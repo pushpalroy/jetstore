@@ -1,11 +1,5 @@
 package com.example.play.ui.details.installbutton.animated
 
-import androidx.compose.animation.animateColorAsState
-import androidx.compose.animation.core.RepeatMode
-import androidx.compose.animation.core.animateFloat
-import androidx.compose.animation.core.infiniteRepeatable
-import androidx.compose.animation.core.rememberInfiniteTransition
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -21,29 +15,18 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.example.play.anim.getButtonColorState
+import com.example.play.anim.getButtonIconSizeState
 import com.example.play.anim.getInstallButtonOpacityState
 
 @Composable
 fun ButtonContent(
   isPressed: Boolean
 ) {
-  val buttonTextColorState = animateColorAsState(
-    targetValue = if (isPressed) Color(0xff01875f) else Color.White,
-    animationSpec = tween(
-      durationMillis = 500
-    )
-  )
-
-  val transition = rememberInfiniteTransition()
-  val idleIconSizeState by transition.animateFloat(
-    initialValue = 0f,
-    targetValue = 24f,
-    animationSpec = infiniteRepeatable(
-      tween(500), RepeatMode.Reverse
-    )
-  )
+  val buttonTextColorState = getButtonColorState(isPressed = isPressed)
+  val installButtonOpacityState = getInstallButtonOpacityState(isPressed = isPressed)
+  val idleIconSizeState by getButtonIconSizeState()
 
   if (isPressed.not()) {
     Row(verticalAlignment = Alignment.CenterVertically) {
@@ -76,7 +59,7 @@ fun ButtonContent(
           tint = buttonTextColorState.value,
           modifier = Modifier
             .size(idleIconSizeState.dp)
-            .alpha(getInstallButtonOpacityState(isPressed).value),
+            .alpha(installButtonOpacityState.value),
           contentDescription = null
         )
       }

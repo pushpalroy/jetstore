@@ -1,11 +1,5 @@
 package com.example.play.ui.details.installbutton.animated
 
-import androidx.compose.animation.animateColorAsState
-import androidx.compose.animation.core.FastOutLinearInEasing
-import androidx.compose.animation.core.LinearEasing
-import androidx.compose.animation.core.animateDpAsState
-import androidx.compose.animation.core.animateIntAsState
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -19,8 +13,14 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.example.play.anim.getInstallBtnBgColorState
+import com.example.play.anim.getInstallBtnBorderColorState
+import com.example.play.anim.getInstallBtnBorderWidthState
+import com.example.play.anim.getInstallBtnCornerState
+import com.example.play.anim.getInstallButtonWidthState
+import com.example.play.anim.getOpenButtonGapWidthState
+import com.example.play.anim.getOpenButtonWidthState
 import com.example.play.theme.PlayTheme
 
 @Composable
@@ -30,25 +30,14 @@ fun InstallButtonPanel(
   Row(
     modifier = Modifier.padding(8.dp)
   ) {
-    val openButtonWidthState = animateDpAsState(
-      targetValue = if (isPressed.value) 150.dp else 0.dp,
-      animationSpec = tween(
-        durationMillis = 800,
-        delayMillis = if (isPressed.value) 0 else 1500
-      )
-    )
+    val openButtonWidthState = getOpenButtonWidthState(isPressed = isPressed.value)
+    val installButtonWidthState = getInstallButtonWidthState(isPressed = isPressed.value)
+
     OpenButton(
       isPressed = isPressed,
       modifier = Modifier.size(openButtonWidthState.value, 38.dp)
     )
 
-    val installButtonWidthState = animateDpAsState(
-      targetValue = if (isPressed.value) 150.dp else 340.dp,
-      animationSpec = tween(
-        durationMillis = 1500,
-        delayMillis = if (isPressed.value) 800 else 0
-      )
-    )
     InstallButton(
       isPressed = isPressed,
       modifier = Modifier
@@ -63,25 +52,11 @@ fun InstallButton(
   isPressed: MutableState<Boolean>,
   modifier: Modifier
 ) {
-  val buttonBorderColorState = animateColorAsState(
-    targetValue = if (isPressed.value) Color.White else Color(0xff01875f)
-  )
-  val buttonBorderWidthState = animateDpAsState(
-    targetValue = if (isPressed.value) 0.dp else 1.dp,
-  )
-  val buttonBgColorState = animateColorAsState(
-    targetValue = if (isPressed.value) Color.White else Color(0xff01875f),
-    animationSpec = tween(
-      durationMillis = 3000
-    )
-  )
-  val buttonCornersState = animateIntAsState(
-    targetValue = if (isPressed.value) 50 else 10,
-    animationSpec = tween(
-      durationMillis = 3000,
-      easing = FastOutLinearInEasing,
-    )
-  )
+  val buttonBorderColorState = getInstallBtnBorderColorState(isPressed = isPressed.value)
+  val buttonBorderWidthState = getInstallBtnBorderWidthState(isPressed = isPressed.value)
+  val buttonBgColorState = getInstallBtnBgColorState(isPressed = isPressed.value)
+  val buttonCornersState = getInstallBtnCornerState(isPressed = isPressed.value)
+
   Button(
     border = BorderStroke(
       buttonBorderWidthState.value,
@@ -105,6 +80,8 @@ fun OpenButton(
   isPressed: MutableState<Boolean>,
   modifier: Modifier
 ) {
+  val buttonGapWidthState = getOpenButtonGapWidthState(isPressed = isPressed.value)
+
   Button(
     border = BorderStroke(1.dp, PlayTheme.colors.accent),
     colors = ButtonDefaults.buttonColors(
@@ -120,14 +97,6 @@ fun OpenButton(
       color = PlayTheme.colors.accent
     )
   }
-  val buttonGapWidthState = animateDpAsState(
-    targetValue = if (isPressed.value) 8.dp else 0.dp,
-    animationSpec = tween(
-      durationMillis = 800,
-      delayMillis = if (isPressed.value) 800 else 1500,
-      easing = LinearEasing
-    )
-  )
   Spacer(modifier = Modifier.width(buttonGapWidthState.value))
 }
 

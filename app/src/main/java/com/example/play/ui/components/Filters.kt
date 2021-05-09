@@ -1,6 +1,5 @@
 package com.example.play.ui.components
 
-import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
@@ -22,6 +21,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.play.anim.getFilterBgColorState
+import com.example.play.anim.getFilterTextColorState
 import com.example.play.data.AppRepo
 import com.example.play.data.Filter
 import com.example.play.theme.PlayTheme
@@ -60,12 +61,8 @@ fun FilterChip(
   setFilterSelected: (Int) -> Unit
 ) {
 
-  val backgroundColor by animateColorAsState(
-    if (selected) PlayTheme.colors.accent.copy(alpha = 0.1f) else PlayTheme.colors.uiBackground
-  )
-  val textColor by animateColorAsState(
-    if (selected) PlayTheme.colors.accentDark else PlayTheme.colors.textSecondary
-  )
+  val backgroundColor by getFilterBgColorState(isSelected = selected)
+  val textColor by getFilterTextColorState(isSelected = selected)
 
   PlaySurface(
     modifier = modifier

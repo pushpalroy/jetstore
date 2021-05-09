@@ -1,7 +1,5 @@
 package com.example.play.ui.details.header
 
-import androidx.compose.animation.core.animateDpAsState
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -23,6 +21,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.play.anim.getAppIconSizeAnimState
 import com.example.play.data.App
 import com.example.play.data.AppRepo
 import com.example.play.theme.PlayTheme
@@ -35,13 +34,7 @@ fun Header(
   app: App,
   showProgress: MutableState<Boolean>
 ) {
-  val appIconSize = animateDpAsState(
-    targetValue = if (showProgress.value) 80.dp else 100.dp,
-    animationSpec = tween(
-      durationMillis = 500,
-      delayMillis = 500
-    )
-  )
+  val appIconSizeState = getAppIconSizeAnimState(showProgress = showProgress.value)
 
   Row(modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 8.dp)) {
     Box(
@@ -59,8 +52,8 @@ fun Header(
       RoundedCornerAppImage(
         imageUrl = app.imageUrl,
         modifier = Modifier
-          .width(appIconSize.value)
-          .height(appIconSize.value)
+          .width(appIconSizeState.value)
+          .height(appIconSizeState.value)
           .align(Alignment.Center)
           .padding(8.dp),
         cornerPercent = 20
