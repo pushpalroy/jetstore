@@ -1,16 +1,15 @@
 package com.example.play.ui.details
 
-import androidx.compose.foundation.ScrollableColumn
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.ui.tooling.preview.Preview
-import com.example.play.anim.AppIconState.INSTALLING
 import com.example.play.data.AppRepo
 import com.example.play.theme.PlayTheme
 import com.example.play.ui.components.AppBarLayout
@@ -28,24 +27,27 @@ fun AppDetails(
   backPress: () -> Unit
 ) {
   val app = remember(appId) { AppRepo.getApp(appId) }
-  val (appIconSizeState, updateAppIconSize) = remember { mutableStateOf(INSTALLING) }
-  val (progressState, updateProgress) = remember { mutableStateOf(false) }
+  val isInstalling = remember { mutableStateOf(false) }
 
   PlaySurface(
       modifier = Modifier.fillMaxSize()
   ) {
     AppBarLayout(backPress)
-    ScrollableColumn(
+    LazyColumn(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
             .padding(top = 56.dp)
     ) {
-      Header(app, progressState, appIconSizeState)
-      Stats(app)
-      InstallButtonLayout(updateProgress, updateAppIconSize)
-      Screenshots()
-      About()
-      RatingsAndReviews()
+      item {
+        //Header(app, progressState)
+        Header(app = app, showProgress = isInstalling)
+        Stats(app = app)
+        InstallButtonLayout(isInstalling = isInstalling)
+        Screenshots()
+        About()
+        RatingsAndReviews()
+      }
     }
   }
 }

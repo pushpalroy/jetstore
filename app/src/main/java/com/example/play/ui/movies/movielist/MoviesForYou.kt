@@ -1,16 +1,17 @@
 package com.example.play.ui.movies.movielist
 
-import androidx.compose.foundation.Icon
-import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.preferredHeight
-import androidx.compose.foundation.layout.preferredWidth
-import androidx.compose.foundation.lazy.LazyColumnFor
-import androidx.compose.foundation.lazy.LazyRowFor
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ArrowForward
 import androidx.compose.runtime.Composable
@@ -20,14 +21,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.ui.tooling.preview.Preview
 import com.example.play.data.AppRepo
 import com.example.play.data.Movie
 import com.example.play.data.MovieCollection
 import com.example.play.theme.PlayTheme
-import com.example.play.utils.navigationBarsPadding
+import com.google.accompanist.insets.navigationBarsPadding
 
 @Composable
 fun MoviesForYouLayout(
@@ -36,19 +37,21 @@ fun MoviesForYouLayout(
 ) {
   Spacer(
       modifier = Modifier
-          .preferredHeight(4.dp)
+          .height(4.dp)
   )
-  LazyColumnFor(items = data, modifier = modifier) { moviesCollection ->
-    key(moviesCollection.id) {
-      MoviesForYou(
-          moviesCollection = moviesCollection
-      )
-    }
+  LazyColumn(modifier = modifier) {
+      items(data) { moviesCollection ->
+        key(moviesCollection.id) {
+          MoviesForYou(
+            moviesCollection = moviesCollection
+          )
+        }
+      }
   }
   Spacer(
       modifier = Modifier
           .navigationBarsPadding(left = false, right = false)
-          .preferredHeight(8.dp)
+          .height(8.dp)
   )
 }
 
@@ -80,8 +83,9 @@ fun MoviesForYou(
           modifier = Modifier.align(Alignment.CenterVertically)
       ) {
         Icon(
-            asset = Icons.Outlined.ArrowForward,
-            tint = PlayTheme.colors.iconTint
+            imageVector = Icons.Outlined.ArrowForward,
+            tint = PlayTheme.colors.iconTint,
+            contentDescription = null
         )
       }
     }
@@ -91,12 +95,13 @@ fun MoviesForYou(
 
 @Composable
 private fun MoviesList(
-  movies: List<Movie>,
-  modifier: Modifier = Modifier.padding(start = 16.dp)
+  movies: List<Movie>
 ) {
-  LazyRowFor(items = movies, modifier = modifier) { movie ->
-    MovieItem(movie)
-    Spacer(modifier = Modifier.preferredWidth(1.dp))
+  LazyRow(modifier = Modifier.padding(start = 16.dp)) {
+    items(movies) { movie ->
+      MovieItem(movie)
+      Spacer(modifier = Modifier.width(1.dp))
+    }
   }
 }
 

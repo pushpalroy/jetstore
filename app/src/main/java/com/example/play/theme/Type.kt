@@ -2,15 +2,15 @@ package com.example.play.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.font.font
-import androidx.compose.ui.text.font.fontFamily
 import androidx.compose.ui.unit.sp
-import com.example.play.R
+import com.example.play.R.font
 
-private val ProductSans = fontFamily(
-    font(R.font.product_sans_regular, FontWeight.Normal),
-    font(R.font.product_sans_bold, FontWeight.Bold)
+private val ProductSans = FontFamily(
+    Font(font.product_sans_regular, FontWeight.Normal),
+    Font(font.product_sans_bold, FontWeight.Bold)
 )
 
 val Typography = Typography(

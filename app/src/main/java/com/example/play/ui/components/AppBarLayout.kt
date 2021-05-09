@@ -1,10 +1,10 @@
 package com.example.play.ui.components
 
-import androidx.compose.foundation.Icon
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.preferredSize
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.icons.Icons.Outlined
 import androidx.compose.material.icons.outlined.ArrowBack
@@ -12,18 +12,19 @@ import androidx.compose.material.icons.outlined.MoreVert
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.ui.tooling.preview.Preview
 import com.example.play.theme.PlayTheme
-import com.example.play.utils.statusBarsPadding
+import com.google.accompanist.insets.statusBarsPadding
 
 @Composable
 fun AppBarLayout(upPress: () -> Unit) {
   Row(
-      modifier = Modifier.fillMaxWidth()
+      modifier = Modifier
+          .fillMaxWidth()
           .statusBarsPadding()
           .padding(horizontal = 16.dp, vertical = 16.dp)
-          .preferredSize(24.dp)
+          .size(24.dp)
   ) {
     BackButton(
         modifier = Modifier.weight(1f), upPress = upPress
@@ -43,8 +44,9 @@ fun BackButton(
         onClick = upPress
     ) {
       Icon(
-          asset = Outlined.ArrowBack,
-          tint = PlayTheme.colors.iconTint
+          imageVector = Outlined.ArrowBack,
+          tint = PlayTheme.colors.iconTint,
+          contentDescription = null
       )
     }
   }
@@ -57,8 +59,9 @@ fun MoreButton(modifier: Modifier) {
       modifier = modifier
   ) {
     Icon(
-        asset = Outlined.MoreVert,
-        tint = PlayTheme.colors.iconTint
+        imageVector = Outlined.MoreVert,
+        tint = PlayTheme.colors.iconTint,
+        contentDescription = null
     )
   }
 }
@@ -70,8 +73,9 @@ fun SearchButton(modifier: Modifier) {
       modifier = modifier
   ) {
     Icon(
-        asset = Outlined.Search,
-        tint = PlayTheme.colors.iconTint
+        imageVector = Outlined.Search,
+        tint = PlayTheme.colors.iconTint,
+        contentDescription = null
     )
   }
 }

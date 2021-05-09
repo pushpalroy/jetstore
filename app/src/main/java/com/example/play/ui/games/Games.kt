@@ -6,10 +6,11 @@ import androidx.compose.animation.core.TweenSpec
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.savedinstancestate.savedInstanceState
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
-import androidx.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.Preview
 import com.example.play.data.AppRepo
 import com.example.play.theme.PlayTheme
 import com.example.play.ui.apps.applist.ForYouLayout
@@ -22,7 +23,7 @@ import com.example.play.ui.main.AppsCategory.EditorsChoice
 import com.example.play.ui.main.AppsCategory.ForYou
 import com.example.play.ui.main.AppsCategory.TopCharts
 import com.example.play.ui.main.AppsCategoryTabs
-import com.example.play.utils.navigationBarsPadding
+import com.google.accompanist.insets.navigationBarsPadding
 
 @Composable
 fun Games(
@@ -34,7 +35,7 @@ fun Games(
 ) {
   val forYouData = remember { AppRepo.getForYouGames() }
   val topChartsData = remember { AppRepo.getTopChartsGames() }
-  val (currentCategory, setCurrentCategory) = savedInstanceState { ForYou }
+  val (currentCategory, setCurrentCategory) = rememberSaveable { mutableStateOf(ForYou) }
 
   PlaySurface(modifier = modifier.fillMaxSize()) {
     Column(modifier = Modifier.navigationBarsPadding(left = true, right = true)) {
@@ -49,7 +50,7 @@ fun Games(
             easing = LinearOutSlowInEasing
         )
       }
-      Crossfade(currentCategory, animation = tweenSpec) { category ->
+      Crossfade(currentCategory, animationSpec = tweenSpec) { category ->
         when (category) {
           ForYou -> ForYouLayout(forYouData, onAppClick)
           TopCharts -> TopChartsLayout(topChartsData, onAppClick)

@@ -1,7 +1,5 @@
 package com.example.play.ui.movies.movielist
 
-import androidx.compose.foundation.Icon
-import androidx.compose.foundation.Text
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,23 +7,25 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.preferredHeight
-import androidx.compose.foundation.layout.preferredSize
-import androidx.compose.foundation.layout.preferredWidth
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Star
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign.Center
 import androidx.compose.ui.text.style.TextOverflow.Ellipsis
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.ui.tooling.preview.Preview
-import com.example.play.R.drawable
 import com.example.play.data.AppRepo
 import com.example.play.data.Movie
 import com.example.play.theme.PlayTheme
@@ -42,7 +42,7 @@ fun MovieItem(
       elevation = 0.dp,
       shape = MaterialTheme.shapes.large,
       modifier = modifier
-          .preferredSize(
+          .size(
               width = 120.dp,
               height = 240.dp
           )
@@ -55,20 +55,20 @@ fun MovieItem(
     ) {
       Box(
           modifier = Modifier
-              .preferredHeight(180.dp)
+              .height(180.dp)
               .fillMaxWidth()
       ) {
         RoundedCornerAppImage(
             imageUrl = movie.imageUrl,
             modifier = Modifier
-                .preferredWidth(120.dp)
-                .preferredHeight(180.dp)
+                .width(120.dp)
+                .height(180.dp)
                 .align(Alignment.TopStart)
                 .padding(8.dp),
             cornerPercent = 10
         )
       }
-      Spacer(modifier = Modifier.preferredHeight(3.dp))
+      Spacer(modifier = Modifier.height(3.dp))
       Text(
           text = movie.name,
           style = TextStyle(
@@ -81,7 +81,7 @@ fun MovieItem(
           overflow = Ellipsis,
           modifier = Modifier.padding(start = 8.dp)
       )
-      Spacer(modifier = Modifier.preferredHeight(4.dp))
+      Spacer(modifier = Modifier.height(4.dp))
       Row(modifier = Modifier.padding(start = 8.dp)) {
         Text(
             text = movie.ratings,
@@ -95,13 +95,14 @@ fun MovieItem(
             overflow = Ellipsis
         )
         Icon(
-            asset = vectorResource(id = drawable.ic_star_solid),
+            imageVector = Icons.Outlined.Star,
             tint = PlayTheme.colors.iconTint,
             modifier = Modifier
                 .padding(start = 2.dp, end = 8.dp)
-                .preferredWidth(8.dp)
-                .preferredHeight(8.dp)
-                .align(Alignment.CenterVertically)
+                .width(8.dp)
+                .height(8.dp)
+                .align(Alignment.CenterVertically),
+            contentDescription = null
         )
         Text(
             text = movie.price,
@@ -140,13 +141,13 @@ fun TopSellingMovieItem(
           color = PlayTheme.colors.textSecondary,
           modifier = Modifier
               .align(Alignment.CenterVertically)
-              .preferredWidth(30.dp)
+              .width(30.dp)
               .padding(end = 8.dp)
       )
       Box(
           modifier = Modifier
-              .preferredHeight(90.dp)
-              .preferredWidth(65.dp)
+              .height(90.dp)
+              .width(65.dp)
       ) {
         RoundedCornerAppImage(
             imageUrl = movie.imageUrl,
@@ -158,7 +159,8 @@ fun TopSellingMovieItem(
         )
       }
       Column(
-          modifier = Modifier.padding(top = 4.dp, start = 8.dp)
+          modifier = Modifier
+              .padding(top = 4.dp, start = 8.dp)
               .align(Alignment.Top)
       ) {
         Text(
@@ -198,13 +200,14 @@ fun TopSellingMovieItem(
               overflow = Ellipsis
           )
           Icon(
-              asset = vectorResource(id = drawable.ic_star_solid),
+              imageVector = Icons.Outlined.Star,
               tint = PlayTheme.colors.iconTint,
               modifier = Modifier
                   .padding(start = 2.dp, end = 8.dp)
-                  .preferredWidth(8.dp)
-                  .preferredHeight(8.dp)
-                  .align(Alignment.CenterVertically)
+                  .width(8.dp)
+                  .height(8.dp)
+                  .align(Alignment.CenterVertically),
+              contentDescription = null
           )
         }
         Text(

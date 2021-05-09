@@ -1,13 +1,15 @@
 package com.example.play.ui.details.screenshots
 
-import androidx.compose.foundation.ScrollableRow
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.preferredWidth
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.Preview
 import com.example.play.data.AppRepo
 import com.example.play.theme.PlayTheme
 import com.example.play.ui.details.AppImageItem
@@ -18,17 +20,24 @@ fun Screenshots(
   onImageClick: () -> Unit = {},
   modifier: Modifier = Modifier
 ) {
-  val scroll = rememberScrollState(0f)
-  ScrollableRow(
-      scrollState = scroll,
+  //val scrollState = rememberScrollState(0)
+  Spacer(modifier = Modifier.width(16.dp))
+  LazyRow(
       modifier = modifier
   ) {
-    Spacer(modifier = Modifier.preferredWidth(16.dp))
-    imageUrlList.forEach { imageUrl ->
-      AppImageItem(imageUrl, onImageClick)
-      Spacer(modifier = Modifier.preferredWidth(8.dp))
+    items(imageUrlList) { imageUrlItem ->
+      ScreenshotListItem(imageUrlItem, onImageClick)
     }
   }
+}
+
+@Composable
+fun ScreenshotListItem(
+  imageUrl: String,
+  onImageClick: () -> Unit
+) {
+  AppImageItem(imageUrl, onImageClick)
+  Spacer(modifier = Modifier.width(8.dp))
 }
 
 @Preview("App Images")

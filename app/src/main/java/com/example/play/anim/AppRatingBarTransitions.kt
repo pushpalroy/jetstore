@@ -1,35 +1,47 @@
 package com.example.play.anim
 
-import android.annotation.SuppressLint
-import androidx.compose.animation.core.FastOutLinearInEasing
-import androidx.compose.animation.core.TransitionDefinition
-import androidx.compose.animation.core.transitionDefinition
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.snap
 import androidx.compose.animation.core.tween
-import com.example.play.anim.AppRatingBarState.END
-import com.example.play.anim.AppRatingBarState.START
+import androidx.compose.animation.core.updateTransition
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 
 enum class AppRatingBarState {
   START,
   END
 }
 
-@SuppressLint("Range")
-fun getAppRatingBarTransitionDefinition(ratings: Float, durationMillis: Int): TransitionDefinition<AppRatingBarState> {
-  return transitionDefinition {
-
-    // State of app icon size when not pressed
-    state(START) {
-      this[appRatingBar] = 0f
-    }
-
-    // State of app icon size when pressed
-    state(END) {
-      this[appRatingBar] = ratings
-    }
-
-    // Transition from START to END
-    transition(START to END) {
-      appRatingBar using tween(durationMillis = durationMillis, easing = FastOutLinearInEasing)
+@Composable
+fun getAppRatingBarState(
+  progress: Float,
+  durationMillis: Int = 3000,
+  showProgress: Boolean
+): State<Float> {
+  val currentState = if (showProgress) AppRatingBarState.END else AppRatingBarState.START
+  val transition = updateTransition(targetState = currentState, label = "appRatingBarState")
+  return transition.animateFloat(
+      transitionSpec = {
+        when {
+          AppRatingBarState.START isTransitioningTo AppRatingBarState.END ->
+            tween(
+                easing = FastOutSlowInEasing,
+                durationMillis = durationMillis
+            )
+          AppRatingBarState.END isTransitioningTo AppRatingBarState.START -> {
+            tween(
+                easing = FastOutSlowInEasing,
+                durationMillis = durationMillis
+            )
+          }
+          else -> snap()
+        }
+      }, label = "appRatingBarState"
+  ) { appRatingBarState ->
+    when (appRatingBarState) {
+      AppRatingBarState.START -> 0f
+      AppRatingBarState.END -> progress
     }
   }
 }

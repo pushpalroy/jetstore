@@ -1,24 +1,27 @@
 package com.example.play.ui.details.stats
 
-import androidx.compose.foundation.Icon
-import androidx.compose.foundation.Text
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.preferredHeight
-import androidx.compose.foundation.layout.preferredWidth
+import androidx.compose.foundation.layout.width
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Download
+import androidx.compose.material.icons.outlined.Star
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.text.style.TextOverflow.Ellipsis
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.ui.tooling.preview.Preview
 import com.example.play.R.drawable
 import com.example.play.data.App
 import com.example.play.data.AppRepo
@@ -36,19 +39,20 @@ fun Stats(app: App) {
         Text(
             text = app.ratings,
             maxLines = 1,
-            overflow = TextOverflow.Ellipsis,
+            overflow = Ellipsis,
             style = MaterialTheme.typography.subtitle1,
             fontWeight = FontWeight.Bold,
             color = PlayTheme.colors.textSecondaryDark
         )
         Icon(
-            asset = vectorResource(id = drawable.ic_star_solid),
+            imageVector = Icons.Outlined.Star,
             tint = PlayTheme.colors.textSecondaryDark,
             modifier = Modifier
                 .padding(end = 8.dp)
-                .preferredWidth(14.dp)
-                .preferredHeight(14.dp)
-                .align(Alignment.CenterVertically)
+                .width(14.dp)
+                .height(14.dp)
+                .align(Alignment.CenterVertically),
+            contentDescription = null
         )
       }
       Text(
@@ -60,21 +64,22 @@ fun Stats(app: App) {
     }
     Spacer(
         modifier = Modifier
-            .preferredWidth(1.dp)
-            .preferredHeight(24.dp)
+            .width(1.dp)
+            .height(24.dp)
             .fillMaxHeight()
             .align(Alignment.CenterVertically)
             .background(color = PlayTheme.colors.uiBorder)
     )
     Column(modifier = Modifier.padding(start = 12.dp, end = 12.dp)) {
       Icon(
-          asset = vectorResource(id = drawable.ic_download),
+          imageVector = Icons.Outlined.Download,
           tint = PlayTheme.colors.textSecondaryDark,
           modifier = Modifier
               .padding(end = 8.dp)
-              .preferredWidth(21.dp)
-              .preferredHeight(21.dp)
-              .align(Alignment.CenterHorizontally)
+              .width(21.dp)
+              .height(21.dp)
+              .align(Alignment.CenterHorizontally),
+          contentDescription = null
       )
       Text(
           text = "9.9 MB",
@@ -86,8 +91,8 @@ fun Stats(app: App) {
     }
     Spacer(
         modifier = Modifier
-            .preferredWidth(1.dp)
-            .preferredHeight(24.dp)
+            .width(1.dp)
+            .height(24.dp)
             .fillMaxHeight()
             .align(Alignment.CenterVertically)
             .background(color = PlayTheme.colors.uiBorder)
@@ -111,8 +116,8 @@ fun Stats(app: App) {
     }
     Spacer(
         modifier = Modifier
-            .preferredWidth(1.dp)
-            .preferredHeight(24.dp)
+            .width(1.dp)
+            .height(24.dp)
             .fillMaxHeight()
             .align(Alignment.CenterVertically)
             .background(color = PlayTheme.colors.uiBorder)

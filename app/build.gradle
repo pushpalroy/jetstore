@@ -8,7 +8,7 @@ plugins {
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.example.play"
@@ -53,13 +53,16 @@ dependencies {
     implementation Libs.Kotlin.stdlib
     implementation Libs.AndroidX.coreKtx
     implementation Libs.AndroidX.appcompat
+    implementation Libs.AndroidX.Activity.activityCompose
     implementation Libs.AndroidX.Compose.runtime
     implementation Libs.AndroidX.Compose.foundation
     implementation Libs.AndroidX.Compose.layout
     implementation Libs.AndroidX.Compose.ui
+    implementation Libs.AndroidX.Compose.uiUtil
     implementation Libs.AndroidX.Compose.material
     implementation Libs.AndroidX.Compose.animation
     implementation Libs.AndroidX.Compose.iconsExtended
     implementation Libs.AndroidX.Compose.tooling
     implementation Libs.Accompanist.coil
+    implementation Libs.Accompanist.insets
 }

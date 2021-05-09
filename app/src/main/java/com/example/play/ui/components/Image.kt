@@ -2,19 +2,19 @@ package com.example.play.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.preferredSize
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.loadImageResource
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.ui.tooling.preview.Preview
 import com.example.play.theme.PlayTheme
-import dev.chrisbanes.accompanist.coil.CoilImage
+import com.google.accompanist.coil.rememberCoilPainter
 
 @Composable
 fun CircularAppImage(
@@ -28,10 +28,13 @@ fun CircularAppImage(
       shape = CircleShape,
       modifier = modifier
   ) {
-    CoilImage(
-        data = imageUrl,
+    Image(
+        painter = rememberCoilPainter(
+            request = imageUrl
+        ),
         contentScale = ContentScale.Crop,
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize(),
+        contentDescription = null
     )
   }
 }
@@ -48,11 +51,12 @@ fun CircularLocalImage(
       shape = CircleShape,
       modifier = modifier
   ) {
-    val image = loadImageResource(resId)
-    // loadImageResource will load the drawable asynchronous
-    image.resource.resource?.let {
-      Image(asset = it)
-    }
+    Image(
+        painterResource(resId),
+        contentDescription = null,
+        contentScale = ContentScale.Crop,
+        modifier = Modifier.fillMaxSize()
+    )
   }
 }
 
@@ -69,10 +73,13 @@ fun RoundedCornerAppImage(
       shape = RoundedCornerShape(cornerPercent),
       modifier = modifier
   ) {
-    CoilImage(
-        data = imageUrl,
+    Image(
+        painter = rememberCoilPainter(
+            request = imageUrl
+        ),
         contentScale = ContentScale.Crop,
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize(),
+        contentDescription = null
     )
   }
 }
@@ -84,7 +91,7 @@ fun CircularAppImagePreview() {
     CircularAppImage(
         imageUrl = "",
         modifier = Modifier
-            .preferredSize(120.dp),
+            .size(120.dp),
         elevation = 10.dp
     )
   }
@@ -97,7 +104,7 @@ fun RoundedCornerAppImagePreview() {
     RoundedCornerAppImage(
         imageUrl = "",
         modifier = Modifier
-            .preferredSize(120.dp),
+            .size(120.dp),
         cornerPercent = 5,
         elevation = 10.dp
     )

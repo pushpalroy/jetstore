@@ -1,24 +1,24 @@
 package com.example.play.ui.main
 
-import androidx.compose.foundation.Text
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.preferredHeight
-import androidx.compose.foundation.layout.preferredWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ScrollableTabRow
 import androidx.compose.material.Tab
-import androidx.compose.material.TabConstants.defaultTabIndicatorOffset
 import androidx.compose.material.TabPosition
+import androidx.compose.material.TabRowDefaults.tabIndicatorOffset
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.ui.tooling.preview.Preview
 import com.example.play.R
 import com.example.play.theme.PlayTheme
 import com.example.play.ui.main.AppsCategory.Categories
@@ -38,7 +38,7 @@ fun AppsCategoryTabs(
   val selectedIndex = categories.indexOfFirst { it == selectedCategory }
   val indicator = @Composable { tabPositions: List<TabPosition> ->
     HomeCategoryTabIndicator(
-        Modifier.defaultTabIndicatorOffset(tabPositions[selectedIndex])
+        Modifier.tabIndicatorOffset(tabPositions[selectedIndex])
     )
   }
 
@@ -87,7 +87,7 @@ fun MoviesCategoryTabs(
   val selectedIndex = categories.indexOfFirst { it == selectedCategory }
   val indicator = @Composable { tabPositions: List<TabPosition> ->
     HomeCategoryTabIndicator(
-        Modifier.defaultTabIndicatorOffset(tabPositions[selectedIndex])
+        Modifier.tabIndicatorOffset(tabPositions[selectedIndex])
     )
   }
 
@@ -131,9 +131,9 @@ fun HomeCategoryTabIndicator(
   color: Color = PlayTheme.colors.accent
 ) {
   Spacer(
-      modifier.preferredWidth(5.dp)
-          .preferredHeight(3.dp)
-          .background(color, RoundedCornerShape(topLeftPercent = 100, topRightPercent = 100))
+      modifier.width(5.dp)
+          .height(3.dp)
+          .background(color, RoundedCornerShape(percent = 50))
   )
 }
 

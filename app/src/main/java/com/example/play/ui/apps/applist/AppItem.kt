@@ -1,8 +1,6 @@
 package com.example.play.ui.apps.applist
 
-import androidx.compose.animation.transition
-import androidx.compose.foundation.Icon
-import androidx.compose.foundation.Text
+import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -10,31 +8,27 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.preferredHeight
-import androidx.compose.foundation.layout.preferredHeightIn
-import androidx.compose.foundation.layout.preferredSize
-import androidx.compose.foundation.layout.preferredWidth
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign.Center
 import androidx.compose.ui.text.style.TextOverflow.Ellipsis
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.ui.tooling.preview.Preview
 import com.example.play.R.drawable
-import com.example.play.anim.AppIconExplodeState.EXPLODED
-import com.example.play.anim.AppIconExplodeState.IDLE
-import com.example.play.anim.appIconExplodePadding
-import com.example.play.anim.getAppIconExplodeTransitionDefinition
 import com.example.play.data.App
 import com.example.play.data.AppRepo
 import com.example.play.data.apps
@@ -53,7 +47,7 @@ fun PlayFeaturedAppItem(
       shape = RectangleShape,
       elevation = 0.dp,
       modifier = modifier
-          .preferredSize(
+          .size(
               width = 250.dp,
               height = 230.dp
           )
@@ -68,15 +62,15 @@ fun PlayFeaturedAppItem(
           imageUrl = app.featureImageUrl,
           modifier = Modifier
               .fillMaxWidth()
-              .preferredHeightIn(max = 145.dp)
+              .heightIn(max = 145.dp)
               .padding(8.dp),
           cornerPercent = 8
       )
       Row {
         Box(
             modifier = Modifier
-                .preferredHeight(72.dp)
-                .preferredWidth(72.dp)
+                .height(72.dp)
+                .width(72.dp)
         ) {
           RoundedCornerAppImage(
               imageUrl = app.imageUrl,
@@ -101,7 +95,7 @@ fun PlayFeaturedAppItem(
               maxLines = 1,
               overflow = Ellipsis
           )
-          Spacer(modifier = Modifier.preferredHeight(3.dp))
+          Spacer(modifier = Modifier.height(3.dp))
           Row {
             Text(
                 text = app.type,
@@ -136,7 +130,7 @@ fun PlayFeaturedAppItem(
                 modifier = Modifier.padding(start = 8.dp)
             )
           }
-          Spacer(modifier = Modifier.preferredHeight(3.dp))
+          Spacer(modifier = Modifier.height(3.dp))
           Row {
             Text(
                 text = app.ratings,
@@ -150,13 +144,14 @@ fun PlayFeaturedAppItem(
                 overflow = Ellipsis
             )
             Icon(
-                asset = vectorResource(id = drawable.ic_star_solid),
+                painter = painterResource(id = drawable.ic_star_solid),
                 tint = PlayTheme.colors.iconTint,
                 modifier = Modifier
                     .padding(start = 2.dp, end = 8.dp)
-                    .preferredWidth(8.dp)
-                    .preferredHeight(8.dp)
-                    .align(Alignment.CenterVertically)
+                    .width(8.dp)
+                    .height(8.dp)
+                    .align(Alignment.CenterVertically),
+                contentDescription = null
             )
             Text(
                 text = app.size,
@@ -182,20 +177,21 @@ fun AppItem(
   onAppClick: (Long) -> Unit,
   modifier: Modifier = Modifier
 ) {
-  val (appIconExplodeState, updateAppIconExplode) =
-    remember { mutableStateOf(IDLE) }
-  val appIconExplodeTransitionDef = getAppIconExplodeTransitionDefinition()
-  val toState = IDLE
-  val state = transition(
-      definition = appIconExplodeTransitionDef,
-      initState = appIconExplodeState,
-      toState = toState
-  )
+//  val currentState by remember { mutableStateOf(EXPLODED) }
+//  val (appIconExplodeState, updateAppIconExplode) = remember { mutableStateOf(IDLE) }
+//  val appIconExplodeTransitionDef = getAppIconExplodeTransitionDefinition()
+//  val toState = IDLE
+//  val state = transition(
+//      definition = appIconExplodeTransitionDef,
+//      initState = appIconExplodeState,
+//      toState = toState
+//  )
+
   PlayCard(
       elevation = 0.dp,
       shape = MaterialTheme.shapes.large,
       modifier = modifier
-          .preferredSize(
+          .size(
               width = 120.dp,
               height = 180.dp
           )
@@ -204,26 +200,27 @@ fun AppItem(
     Column(
         modifier = Modifier
             .clickable(onClick = {
-              updateAppIconExplode(EXPLODED)
+              //updateTransition(currentState)
               onAppClick(app.id)
             })
             .fillMaxSize()
     ) {
       Box(
           modifier = Modifier
-              .preferredHeight(120.dp)
+              .height(120.dp)
               .fillMaxWidth()
       ) {
         RoundedCornerAppImage(
             imageUrl = app.imageUrl,
             modifier = Modifier
-                .preferredSize(120.dp)
+                .size(120.dp)
                 .align(Alignment.TopStart)
-                .padding(state[appIconExplodePadding]),
+                //.padding(state[appIconExplodePadding]),
+                .padding(8.dp),
             cornerPercent = 20
         )
       }
-      Spacer(modifier = Modifier.preferredHeight(3.dp))
+      Spacer(modifier = Modifier.height(3.dp))
       Text(
           text = app.name,
           style = TextStyle(
@@ -236,7 +233,7 @@ fun AppItem(
           overflow = Ellipsis,
           modifier = Modifier.padding(start = 8.dp)
       )
-      Spacer(modifier = Modifier.preferredHeight(4.dp))
+      Spacer(modifier = Modifier.height(4.dp))
       Text(
           text = app.size,
           style = TextStyle(
@@ -275,13 +272,13 @@ fun TopChartAppItem(
           color = PlayTheme.colors.textSecondary,
           modifier = Modifier
               .align(Alignment.CenterVertically)
-              .preferredWidth(30.dp)
+              .width(30.dp)
               .padding(end = 8.dp)
       )
       Box(
           modifier = Modifier
-              .preferredHeight(65.dp)
-              .preferredWidth(65.dp)
+              .height(65.dp)
+              .width(65.dp)
       ) {
         RoundedCornerAppImage(
             imageUrl = app.imageUrl,
@@ -293,7 +290,8 @@ fun TopChartAppItem(
         )
       }
       Column(
-          modifier = Modifier.padding(start = 8.dp)
+          modifier = Modifier
+              .padding(start = 8.dp)
               .align(Alignment.CenterVertically)
       ) {
         Text(
@@ -354,13 +352,14 @@ fun TopChartAppItem(
               overflow = Ellipsis
           )
           Icon(
-              asset = vectorResource(id = drawable.ic_star_solid),
+              painter = painterResource(id = drawable.ic_star_solid),
               tint = PlayTheme.colors.iconTint,
               modifier = Modifier
                   .padding(start = 2.dp, end = 8.dp)
-                  .preferredWidth(8.dp)
-                  .preferredHeight(8.dp)
-                  .align(Alignment.CenterVertically)
+                  .width(8.dp)
+                  .height(8.dp)
+                  .align(Alignment.CenterVertically),
+              contentDescription = null
           )
           Text(
               text = app.size,
