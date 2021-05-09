@@ -30,15 +30,15 @@ fun Main(onAppSelected: (Long) -> Unit) {
     mutableStateOf(NavSections.Games)
   }
   val navItems = NavSections.values()
-      .toList()
+    .toList()
   PlayScaffold(
-      bottomBar = {
-        PlayBottomNav(
-            currentSection = currentSection,
-            onSectionSelected = setCurrentSection,
-            items = navItems
-        )
-      }
+    bottomBar = {
+      PlayBottomNav(
+        currentSection = currentSection,
+        onSectionSelected = setCurrentSection,
+        items = navItems
+      )
+    }
   ) { innerPadding ->
     val modifier = Modifier.padding(innerPadding)
     Column {
@@ -46,15 +46,15 @@ fun Main(onAppSelected: (Long) -> Unit) {
       Crossfade(currentSection) { section ->
         when (section) {
           NavSections.Games -> Games(
-              onAppClick = onAppSelected,
-              modifier = modifier
+            onAppClick = onAppSelected,
+            modifier = modifier
           )
           NavSections.Apps -> Apps(
-              onAppClick = onAppSelected,
-              modifier = modifier
+            onAppClick = onAppSelected,
+            modifier = modifier
           )
           NavSections.Movies -> Movies(
-              modifier = modifier
+            modifier = modifier
           )
           NavSections.Books -> Books()
         }
@@ -92,7 +92,7 @@ enum class NavSections(
 private fun PlayBottomNavPreview() {
   PlayTheme {
     Main(
-        onAppSelected = {}
+      onAppSelected = {}
     )
   }
 }

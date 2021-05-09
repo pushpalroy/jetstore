@@ -36,91 +36,91 @@ import com.example.play.ui.components.progressindicator.StarRatings
 @Composable
 fun ReviewItem(review: Review) {
   PlaySurface(
-      modifier = Modifier.padding(bottom = 16.dp)
+    modifier = Modifier.padding(bottom = 16.dp)
   ) {
     Column {
       Row(
-          modifier = Modifier.padding(bottom = 8.dp)
+        modifier = Modifier.padding(bottom = 8.dp)
       ) {
         CircularAppImage(
-            imageUrl = review.userAvatarUrl,
-            modifier = Modifier
-                .height(35.dp)
-                .width(35.dp)
-                .align(Alignment.CenterVertically)
-                .weight(2f, false)
+          imageUrl = review.userAvatarUrl,
+          modifier = Modifier
+            .height(35.dp)
+            .width(35.dp)
+            .align(Alignment.CenterVertically)
+            .weight(2f, false)
         )
         Text(
-            text = review.userName,
-            style = TextStyle(
-                fontWeight = FontWeight.Normal,
-                fontSize = 12.sp,
-                letterSpacing = 0.15.sp
-            ),
-            color = PlayTheme.colors.textPrimary,
-            maxLines = 1,
-            overflow = Ellipsis,
-            modifier = Modifier
-                .align(Alignment.CenterVertically)
-                .weight(12f, true)
-                .padding(start = 8.dp)
+          text = review.userName,
+          style = TextStyle(
+            fontWeight = FontWeight.Normal,
+            fontSize = 12.sp,
+            letterSpacing = 0.15.sp
+          ),
+          color = PlayTheme.colors.textPrimary,
+          maxLines = 1,
+          overflow = Ellipsis,
+          modifier = Modifier
+            .align(Alignment.CenterVertically)
+            .weight(12f, true)
+            .padding(start = 8.dp)
         )
         Icon(
-            imageVector = Icons.Filled.MoreVert,
-            contentDescription = null,
-            modifier = Modifier
-                .align(Alignment.CenterVertically)
-                .weight(1f, false)
-                .clickable(onClick = {})
+          imageVector = Icons.Filled.MoreVert,
+          contentDescription = null,
+          modifier = Modifier
+            .align(Alignment.CenterVertically)
+            .weight(1f, false)
+            .clickable(onClick = {})
         )
       }
       Row(
-          modifier = Modifier.padding(bottom = 8.dp)
+        modifier = Modifier.padding(bottom = 8.dp)
       ) {
         StarRatings(
-            ratings = review.ratings, modifier = Modifier
+          ratings = review.ratings, modifier = Modifier
             .align(Alignment.CenterVertically),
-            sizeInDp = 10.dp
+          sizeInDp = 10.dp
         )
         Text(
-            text = review.date,
-            style = TextStyle(
-                fontWeight = FontWeight.Normal,
-                fontSize = 12.sp,
-                letterSpacing = 0.15.sp
-            ),
-            color = PlayTheme.colors.textSecondary,
-            modifier = Modifier.padding(start = 8.dp)
+          text = review.date,
+          style = TextStyle(
+            fontWeight = FontWeight.Normal,
+            fontSize = 12.sp,
+            letterSpacing = 0.15.sp
+          ),
+          color = PlayTheme.colors.textSecondary,
+          modifier = Modifier.padding(start = 8.dp)
         )
       }
       Text(
-          text = review.reviewDesc,
-          style = TextStyle(
-              fontWeight = FontWeight.Normal,
-              fontSize = 12.sp,
-              letterSpacing = 0.15.sp
-          ),
-          color = PlayTheme.colors.textSecondaryDark
+        text = review.reviewDesc,
+        style = TextStyle(
+          fontWeight = FontWeight.Normal,
+          fontSize = 12.sp,
+          letterSpacing = 0.15.sp
+        ),
+        color = PlayTheme.colors.textSecondaryDark
       )
       Row(
-          modifier = Modifier.padding(top = 24.dp)
+        modifier = Modifier.padding(top = 24.dp)
       ) {
         Text(
-            text = "Was this review helpful?",
-            style = TextStyle(
-                fontWeight = FontWeight.Normal,
-                fontSize = 10.sp,
-                letterSpacing = 0.15.sp
-            ),
-            color = PlayTheme.colors.textSecondary,
-            modifier = Modifier
-                .align(Alignment.CenterVertically)
-                .weight(3f, true)
+          text = "Was this review helpful?",
+          style = TextStyle(
+            fontWeight = FontWeight.Normal,
+            fontSize = 10.sp,
+            letterSpacing = 0.15.sp
+          ),
+          color = PlayTheme.colors.textSecondary,
+          modifier = Modifier
+            .align(Alignment.CenterVertically)
+            .weight(3f, true)
         )
         Row(
-            modifier = Modifier
-                .align(Alignment.CenterVertically)
-                .weight(1f, false)
+          modifier = Modifier
+            .align(Alignment.CenterVertically)
+            .weight(1f, false)
         ) {
           Chip(text = "Yes")
           Spacer(modifier = Modifier.width(8.dp))
@@ -140,20 +140,20 @@ private fun Chip(
   text: String = "Yes"
 ) {
   Text(
-      text = text,
-      style = TextStyle(
-          fontWeight = FontWeight.Normal,
-          fontSize = 10.sp,
-          textAlign = Center,
-          letterSpacing = 0.15.sp
-      ),
-      color = PlayTheme.colors.textSecondary,
-      modifier = Modifier
-          .border(strokeWidth, color, shape)
-          .padding(top = 2.dp, bottom = 2.dp)
-          .width(40.dp)
-          .height(15.dp)
-          .clickable(onClick = {})
+    text = text,
+    style = TextStyle(
+      fontWeight = FontWeight.Normal,
+      fontSize = 10.sp,
+      textAlign = Center,
+      letterSpacing = 0.15.sp
+    ),
+    color = PlayTheme.colors.textSecondary,
+    modifier = Modifier
+      .border(strokeWidth, color, shape)
+      .padding(top = 2.dp, bottom = 2.dp)
+      .width(40.dp)
+      .height(15.dp)
+      .clickable(onClick = {})
   )
 }
 
@@ -163,7 +163,7 @@ private fun ReviewItemPreview() {
   PlayTheme {
     PlaySurface {
       ReviewItem(
-          AppRepo.getReview(1L)
+        AppRepo.getReview(1L)
       )
     }
   }
@@ -175,7 +175,7 @@ private fun ReviewItemDarkPreview() {
   PlayTheme(darkTheme = true) {
     PlaySurface {
       ReviewItem(
-          AppRepo.getReview(1L)
+        AppRepo.getReview(1L)
       )
     }
   }

@@ -30,61 +30,61 @@ fun ButtonContent(
   isPressed: Boolean
 ) {
   val buttonTextColorState = animateColorAsState(
-      targetValue = if (isPressed) Color(0xff01875f) else Color.White,
-      animationSpec = tween(
-          durationMillis = 500
-      )
+    targetValue = if (isPressed) Color(0xff01875f) else Color.White,
+    animationSpec = tween(
+      durationMillis = 500
+    )
   )
 
   val transition = rememberInfiniteTransition()
   val idleIconSizeState by transition.animateFloat(
-      initialValue = 0f,
-      targetValue = 24f,
-      animationSpec = infiniteRepeatable(
-          tween(500), RepeatMode.Reverse
-      )
+    initialValue = 0f,
+    targetValue = 24f,
+    animationSpec = infiniteRepeatable(
+      tween(500), RepeatMode.Reverse
+    )
   )
 
   if (isPressed.not()) {
     Row(verticalAlignment = Alignment.CenterVertically) {
       Column(
-          Modifier.width(24.dp),
-          horizontalAlignment = Alignment.CenterHorizontally
+        Modifier.width(24.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
       ) {
         Icon(
-            imageVector = Icons.Outlined.CloudDownload,
-            tint = buttonTextColorState.value,
-            modifier = Modifier.size(idleIconSizeState.dp),
-            contentDescription = null
+          imageVector = Icons.Outlined.CloudDownload,
+          tint = buttonTextColorState.value,
+          modifier = Modifier.size(idleIconSizeState.dp),
+          contentDescription = null
         )
       }
       Spacer(modifier = Modifier.width(16.dp))
       Text(
-          "Install",
-          softWrap = false,
-          color = buttonTextColorState.value
+        "Install",
+        softWrap = false,
+        color = buttonTextColorState.value
       )
     }
   } else {
     Row(verticalAlignment = Alignment.CenterVertically) {
       Column(
-          Modifier.width(24.dp),
-          horizontalAlignment = Alignment.CenterHorizontally
+        Modifier.width(24.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
       ) {
         Icon(
-            imageVector = Icons.Default.CloudDownload,
-            tint = buttonTextColorState.value,
-            modifier = Modifier
-                .size(idleIconSizeState.dp)
-                .alpha(getInstallButtonOpacityState(isPressed).value),
-            contentDescription = null
+          imageVector = Icons.Default.CloudDownload,
+          tint = buttonTextColorState.value,
+          modifier = Modifier
+            .size(idleIconSizeState.dp)
+            .alpha(getInstallButtonOpacityState(isPressed).value),
+          contentDescription = null
         )
       }
       Spacer(modifier = Modifier.width(16.dp))
       Text(
-          "Cancel",
-          softWrap = false,
-          color = buttonTextColorState.value
+        "Cancel",
+        softWrap = false,
+        color = buttonTextColorState.value
       )
     }
   }

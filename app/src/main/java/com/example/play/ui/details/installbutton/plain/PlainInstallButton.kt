@@ -12,11 +12,11 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun PlainInstallButton() {
   Button(
-      onClick = {},
-      shape = RoundedCornerShape(10),
-      modifier = Modifier
-          .fillMaxWidth()
-          .padding(start = 32.dp, end = 32.dp, top = 32.dp, bottom = 16.dp)
+    onClick = {},
+    shape = RoundedCornerShape(10),
+    modifier = Modifier
+      .fillMaxWidth()
+      .padding(start = 32.dp, end = 32.dp, top = 32.dp, bottom = 16.dp)
   ) {
     Text("Install")
   }

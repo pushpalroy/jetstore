@@ -32,10 +32,10 @@ fun TopChartsLayout(
   Column(modifier = modifier) {
     TopChartsHeader(filterSelected, setFilterSelected)
     TopChartAppsList(
-        appCollection.filter { app ->
-          app.filterCategory == AppRepo.getFilter(filterSelected)?.name
-        },
-        onAppClick
+      appCollection.filter { app ->
+        app.filterCategory == AppRepo.getFilter(filterSelected)?.name
+      },
+      onAppClick
     )
   }
 }
@@ -48,23 +48,23 @@ private fun TopChartsHeader(
   val (switchState, updateSwitchState) = remember { mutableStateOf(true) }
   Column {
     Row(
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
-            .padding(start = 24.dp, end = 24.dp, top = 16.dp, bottom = 8.dp)
+      verticalAlignment = Alignment.CenterVertically,
+      modifier = Modifier
+        .padding(start = 24.dp, end = 24.dp, top = 16.dp, bottom = 8.dp)
     ) {
       Text(
-          text = "Show installed apps",
-          style = TextStyle(
-              fontWeight = FontWeight.Normal,
-              fontSize = 14.sp
-          ),
-          color = PlayTheme.colors.textSecondary,
-          modifier = Modifier.weight(1f)
+        text = "Show installed apps",
+        style = TextStyle(
+          fontWeight = FontWeight.Normal,
+          fontSize = 14.sp
+        ),
+        color = PlayTheme.colors.textSecondary,
+        modifier = Modifier.weight(1f)
       )
       Switch(
-          switchState = switchState,
-          updateSwitchState = updateSwitchState,
-          modifier = Modifier.align(Alignment.CenterVertically)
+        switchState = switchState,
+        updateSwitchState = updateSwitchState,
+        modifier = Modifier.align(Alignment.CenterVertically)
       )
     }
     FilterBar(filters = AppRepo.getFilters(), filterSelected, setFilterSelected)
@@ -78,7 +78,7 @@ private fun TopChartAppsList(
   modifier: Modifier = Modifier
 ) {
   LazyColumn(modifier = modifier) {
-    items(apps) { app->
+    items(apps) { app ->
       TopChartAppItem(app, onAppClick)
     }
   }
@@ -89,7 +89,7 @@ private fun TopChartAppsList(
 fun TopChartsPreview() {
   PlayTheme {
     TopChartsLayout(appCollection = AppRepo.getTopChartsApps(),
-        onAppClick = {})
+      onAppClick = {})
   }
 }
 
@@ -98,6 +98,6 @@ fun TopChartsPreview() {
 fun TopChartsDarkPreview() {
   PlayTheme(darkTheme = true) {
     TopChartsLayout(appCollection = AppRepo.getTopChartsApps(),
-        onAppClick = {})
+      onAppClick = {})
   }
 }

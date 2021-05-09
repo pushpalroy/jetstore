@@ -30,14 +30,14 @@ fun AppDetails(
   val isInstalling = remember { mutableStateOf(false) }
 
   PlaySurface(
-      modifier = Modifier.fillMaxSize()
+    modifier = Modifier.fillMaxSize()
   ) {
     AppBarLayout(backPress)
     LazyColumn(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(top = 56.dp)
+      horizontalAlignment = Alignment.CenterHorizontally,
+      modifier = Modifier
+        .fillMaxSize()
+        .padding(top = 56.dp)
     ) {
       item {
         //Header(app, progressState)
@@ -57,8 +57,8 @@ fun AppDetails(
 private fun AppDetailPreview() {
   PlayTheme {
     AppDetails(
-        appId = 1L,
-        backPress = { }
+      appId = 1L,
+      backPress = { }
     )
   }
 }
@@ -68,8 +68,8 @@ private fun AppDetailPreview() {
 private fun AppDetailDarkPreview() {
   PlayTheme(darkTheme = true) {
     AppDetails(
-        appId = 1L,
-        backPress = { }
+      appId = 1L,
+      backPress = { }
     )
   }
 }

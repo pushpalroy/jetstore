@@ -30,7 +30,7 @@ fun Apps(
   onAppClick: (Long) -> Unit,
   modifier: Modifier = Modifier,
   appsCategories: List<AppsCategory> = listOf(
-      ForYou, TopCharts, Categories, EditorsChoice, EarlyAccess
+    ForYou, TopCharts, Categories, EditorsChoice, EarlyAccess
   )
 ) {
   val forYouData = remember { AppRepo.getForYouApps() }
@@ -40,14 +40,14 @@ fun Apps(
   PlaySurface(modifier = modifier.fillMaxSize()) {
     Column(modifier = Modifier.navigationBarsPadding(left = true, right = true)) {
       AppsCategoryTabs(
-          categories = appsCategories,
-          selectedCategory = currentCategory,
-          onCategorySelected = setCurrentCategory
+        categories = appsCategories,
+        selectedCategory = currentCategory,
+        onCategorySelected = setCurrentCategory
       )
       val tweenSpec = remember {
         TweenSpec<Float>(
-            durationMillis = 600,
-            easing = LinearOutSlowInEasing
+          durationMillis = 600,
+          easing = LinearOutSlowInEasing
         )
       }
       Crossfade(currentCategory, animationSpec = tweenSpec) { category ->

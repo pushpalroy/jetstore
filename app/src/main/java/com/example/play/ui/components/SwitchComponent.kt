@@ -11,10 +11,10 @@ fun Switch(
   modifier: Modifier
 ) {
   Switch(
-      checked = switchState,
-      onCheckedChange = { checked ->
-        updateSwitchState(checked)
-      },
-      modifier = modifier
+    checked = switchState,
+    onCheckedChange = { checked ->
+      updateSwitchState(checked)
+    },
+    modifier = modifier
   )
 }

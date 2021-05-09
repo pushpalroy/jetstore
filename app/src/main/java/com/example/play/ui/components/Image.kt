@@ -23,18 +23,18 @@ fun CircularAppImage(
   elevation: Dp = 0.dp
 ) {
   PlaySurface(
-      color = Color.LightGray,
-      elevation = elevation,
-      shape = CircleShape,
-      modifier = modifier
+    color = Color.LightGray,
+    elevation = elevation,
+    shape = CircleShape,
+    modifier = modifier
   ) {
     Image(
-        painter = rememberCoilPainter(
-            request = imageUrl
-        ),
-        contentScale = ContentScale.Crop,
-        modifier = Modifier.fillMaxSize(),
-        contentDescription = null
+      painter = rememberCoilPainter(
+        request = imageUrl
+      ),
+      contentScale = ContentScale.Crop,
+      modifier = Modifier.fillMaxSize(),
+      contentDescription = null
     )
   }
 }
@@ -46,16 +46,16 @@ fun CircularLocalImage(
   elevation: Dp = 0.dp
 ) {
   PlaySurface(
-      color = Color.LightGray,
-      elevation = elevation,
-      shape = CircleShape,
-      modifier = modifier
+    color = Color.LightGray,
+    elevation = elevation,
+    shape = CircleShape,
+    modifier = modifier
   ) {
     Image(
-        painterResource(resId),
-        contentDescription = null,
-        contentScale = ContentScale.Crop,
-        modifier = Modifier.fillMaxSize()
+      painterResource(resId),
+      contentDescription = null,
+      contentScale = ContentScale.Crop,
+      modifier = Modifier.fillMaxSize()
     )
   }
 }
@@ -68,18 +68,18 @@ fun RoundedCornerAppImage(
   elevation: Dp = 0.dp
 ) {
   PlaySurface(
-      color = Color.LightGray,
-      elevation = elevation,
-      shape = RoundedCornerShape(cornerPercent),
-      modifier = modifier
+    color = Color.LightGray,
+    elevation = elevation,
+    shape = RoundedCornerShape(cornerPercent),
+    modifier = modifier
   ) {
     Image(
-        painter = rememberCoilPainter(
-            request = imageUrl
-        ),
-        contentScale = ContentScale.Crop,
-        modifier = Modifier.fillMaxSize(),
-        contentDescription = null
+      painter = rememberCoilPainter(
+        request = imageUrl
+      ),
+      contentScale = ContentScale.Crop,
+      modifier = Modifier.fillMaxSize(),
+      contentDescription = null
     )
   }
 }
@@ -89,10 +89,10 @@ fun RoundedCornerAppImage(
 fun CircularAppImagePreview() {
   PlayTheme(darkTheme = true) {
     CircularAppImage(
-        imageUrl = "",
-        modifier = Modifier
-            .size(120.dp),
-        elevation = 10.dp
+      imageUrl = "",
+      modifier = Modifier
+        .size(120.dp),
+      elevation = 10.dp
     )
   }
 }
@@ -102,11 +102,11 @@ fun CircularAppImagePreview() {
 fun RoundedCornerAppImagePreview() {
   PlayTheme(darkTheme = true) {
     RoundedCornerAppImage(
-        imageUrl = "",
-        modifier = Modifier
-            .size(120.dp),
-        cornerPercent = 5,
-        elevation = 10.dp
+      imageUrl = "",
+      modifier = Modifier
+        .size(120.dp),
+      cornerPercent = 5,
+      elevation = 10.dp
     )
   }
 }

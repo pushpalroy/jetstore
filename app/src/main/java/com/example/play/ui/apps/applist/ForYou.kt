@@ -38,8 +38,8 @@ fun ForYouLayout(
   modifier: Modifier = Modifier
 ) {
   Spacer(
-      modifier = Modifier
-        .height(4.dp)
+    modifier = Modifier
+      .height(4.dp)
   )
   LazyColumn(modifier = modifier) {
     items(data) { appCollection ->
@@ -52,9 +52,9 @@ fun ForYouLayout(
     }
   }
   Spacer(
-      modifier = Modifier
-          .navigationBarsPadding(left = false, right = false)
-          .height(8.dp)
+    modifier = Modifier
+      .navigationBarsPadding(left = false, right = false)
+      .height(8.dp)
   )
 }
 
@@ -67,30 +67,30 @@ fun ForYou(
 ) {
   Column(modifier = modifier) {
     Row(
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
-            .padding(start = 24.dp)
+      verticalAlignment = Alignment.CenterVertically,
+      modifier = Modifier
+        .padding(start = 24.dp)
     ) {
       Text(
-          text = appCollection.name,
-          style = TextStyle(
-              fontWeight = FontWeight.Medium,
-              fontSize = 16.sp,
-              letterSpacing = 0.15.sp
-          ),
-          color = PlayTheme.colors.textPrimary,
-          maxLines = 1,
-          overflow = TextOverflow.Ellipsis,
-          modifier = Modifier.weight(1f)
+        text = appCollection.name,
+        style = TextStyle(
+          fontWeight = FontWeight.Medium,
+          fontSize = 16.sp,
+          letterSpacing = 0.15.sp
+        ),
+        color = PlayTheme.colors.textPrimary,
+        maxLines = 1,
+        overflow = TextOverflow.Ellipsis,
+        modifier = Modifier.weight(1f)
       )
       IconButton(
-          onClick = {},
-          modifier = Modifier.align(Alignment.CenterVertically)
+        onClick = {},
+        modifier = Modifier.align(Alignment.CenterVertically)
       ) {
         Icon(
-            imageVector = Icons.Outlined.ArrowForward,
-            tint = PlayTheme.colors.iconTint,
-            contentDescription = null
+          imageVector = Icons.Outlined.ArrowForward,
+          tint = PlayTheme.colors.iconTint,
+          contentDescription = null
         )
       }
     }
@@ -108,10 +108,10 @@ private fun FeaturedAppsList(
   onAppClick: (Long) -> Unit
 ) {
   LazyRow(modifier = Modifier.padding(start = 16.dp)) {
-      items(apps) { app ->
-        PlayFeaturedAppItem(app, onAppClick)
-        Spacer(modifier = Modifier.width(1.dp))
-      }
+    items(apps) { app ->
+      PlayFeaturedAppItem(app, onAppClick)
+      Spacer(modifier = Modifier.width(1.dp))
+    }
   }
 }
 

@@ -20,14 +20,14 @@ import com.google.accompanist.insets.statusBarsPadding
 @Composable
 fun AppBarLayout(upPress: () -> Unit) {
   Row(
-      modifier = Modifier
-          .fillMaxWidth()
-          .statusBarsPadding()
-          .padding(horizontal = 16.dp, vertical = 16.dp)
-          .size(24.dp)
+    modifier = Modifier
+      .fillMaxWidth()
+      .statusBarsPadding()
+      .padding(horizontal = 16.dp, vertical = 16.dp)
+      .size(24.dp)
   ) {
     BackButton(
-        modifier = Modifier.weight(1f), upPress = upPress
+      modifier = Modifier.weight(1f), upPress = upPress
     )
     SearchButton(Modifier)
     MoreButton(Modifier)
@@ -41,12 +41,12 @@ fun BackButton(
 ) {
   PlaySurface(modifier = modifier) {
     IconButton(
-        onClick = upPress
+      onClick = upPress
     ) {
       Icon(
-          imageVector = Outlined.ArrowBack,
-          tint = PlayTheme.colors.iconTint,
-          contentDescription = null
+        imageVector = Outlined.ArrowBack,
+        tint = PlayTheme.colors.iconTint,
+        contentDescription = null
       )
     }
   }
@@ -55,13 +55,13 @@ fun BackButton(
 @Composable
 fun MoreButton(modifier: Modifier) {
   IconButton(
-      onClick = {},
-      modifier = modifier
+    onClick = {},
+    modifier = modifier
   ) {
     Icon(
-        imageVector = Outlined.MoreVert,
-        tint = PlayTheme.colors.iconTint,
-        contentDescription = null
+      imageVector = Outlined.MoreVert,
+      tint = PlayTheme.colors.iconTint,
+      contentDescription = null
     )
   }
 }
@@ -69,13 +69,13 @@ fun MoreButton(modifier: Modifier) {
 @Composable
 fun SearchButton(modifier: Modifier) {
   IconButton(
-      onClick = {},
-      modifier = modifier
+    onClick = {},
+    modifier = modifier
   ) {
     Icon(
-        imageVector = Outlined.Search,
-        tint = PlayTheme.colors.iconTint,
-        contentDescription = null
+      imageVector = Outlined.Search,
+      tint = PlayTheme.colors.iconTint,
+      contentDescription = null
     )
   }
 }
@@ -86,7 +86,7 @@ private fun BackButtonPreview() {
   PlayTheme {
     PlaySurface {
       AppBarLayout(
-          upPress = {}
+        upPress = {}
       )
     }
   }
@@ -98,7 +98,7 @@ private fun BackButtonDarkPreview() {
   PlayTheme(darkTheme = true) {
     PlaySurface {
       AppBarLayout(
-          upPress = {}
+        upPress = {}
       )
     }
   }

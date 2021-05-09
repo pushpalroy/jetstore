@@ -30,36 +30,36 @@ import com.example.play.ui.components.progressindicator.StarRatings
 @Composable
 fun RatingsAndReviews() {
   Column(
-      modifier = Modifier.padding(top = 4.dp, start = 24.dp, end = 16.dp, bottom = 8.dp)
+    modifier = Modifier.padding(top = 4.dp, start = 24.dp, end = 16.dp, bottom = 8.dp)
   ) {
     RatingsAndReviewsHeader()
     Row(modifier = Modifier.padding(top = 16.dp)) {
       Column(modifier = Modifier.align(Alignment.CenterVertically)) {
         Text(
-            text = "4.7",
-            style = TextStyle(
-                fontWeight = FontWeight.SemiBold,
-                fontSize = 45.sp,
-                letterSpacing = 1.sp
-            ),
-            color = PlayTheme.colors.textPrimary,
-            modifier = Modifier.align(Alignment.Start)
+          text = "4.7",
+          style = TextStyle(
+            fontWeight = FontWeight.SemiBold,
+            fontSize = 45.sp,
+            letterSpacing = 1.sp
+          ),
+          color = PlayTheme.colors.textPrimary,
+          modifier = Modifier.align(Alignment.Start)
         )
         StarRatings()
         Text(
-            text = "2,907,517",
-            style = TextStyle(
-                fontWeight = FontWeight.Normal,
-                fontSize = 11.sp,
-                letterSpacing = 0.70.sp
-            ),
-            color = PlayTheme.colors.textSecondary
+          text = "2,907,517",
+          style = TextStyle(
+            fontWeight = FontWeight.Normal,
+            fontSize = 11.sp,
+            letterSpacing = 0.70.sp
+          ),
+          color = PlayTheme.colors.textSecondary
         )
       }
       AppRatingBars(
-          modifier = Modifier
-              .padding(start = 24.dp)
-              .align(Alignment.CenterVertically)
+        modifier = Modifier
+          .padding(start = 24.dp)
+          .align(Alignment.CenterVertically)
       )
     }
     Spacer(modifier = Modifier.height(16.dp))
@@ -76,26 +76,26 @@ fun RatingsAndReviews() {
 @Composable
 private fun RatingsAndReviewsHeader() {
   Row(
-      verticalAlignment = Alignment.CenterVertically,
+    verticalAlignment = Alignment.CenterVertically,
   ) {
     Text(
-        text = "Ratings and reviews",
-        style = TextStyle(
-            fontWeight = FontWeight.Medium,
-            fontSize = 16.sp,
-            letterSpacing = 0.15.sp
-        ),
-        color = PlayTheme.colors.textSecondaryDark,
-        modifier = Modifier.weight(1f)
+      text = "Ratings and reviews",
+      style = TextStyle(
+        fontWeight = FontWeight.Medium,
+        fontSize = 16.sp,
+        letterSpacing = 0.15.sp
+      ),
+      color = PlayTheme.colors.textSecondaryDark,
+      modifier = Modifier.weight(1f)
     )
     IconButton(
-        onClick = {},
-        modifier = Modifier.align(Alignment.Top)
+      onClick = {},
+      modifier = Modifier.align(Alignment.Top)
     ) {
       Icon(
-          imageVector = Outlined.ArrowForward,
-          tint = PlayTheme.colors.iconTint,
-          contentDescription = null
+        imageVector = Outlined.ArrowForward,
+        tint = PlayTheme.colors.iconTint,
+        contentDescription = null
       )
     }
   }
@@ -107,74 +107,74 @@ private fun AppRatingBars(modifier: Modifier) {
   Column(modifier = modifier) {
     Row {
       Text(
-          text = "5",
-          style = Typography.caption,
-          color = PlayTheme.colors.textSecondaryDark,
-          modifier = Modifier.align(Alignment.CenterVertically)
+        text = "5",
+        style = Typography.caption,
+        color = PlayTheme.colors.textSecondaryDark,
+        modifier = Modifier.align(Alignment.CenterVertically)
       )
       AnimatedProgressIndicator(
-          progress = 0.8f,
-          durationMillis = 4000,
-          color = PlayTheme.colors.accent,
-          showProgress = showProgress
+        progress = 0.8f,
+        durationMillis = 4000,
+        color = PlayTheme.colors.accent,
+        showProgress = showProgress
       )
     }
     Spacer(modifier = Modifier.height(3.dp))
     Row {
       Text(
-          text = "4",
-          style = Typography.caption,
-          color = PlayTheme.colors.textSecondaryDark,
-          modifier = Modifier.align(Alignment.CenterVertically)
+        text = "4",
+        style = Typography.caption,
+        color = PlayTheme.colors.textSecondaryDark,
+        modifier = Modifier.align(Alignment.CenterVertically)
       )
       AnimatedProgressIndicator(
-          progress = 0.5f,
-          color = PlayTheme.colors.accent,
-          showProgress = showProgress
+        progress = 0.5f,
+        color = PlayTheme.colors.accent,
+        showProgress = showProgress
       )
     }
     Spacer(modifier = Modifier.height(3.dp))
     Row {
       Text(
-          text = "3",
-          style = Typography.caption,
-          color = PlayTheme.colors.textSecondaryDark,
-          modifier = Modifier.align(Alignment.CenterVertically)
+        text = "3",
+        style = Typography.caption,
+        color = PlayTheme.colors.textSecondaryDark,
+        modifier = Modifier.align(Alignment.CenterVertically)
       )
       AnimatedProgressIndicator(
-          progress = 0.3f,
-          durationMillis = 4000,
-          color = PlayTheme.colors.accent,
-          showProgress = showProgress
+        progress = 0.3f,
+        durationMillis = 4000,
+        color = PlayTheme.colors.accent,
+        showProgress = showProgress
       )
     }
     Spacer(modifier = Modifier.height(3.dp))
     Row {
       Text(
-          text = "2",
-          style = Typography.caption,
-          color = PlayTheme.colors.textSecondaryDark,
-          modifier = Modifier.align(Alignment.CenterVertically)
+        text = "2",
+        style = Typography.caption,
+        color = PlayTheme.colors.textSecondaryDark,
+        modifier = Modifier.align(Alignment.CenterVertically)
       )
       AnimatedProgressIndicator(
-          progress = 0.1f,
-          color = PlayTheme.colors.accent,
-          showProgress = showProgress
+        progress = 0.1f,
+        color = PlayTheme.colors.accent,
+        showProgress = showProgress
       )
     }
     Spacer(modifier = Modifier.height(3.dp))
     Row {
       Text(
-          text = "1",
-          style = Typography.caption,
-          color = PlayTheme.colors.textSecondaryDark,
-          modifier = Modifier.align(Alignment.CenterVertically)
+        text = "1",
+        style = Typography.caption,
+        color = PlayTheme.colors.textSecondaryDark,
+        modifier = Modifier.align(Alignment.CenterVertically)
       )
       AnimatedProgressIndicator(
-          progress = 0.2f,
-          durationMillis = 4000,
-          color = PlayTheme.colors.accent,
-          showProgress = showProgress
+        progress = 0.2f,
+        durationMillis = 4000,
+        color = PlayTheme.colors.accent,
+        showProgress = showProgress
       )
     }
   }

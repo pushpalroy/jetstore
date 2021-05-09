@@ -38,41 +38,41 @@ fun AppsCategoryTabs(
   val selectedIndex = categories.indexOfFirst { it == selectedCategory }
   val indicator = @Composable { tabPositions: List<TabPosition> ->
     HomeCategoryTabIndicator(
-        Modifier.tabIndicatorOffset(tabPositions[selectedIndex])
+      Modifier.tabIndicatorOffset(tabPositions[selectedIndex])
     )
   }
 
   ScrollableTabRow(
-      selectedTabIndex = selectedIndex,
-      indicator = indicator,
-      backgroundColor = PlayTheme.colors.uiBackground,
-      edgePadding = 32.dp
+    selectedTabIndex = selectedIndex,
+    indicator = indicator,
+    backgroundColor = PlayTheme.colors.uiBackground,
+    edgePadding = 32.dp
   ) {
     categories.forEachIndexed { index, category ->
       Tab(
-          selected = index == selectedIndex,
-          onClick = { onCategorySelected(category) },
-          modifier = Modifier.background(color = PlayTheme.colors.uiBackground),
-          text = {
-            Text(
-                text = when (category) {
-                  ForYou -> stringResource(R.string.for_you)
-                  TopCharts -> stringResource(R.string.top_charts)
-                  Categories -> stringResource(R.string.categories)
-                  EditorsChoice -> stringResource(R.string.editors_choice)
-                  EarlyAccess -> stringResource(R.string.early_access)
-                },
-                color = if (index == selectedIndex) {
-                  PlayTheme.colors.accent
-                } else {
-                  PlayTheme.colors.textPrimary
-                },
-                style = TextStyle(
-                    fontWeight = FontWeight.Normal,
-                    fontSize = 12.sp
-                )
+        selected = index == selectedIndex,
+        onClick = { onCategorySelected(category) },
+        modifier = Modifier.background(color = PlayTheme.colors.uiBackground),
+        text = {
+          Text(
+            text = when (category) {
+              ForYou -> stringResource(R.string.for_you)
+              TopCharts -> stringResource(R.string.top_charts)
+              Categories -> stringResource(R.string.categories)
+              EditorsChoice -> stringResource(R.string.editors_choice)
+              EarlyAccess -> stringResource(R.string.early_access)
+            },
+            color = if (index == selectedIndex) {
+              PlayTheme.colors.accent
+            } else {
+              PlayTheme.colors.textPrimary
+            },
+            style = TextStyle(
+              fontWeight = FontWeight.Normal,
+              fontSize = 12.sp
             )
-          }
+          )
+        }
       )
     }
   }
@@ -87,39 +87,39 @@ fun MoviesCategoryTabs(
   val selectedIndex = categories.indexOfFirst { it == selectedCategory }
   val indicator = @Composable { tabPositions: List<TabPosition> ->
     HomeCategoryTabIndicator(
-        Modifier.tabIndicatorOffset(tabPositions[selectedIndex])
+      Modifier.tabIndicatorOffset(tabPositions[selectedIndex])
     )
   }
 
   ScrollableTabRow(
-      selectedTabIndex = selectedIndex,
-      indicator = indicator,
-      backgroundColor = PlayTheme.colors.uiBackground,
-      edgePadding = 32.dp
+    selectedTabIndex = selectedIndex,
+    indicator = indicator,
+    backgroundColor = PlayTheme.colors.uiBackground,
+    edgePadding = 32.dp
   ) {
     categories.forEachIndexed { index, category ->
       Tab(
-          selected = index == selectedIndex,
-          onClick = { onCategorySelected(category) },
-          modifier = Modifier.background(color = PlayTheme.colors.uiBackground),
-          text = {
-            Text(
-                text = when (category) {
-                  MoviesCategory.ForYou -> stringResource(R.string.for_you)
-                  TopSelling -> stringResource(R.string.top_selling)
-                  NewReleases -> stringResource(R.string.new_releases)
-                },
-                color = if (index == selectedIndex) {
-                  PlayTheme.colors.accent
-                } else {
-                  PlayTheme.colors.textPrimary
-                },
-                style = TextStyle(
-                    fontWeight = FontWeight.Normal,
-                    fontSize = 12.sp
-                )
+        selected = index == selectedIndex,
+        onClick = { onCategorySelected(category) },
+        modifier = Modifier.background(color = PlayTheme.colors.uiBackground),
+        text = {
+          Text(
+            text = when (category) {
+              MoviesCategory.ForYou -> stringResource(R.string.for_you)
+              TopSelling -> stringResource(R.string.top_selling)
+              NewReleases -> stringResource(R.string.new_releases)
+            },
+            color = if (index == selectedIndex) {
+              PlayTheme.colors.accent
+            } else {
+              PlayTheme.colors.textPrimary
+            },
+            style = TextStyle(
+              fontWeight = FontWeight.Normal,
+              fontSize = 12.sp
             )
-          }
+          )
+        }
       )
     }
   }
@@ -131,9 +131,10 @@ fun HomeCategoryTabIndicator(
   color: Color = PlayTheme.colors.accent
 ) {
   Spacer(
-      modifier.width(5.dp)
-          .height(3.dp)
-          .background(color, RoundedCornerShape(percent = 50))
+    modifier
+      .width(5.dp)
+      .height(3.dp)
+      .background(color, RoundedCornerShape(percent = 50))
   )
 }
 
@@ -142,11 +143,11 @@ fun HomeCategoryTabIndicator(
 fun AppCategoryTabsPreview() {
   PlayTheme {
     AppsCategoryTabs(
-        categories = listOf(
-            ForYou, TopCharts, Categories, EditorsChoice, EarlyAccess
-        ),
-        selectedCategory = ForYou,
-        onCategorySelected = {}
+      categories = listOf(
+        ForYou, TopCharts, Categories, EditorsChoice, EarlyAccess
+      ),
+      selectedCategory = ForYou,
+      onCategorySelected = {}
     )
   }
 }
@@ -156,11 +157,11 @@ fun AppCategoryTabsPreview() {
 fun AppCategoryTabsDarkPreview() {
   PlayTheme(darkTheme = true) {
     AppsCategoryTabs(
-        categories = listOf(
-            ForYou, TopCharts, Categories, EditorsChoice, EarlyAccess
-        ),
-        selectedCategory = ForYou,
-        onCategorySelected = {}
+      categories = listOf(
+        ForYou, TopCharts, Categories, EditorsChoice, EarlyAccess
+      ),
+      selectedCategory = ForYou,
+      onCategorySelected = {}
     )
   }
 }
@@ -170,11 +171,11 @@ fun AppCategoryTabsDarkPreview() {
 fun MovieCategoryTabsPreview() {
   PlayTheme {
     MoviesCategoryTabs(
-        categories = listOf(
-            MoviesCategory.ForYou, TopSelling, NewReleases
-        ),
-        selectedCategory = MoviesCategory.ForYou,
-        onCategorySelected = {}
+      categories = listOf(
+        MoviesCategory.ForYou, TopSelling, NewReleases
+      ),
+      selectedCategory = MoviesCategory.ForYou,
+      onCategorySelected = {}
     )
   }
 }
@@ -184,11 +185,11 @@ fun MovieCategoryTabsPreview() {
 fun MovieCategoryTabsDarkPreview() {
   PlayTheme(darkTheme = true) {
     MoviesCategoryTabs(
-        categories = listOf(
-            MoviesCategory.ForYou, TopSelling, NewReleases
-        ),
-        selectedCategory = MoviesCategory.ForYou,
-        onCategorySelected = {}
+      categories = listOf(
+        MoviesCategory.ForYou, TopSelling, NewReleases
+      ),
+      selectedCategory = MoviesCategory.ForYou,
+      onCategorySelected = {}
     )
   }
 }

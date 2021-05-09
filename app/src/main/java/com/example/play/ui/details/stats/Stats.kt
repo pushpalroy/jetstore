@@ -31,112 +31,112 @@ import com.example.play.ui.components.PlaySurface
 @Composable
 fun Stats(app: App) {
   Row(
-      modifier = Modifier
-          .padding(top = 8.dp, start = 16.dp, end = 16.dp)
+    modifier = Modifier
+      .padding(top = 8.dp, start = 16.dp, end = 16.dp)
   ) {
     Column(modifier = Modifier.padding(end = 12.dp)) {
       Row(modifier = Modifier.align(Alignment.CenterHorizontally)) {
         Text(
-            text = app.ratings,
-            maxLines = 1,
-            overflow = Ellipsis,
-            style = MaterialTheme.typography.subtitle1,
-            fontWeight = FontWeight.Bold,
-            color = PlayTheme.colors.textSecondaryDark
+          text = app.ratings,
+          maxLines = 1,
+          overflow = Ellipsis,
+          style = MaterialTheme.typography.subtitle1,
+          fontWeight = FontWeight.Bold,
+          color = PlayTheme.colors.textSecondaryDark
         )
         Icon(
-            imageVector = Icons.Outlined.Star,
-            tint = PlayTheme.colors.textSecondaryDark,
-            modifier = Modifier
-                .padding(end = 8.dp)
-                .width(14.dp)
-                .height(14.dp)
-                .align(Alignment.CenterVertically),
-            contentDescription = null
+          imageVector = Icons.Outlined.Star,
+          tint = PlayTheme.colors.textSecondaryDark,
+          modifier = Modifier
+            .padding(end = 8.dp)
+            .width(14.dp)
+            .height(14.dp)
+            .align(Alignment.CenterVertically),
+          contentDescription = null
         )
       }
       Text(
-          text = "636K Reviews",
-          maxLines = 1,
-          style = MaterialTheme.typography.caption,
-          color = PlayTheme.colors.textSecondary
+        text = "636K Reviews",
+        maxLines = 1,
+        style = MaterialTheme.typography.caption,
+        color = PlayTheme.colors.textSecondary
       )
     }
     Spacer(
-        modifier = Modifier
-            .width(1.dp)
-            .height(24.dp)
-            .fillMaxHeight()
-            .align(Alignment.CenterVertically)
-            .background(color = PlayTheme.colors.uiBorder)
+      modifier = Modifier
+        .width(1.dp)
+        .height(24.dp)
+        .fillMaxHeight()
+        .align(Alignment.CenterVertically)
+        .background(color = PlayTheme.colors.uiBorder)
     )
     Column(modifier = Modifier.padding(start = 12.dp, end = 12.dp)) {
       Icon(
-          imageVector = Icons.Outlined.Download,
-          tint = PlayTheme.colors.textSecondaryDark,
-          modifier = Modifier
-              .padding(end = 8.dp)
-              .width(21.dp)
-              .height(21.dp)
-              .align(Alignment.CenterHorizontally),
-          contentDescription = null
+        imageVector = Icons.Outlined.Download,
+        tint = PlayTheme.colors.textSecondaryDark,
+        modifier = Modifier
+          .padding(end = 8.dp)
+          .width(21.dp)
+          .height(21.dp)
+          .align(Alignment.CenterHorizontally),
+        contentDescription = null
       )
       Text(
-          text = "9.9 MB",
-          maxLines = 1,
-          style = MaterialTheme.typography.caption,
-          color = PlayTheme.colors.textSecondary,
-          modifier = Modifier.align(Alignment.CenterHorizontally)
+        text = "9.9 MB",
+        maxLines = 1,
+        style = MaterialTheme.typography.caption,
+        color = PlayTheme.colors.textSecondary,
+        modifier = Modifier.align(Alignment.CenterHorizontally)
       )
     }
     Spacer(
-        modifier = Modifier
-            .width(1.dp)
-            .height(24.dp)
-            .fillMaxHeight()
-            .align(Alignment.CenterVertically)
-            .background(color = PlayTheme.colors.uiBorder)
+      modifier = Modifier
+        .width(1.dp)
+        .height(24.dp)
+        .fillMaxHeight()
+        .align(Alignment.CenterVertically)
+        .background(color = PlayTheme.colors.uiBorder)
     )
     Column(modifier = Modifier.padding(start = 12.dp, end = 12.dp)) {
       Text(
-          text = "3+",
-          maxLines = 1,
-          style = MaterialTheme.typography.subtitle1,
-          fontWeight = FontWeight.Bold,
-          color = PlayTheme.colors.textSecondaryDark,
-          modifier = Modifier.align(Alignment.CenterHorizontally)
+        text = "3+",
+        maxLines = 1,
+        style = MaterialTheme.typography.subtitle1,
+        fontWeight = FontWeight.Bold,
+        color = PlayTheme.colors.textSecondaryDark,
+        modifier = Modifier.align(Alignment.CenterHorizontally)
       )
       Text(
-          text = "Rated For 3+",
-          maxLines = 1,
-          style = MaterialTheme.typography.caption,
-          color = PlayTheme.colors.textSecondary,
-          modifier = Modifier.align(Alignment.CenterHorizontally)
+        text = "Rated For 3+",
+        maxLines = 1,
+        style = MaterialTheme.typography.caption,
+        color = PlayTheme.colors.textSecondary,
+        modifier = Modifier.align(Alignment.CenterHorizontally)
       )
     }
     Spacer(
-        modifier = Modifier
-            .width(1.dp)
-            .height(24.dp)
-            .fillMaxHeight()
-            .align(Alignment.CenterVertically)
-            .background(color = PlayTheme.colors.uiBorder)
+      modifier = Modifier
+        .width(1.dp)
+        .height(24.dp)
+        .fillMaxHeight()
+        .align(Alignment.CenterVertically)
+        .background(color = PlayTheme.colors.uiBorder)
     )
     Column(modifier = Modifier.padding(start = 12.dp, end = 12.dp)) {
       Text(
-          text = "10M+",
-          maxLines = 1,
-          style = MaterialTheme.typography.subtitle1,
-          fontWeight = FontWeight.Bold,
-          color = PlayTheme.colors.textSecondaryDark,
-          modifier = Modifier.align(Alignment.CenterHorizontally)
+        text = "10M+",
+        maxLines = 1,
+        style = MaterialTheme.typography.subtitle1,
+        fontWeight = FontWeight.Bold,
+        color = PlayTheme.colors.textSecondaryDark,
+        modifier = Modifier.align(Alignment.CenterHorizontally)
       )
       Text(
-          text = "Downloads",
-          maxLines = 1,
-          style = MaterialTheme.typography.caption,
-          color = PlayTheme.colors.textSecondary,
-          modifier = Modifier.align(Alignment.CenterHorizontally)
+        text = "Downloads",
+        maxLines = 1,
+        style = MaterialTheme.typography.caption,
+        color = PlayTheme.colors.textSecondary,
+        modifier = Modifier.align(Alignment.CenterHorizontally)
       )
     }
   }
@@ -148,7 +148,7 @@ private fun StatsPreview() {
   PlayTheme {
     PlaySurface {
       Stats(
-          AppRepo.getApp(1L)
+        AppRepo.getApp(1L)
       )
     }
   }
@@ -160,7 +160,7 @@ private fun StatsDarkPreview() {
   PlayTheme(darkTheme = true) {
     PlaySurface {
       Stats(
-          AppRepo.getApp(1L)
+        AppRepo.getApp(1L)
       )
     }
   }

@@ -36,22 +36,22 @@ fun MoviesForYouLayout(
   modifier: Modifier = Modifier
 ) {
   Spacer(
-      modifier = Modifier
-          .height(4.dp)
+    modifier = Modifier
+      .height(4.dp)
   )
   LazyColumn(modifier = modifier) {
-      items(data) { moviesCollection ->
-        key(moviesCollection.id) {
-          MoviesForYou(
-            moviesCollection = moviesCollection
-          )
-        }
+    items(data) { moviesCollection ->
+      key(moviesCollection.id) {
+        MoviesForYou(
+          moviesCollection = moviesCollection
+        )
       }
+    }
   }
   Spacer(
-      modifier = Modifier
-          .navigationBarsPadding(left = false, right = false)
-          .height(8.dp)
+    modifier = Modifier
+      .navigationBarsPadding(left = false, right = false)
+      .height(8.dp)
   )
 }
 
@@ -62,30 +62,30 @@ fun MoviesForYou(
 ) {
   Column(modifier = modifier) {
     Row(
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
-            .padding(start = 24.dp)
+      verticalAlignment = Alignment.CenterVertically,
+      modifier = Modifier
+        .padding(start = 24.dp)
     ) {
       Text(
-          text = moviesCollection.name,
-          style = TextStyle(
-              fontWeight = FontWeight.Medium,
-              fontSize = 16.sp,
-              letterSpacing = 0.15.sp
-          ),
-          color = PlayTheme.colors.textPrimary,
-          maxLines = 1,
-          overflow = TextOverflow.Ellipsis,
-          modifier = Modifier.weight(1f)
+        text = moviesCollection.name,
+        style = TextStyle(
+          fontWeight = FontWeight.Medium,
+          fontSize = 16.sp,
+          letterSpacing = 0.15.sp
+        ),
+        color = PlayTheme.colors.textPrimary,
+        maxLines = 1,
+        overflow = TextOverflow.Ellipsis,
+        modifier = Modifier.weight(1f)
       )
       IconButton(
-          onClick = {},
-          modifier = Modifier.align(Alignment.CenterVertically)
+        onClick = {},
+        modifier = Modifier.align(Alignment.CenterVertically)
       ) {
         Icon(
-            imageVector = Icons.Outlined.ArrowForward,
-            tint = PlayTheme.colors.iconTint,
-            contentDescription = null
+          imageVector = Icons.Outlined.ArrowForward,
+          tint = PlayTheme.colors.iconTint,
+          contentDescription = null
         )
       }
     }

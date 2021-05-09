@@ -36,63 +36,63 @@ fun Header(
   showProgress: MutableState<Boolean>
 ) {
   val appIconSize = animateDpAsState(
-      targetValue = if (showProgress.value) 80.dp else 100.dp,
-      animationSpec = tween(
-          durationMillis = 500,
-          delayMillis = 500
-      )
+    targetValue = if (showProgress.value) 80.dp else 100.dp,
+    animationSpec = tween(
+      durationMillis = 500,
+      delayMillis = 500
+    )
   )
 
   Row(modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 8.dp)) {
     Box(
-        modifier = Modifier
-            .height(100.dp)
-            .width(100.dp)
+      modifier = Modifier
+        .height(100.dp)
+        .width(100.dp)
     ) {
       if (showProgress.value) {
         CircularProgressIndicator(
-            color = PlayTheme.colors.accent,
-            strokeWidth = 2.dp,
-            modifier = Modifier.size(100.dp)
+          color = PlayTheme.colors.accent,
+          strokeWidth = 2.dp,
+          modifier = Modifier.size(100.dp)
         )
       }
       RoundedCornerAppImage(
-          imageUrl = app.imageUrl,
-          modifier = Modifier
-              .width(appIconSize.value)
-              .height(appIconSize.value)
-              .align(Alignment.Center)
-              .padding(8.dp),
-          cornerPercent = 20
+        imageUrl = app.imageUrl,
+        modifier = Modifier
+          .width(appIconSize.value)
+          .height(appIconSize.value)
+          .align(Alignment.Center)
+          .padding(8.dp),
+        cornerPercent = 20
       )
     }
     Column(
-        modifier = Modifier.fillMaxWidth()
+      modifier = Modifier.fillMaxWidth()
     ) {
       Text(
-          text = app.name,
-          style = TextStyle(
-              fontWeight = FontWeight.SemiBold,
-              fontSize = 24.sp,
-              letterSpacing = 0.15.sp
-          ),
-          color = PlayTheme.colors.textPrimary,
-          modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 8.dp)
+        text = app.name,
+        style = TextStyle(
+          fontWeight = FontWeight.SemiBold,
+          fontSize = 24.sp,
+          letterSpacing = 0.15.sp
+        ),
+        color = PlayTheme.colors.textPrimary,
+        modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 8.dp)
       )
       Text(
-          text = app.org,
-          maxLines = 1,
-          style = Typography.subtitle2,
-          fontWeight = FontWeight.W600,
-          color = PlayTheme.colors.accent,
-          modifier = Modifier.padding(start = 16.dp, top = 4.dp)
+        text = app.org,
+        maxLines = 1,
+        style = Typography.subtitle2,
+        fontWeight = FontWeight.W600,
+        color = PlayTheme.colors.accent,
+        modifier = Modifier.padding(start = 16.dp, top = 4.dp)
       )
       Text(
-          text = app.info,
-          maxLines = 1,
-          style = Typography.caption,
-          color = PlayTheme.colors.iconTint,
-          modifier = Modifier.padding(start = 16.dp)
+        text = app.info,
+        maxLines = 1,
+        style = Typography.caption,
+        color = PlayTheme.colors.iconTint,
+        modifier = Modifier.padding(start = 16.dp)
       )
     }
   }
@@ -104,10 +104,10 @@ private fun HeaderPreview() {
   PlayTheme {
     PlaySurface {
       Header(
-          app = AppRepo.getApp(1L),
-          showProgress = remember {
-            mutableStateOf(true)
-          }
+        app = AppRepo.getApp(1L),
+        showProgress = remember {
+          mutableStateOf(true)
+        }
       )
     }
   }
@@ -119,10 +119,10 @@ private fun HeaderDarkPreview() {
   PlayTheme(darkTheme = true) {
     PlaySurface {
       Header(
-          app = AppRepo.getApp(1L),
-          showProgress = remember {
-            mutableStateOf(false)
-          }
+        app = AppRepo.getApp(1L),
+        showProgress = remember {
+          mutableStateOf(false)
+        }
       )
     }
   }

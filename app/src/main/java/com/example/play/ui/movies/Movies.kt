@@ -27,7 +27,7 @@ import com.google.accompanist.insets.navigationBarsPadding
 fun Movies(
   modifier: Modifier = Modifier,
   moviesCategories: List<MoviesCategory> = listOf(
-      ForYou, TopSelling, NewReleases
+    ForYou, TopSelling, NewReleases
   )
 ) {
   val forYouData = remember { AppRepo.getForYouMovies() }
@@ -41,14 +41,14 @@ fun Movies(
   PlaySurface(modifier = modifier.fillMaxSize()) {
     Column(modifier = Modifier.navigationBarsPadding(left = true, right = true)) {
       MoviesCategoryTabs(
-          categories = moviesCategories,
-          selectedCategory = currentCategory,
-          onCategorySelected = setCurrentCategory
+        categories = moviesCategories,
+        selectedCategory = currentCategory,
+        onCategorySelected = setCurrentCategory
       )
       val tweenSpec = remember {
         TweenSpec<Float>(
-            durationMillis = 600,
-            easing = LinearOutSlowInEasing
+          durationMillis = 600,
+          easing = LinearOutSlowInEasing
         )
       }
       Crossfade(currentCategory, animationSpec = tweenSpec) { category ->

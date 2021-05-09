@@ -26,33 +26,33 @@ fun AppImageItem(
   modifier: Modifier = Modifier
 ) {
   PlayCard(
-      elevation = 0.dp,
-      shape = MaterialTheme.shapes.large,
-      modifier = modifier
-          .size(
-              width = 300.dp,
-              height = 180.dp
-          )
-          .padding(bottom = 8.dp)
+    elevation = 0.dp,
+    shape = MaterialTheme.shapes.large,
+    modifier = modifier
+      .size(
+        width = 300.dp,
+        height = 180.dp
+      )
+      .padding(bottom = 8.dp)
   ) {
     Column(
-        modifier = Modifier
-            .clickable(onClick = onImageClick)
-            .fillMaxSize()
+      modifier = Modifier
+        .clickable(onClick = onImageClick)
+        .fillMaxSize()
     ) {
       Box(
-          modifier = Modifier
-              .height(180.dp)
-              .fillMaxWidth()
+        modifier = Modifier
+          .height(180.dp)
+          .fillMaxWidth()
       ) {
         RoundedCornerAppImage(
-            imageUrl = imageUrl,
-            modifier = Modifier
-                .width(300.dp)
-                .height(180.dp)
-                .align(Alignment.TopStart)
-                .padding(8.dp),
-            cornerPercent = 5
+          imageUrl = imageUrl,
+          modifier = Modifier
+            .width(300.dp)
+            .height(180.dp)
+            .align(Alignment.TopStart)
+            .padding(8.dp),
+          cornerPercent = 5
         )
       }
     }
@@ -64,8 +64,8 @@ fun AppImageItem(
 fun PlayFeaturedAppItemPreview() {
   PlayTheme {
     AppImageItem(
-        imageUrl = "",
-        onImageClick = { }
+      imageUrl = "",
+      onImageClick = { }
     )
   }
 }

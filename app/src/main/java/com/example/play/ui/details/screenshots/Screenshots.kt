@@ -23,7 +23,7 @@ fun Screenshots(
   //val scrollState = rememberScrollState(0)
   Spacer(modifier = Modifier.width(16.dp))
   LazyRow(
-      modifier = modifier
+    modifier = modifier
   ) {
     items(imageUrlList) { imageUrlItem ->
       ScreenshotListItem(imageUrlItem, onImageClick)
@@ -45,7 +45,7 @@ fun ScreenshotListItem(
 private fun AppImagesPreview() {
   PlayTheme {
     Screenshots(
-        imageUrlList = listOf("", "", "", "")
+      imageUrlList = listOf("", "", "", "")
     )
   }
 }
@@ -55,7 +55,7 @@ private fun AppImagesPreview() {
 private fun AppImagesDarkPreview() {
   PlayTheme(darkTheme = true) {
     Screenshots(
-        imageUrlList = listOf("", "", "", "")
+      imageUrlList = listOf("", "", "", "")
     )
   }
 }

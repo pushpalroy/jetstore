@@ -30,7 +30,8 @@ import com.example.play.theme.PlayTheme
 fun FilterBar(
   filters: List<Filter>,
   filterSelected: Int = AppRepo.getFilters().first().id.value,
-  setFilterSelected: (Int) -> Unit = {}) {
+  setFilterSelected: (Int) -> Unit = {}
+) {
   LazyRow(modifier = Modifier.heightIn(min = 56.dp)) {
     item {
       Spacer(modifier = Modifier.width(24.dp))
@@ -60,44 +61,45 @@ fun FilterChip(
 ) {
 
   val backgroundColor by animateColorAsState(
-      if (selected) PlayTheme.colors.accent.copy(alpha = 0.1f) else PlayTheme.colors.uiBackground
+    if (selected) PlayTheme.colors.accent.copy(alpha = 0.1f) else PlayTheme.colors.uiBackground
   )
-  val textColor by  animateColorAsState(
-      if (selected) PlayTheme.colors.accentDark else PlayTheme.colors.textSecondary
+  val textColor by animateColorAsState(
+    if (selected) PlayTheme.colors.accentDark else PlayTheme.colors.textSecondary
   )
 
   PlaySurface(
-      modifier = modifier.height(30.dp)
-          .border(
-              1.dp, if (selected) PlayTheme.colors.accent.copy(
-              alpha = 0.1f
-          ) else PlayTheme.colors.uiBorder, shape
-          ),
-      color = backgroundColor,
-      contentColor = textColor,
-      shape = shape
+    modifier = modifier
+      .height(30.dp)
+      .border(
+        1.dp, if (selected) PlayTheme.colors.accent.copy(
+          alpha = 0.1f
+        ) else PlayTheme.colors.uiBorder, shape
+      ),
+    color = backgroundColor,
+    contentColor = textColor,
+    shape = shape
   ) {
     Box(
-        modifier = Modifier.toggleable(
-            value = selected,
-            onValueChange = {
-              setSelected(true)
-              setFilterSelected(filter.id.value)
-            }
-        )
+      modifier = Modifier.toggleable(
+        value = selected,
+        onValueChange = {
+          setSelected(true)
+          setFilterSelected(filter.id.value)
+        }
+      )
     ) {
       Text(
-          text = filter.name,
-          style = TextStyle(
-              fontWeight = FontWeight.Normal,
-              fontSize = 13.sp,
-              letterSpacing = 0.15.sp
-          ),
-          maxLines = 1,
-          modifier = Modifier.padding(
-              horizontal = 20.dp,
-              vertical = 6.dp
-          )
+        text = filter.name,
+        style = TextStyle(
+          fontWeight = FontWeight.Normal,
+          fontSize = 13.sp,
+          letterSpacing = 0.15.sp
+        ),
+        maxLines = 1,
+        modifier = Modifier.padding(
+          horizontal = 20.dp,
+          vertical = 6.dp
+        )
       )
     }
   }

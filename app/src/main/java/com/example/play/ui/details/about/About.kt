@@ -23,36 +23,36 @@ import com.example.play.ui.components.PlaySurface
 @Composable
 fun About() {
   Column(
-      modifier = Modifier.padding(top = 8.dp, start = 24.dp, end = 16.dp)
+    modifier = Modifier.padding(top = 8.dp, start = 24.dp, end = 16.dp)
   ) {
     Row(
-        verticalAlignment = Alignment.CenterVertically,
+      verticalAlignment = Alignment.CenterVertically,
     ) {
       Text(
-          text = "About this app",
-          style = TextStyle(
-              fontWeight = FontWeight.Medium,
-              fontSize = 16.sp,
-              letterSpacing = 0.15.sp
-          ),
-          color = PlayTheme.colors.textSecondaryDark,
-          modifier = Modifier.weight(1f)
+        text = "About this app",
+        style = TextStyle(
+          fontWeight = FontWeight.Medium,
+          fontSize = 16.sp,
+          letterSpacing = 0.15.sp
+        ),
+        color = PlayTheme.colors.textSecondaryDark,
+        modifier = Modifier.weight(1f)
       )
       IconButton(
-          onClick = {},
-          modifier = Modifier.align(Alignment.CenterVertically)
+        onClick = {},
+        modifier = Modifier.align(Alignment.CenterVertically)
       ) {
         Icon(
-            imageVector = Outlined.ArrowForward,
-            tint = PlayTheme.colors.iconTint,
-            contentDescription = null
+          imageVector = Outlined.ArrowForward,
+          tint = PlayTheme.colors.iconTint,
+          contentDescription = null
         )
       }
     }
     Text(
-        text = "Fun and addictive game. Start downloading and explore the new world!",
-        style = MaterialTheme.typography.subtitle2,
-        color = PlayTheme.colors.textSecondary
+      text = "Fun and addictive game. Start downloading and explore the new world!",
+      style = MaterialTheme.typography.subtitle2,
+      color = PlayTheme.colors.textSecondary
     )
   }
 }

@@ -60,55 +60,55 @@ fun PlayBottomNav(
   contentColor: Color = PlayTheme.colors.iconInteractive
 ) {
   PlaySurface(
-      color = color,
-      contentColor = contentColor
+    color = color,
+    contentColor = contentColor
   ) {
     val springSpec = remember {
       SpringSpec<Float>(
-          // Determined experimentally
-          stiffness = 200f,
-          dampingRatio = 0.9f
+        // Determined experimentally
+        stiffness = 200f,
+        dampingRatio = 0.9f
       )
     }
     Column {
       PlayBottomNavLayout(
-          selectedIndex = currentSection.ordinal,
-          itemCount = items.size,
-          indicator = { PLayBottomNavIndicator() },
-          animSpec = springSpec,
-          modifier = Modifier.navigationBarsPadding(left = false, right = false)
+        selectedIndex = currentSection.ordinal,
+        itemCount = items.size,
+        indicator = { PLayBottomNavIndicator() },
+        animSpec = springSpec,
+        modifier = Modifier.navigationBarsPadding(left = false, right = false)
       ) {
         items.forEach { section ->
           val selected = section == currentSection
           val tint by animateColorAsState(
-              if (selected) {
-                PlayTheme.colors.iconInteractive
-              } else {
-                PlayTheme.colors.iconInteractiveInactive
-              }
+            if (selected) {
+              PlayTheme.colors.iconInteractive
+            } else {
+              PlayTheme.colors.iconInteractiveInactive
+            }
           )
 
           PlayBottomNavigationItem(
-              icon = {
-                Icon(
-                  imageVector = section.icon,
-                  tint = tint,
-                  contentDescription = null
-                )
-              },
-              text = {
-                Text(
-                    text = stringResource(section.title).toUpperCase(Locale.ROOT),
-                    color = tint,
-                    style = MaterialTheme.typography.button,
-                    maxLines = 1
-                )
-              },
-              selected = selected,
-              onSelected = { onSectionSelected(section) },
-              animSpec = springSpec,
-              modifier = BottomNavigationItemPadding
-                  .clip(BottomNavIndicatorShape)
+            icon = {
+              Icon(
+                imageVector = section.icon,
+                tint = tint,
+                contentDescription = null
+              )
+            },
+            text = {
+              Text(
+                text = stringResource(section.title).toUpperCase(Locale.ROOT),
+                color = tint,
+                style = MaterialTheme.typography.button,
+                maxLines = 1
+              )
+            },
+            selected = selected,
+            onSelected = { onSectionSelected(section) },
+            animSpec = springSpec,
+            modifier = BottomNavigationItemPadding
+              .clip(BottomNavIndicatorShape)
           )
         }
       }
@@ -128,15 +128,15 @@ fun PlayBottomNavigationItem(
   modifier: Modifier = Modifier
 ) {
   Box(
-      modifier = modifier.selectable(selected = selected, onClick = onSelected),
-      contentAlignment = Alignment.Center
+    modifier = modifier.selectable(selected = selected, onClick = onSelected),
+    contentAlignment = Alignment.Center
   ) {
     // Animate the icon/text positions within the item based on selection
     val animationProgress by animateFloatAsState(if (selected) 1f else 0f, animSpec)
     PlayBottomNavItemLayout(
-        icon = icon,
-        text = text,
-        animationProgress = animationProgress
+      icon = icon,
+      text = text,
+      animationProgress = animationProgress
     )
   }
 }
@@ -149,34 +149,34 @@ private fun PlayBottomNavItemLayout(
   @FloatRange(from = 0.0, to = 1.0) animationProgress: Float
 ) {
   Layout(
-      content = {
-        Box(Modifier.layoutId("icon"), content = icon)
-        val scale = lerp(start = 0.2f, stop = 1f, fraction = animationProgress)
-        Box(
-            modifier = Modifier
-                .padding(start = TextIconSpacing)
-                .layoutId("text")
-                .graphicsLayer {
-                  alpha = animationProgress
-                  scaleX = scale
-                  scaleY = scale
-                  transformOrigin = BottomNavLabelTransformOrigin
-                },
-            content = text
-        )
-      }
+    content = {
+      Box(Modifier.layoutId("icon"), content = icon)
+      val scale = lerp(start = 0.2f, stop = 1f, fraction = animationProgress)
+      Box(
+        modifier = Modifier
+          .padding(start = TextIconSpacing)
+          .layoutId("text")
+          .graphicsLayer {
+            alpha = animationProgress
+            scaleX = scale
+            scaleY = scale
+            transformOrigin = BottomNavLabelTransformOrigin
+          },
+        content = text
+      )
+    }
   ) { measurable, constraints ->
     val iconPlaceable = measurable.first { it.layoutId == "icon" }
-        .measure(constraints)
+      .measure(constraints)
     val textPlaceable = measurable.first { it.layoutId == "text" }
-        .measure(constraints)
+      .measure(constraints)
 
     placeTextAndIcon(
-        textPlaceable,
-        iconPlaceable,
-        constraints.maxWidth,
-        constraints.maxHeight,
-        animationProgress
+      textPlaceable,
+      iconPlaceable,
+      constraints.maxWidth,
+      constraints.maxHeight,
+      animationProgress
     )
   }
 }
@@ -236,11 +236,11 @@ private fun PlayBottomNavLayout(
   }
 
   Layout(
-      modifier = modifier.height(BottomNavHeight),
+    modifier = modifier.height(BottomNavHeight),
     content = {
-        content()
-        Box(Modifier.layoutId("indicator"), content = indicator)
-      }
+      content()
+      Box(Modifier.layoutId("indicator"), content = indicator)
+    }
   ) { measurable, constraints ->
     check(itemCount == (measurable.size - 1)) // account for indicator
 
@@ -250,28 +250,28 @@ private fun PlayBottomNavLayout(
     val indicatorMeasurable = measurable.first { it.layoutId == "indicator" }
 
     val itemPlaceable = measurable
-        .filterNot { it == indicatorMeasurable }
-        .mapIndexed { index, measurables ->
-          // Animate item's width based upon the selection amount
-          val width = lerp(unselectedWidth, selectedWidth, selectionFractions[index].value)
-          measurables.measure(
-              constraints.copy(
-                  minWidth = width,
-                  maxWidth = width
-              )
+      .filterNot { it == indicatorMeasurable }
+      .mapIndexed { index, measurables ->
+        // Animate item's width based upon the selection amount
+        val width = lerp(unselectedWidth, selectedWidth, selectionFractions[index].value)
+        measurables.measure(
+          constraints.copy(
+            minWidth = width,
+            maxWidth = width
           )
-        }
+        )
+      }
 
     val indicatorPlaceable = indicatorMeasurable.measure(
-        constraints.copy(
-            minWidth = selectedWidth,
-            maxWidth = selectedWidth
-        )
+      constraints.copy(
+        minWidth = selectedWidth,
+        maxWidth = selectedWidth
+      )
     )
 
     layout(
-        width = constraints.maxWidth,
-        height = itemPlaceable.maxByOrNull { it.height }?.height ?: 0
+      width = constraints.maxWidth,
+      height = itemPlaceable.maxByOrNull { it.height }?.height ?: 0
     ) {
       val indicatorLeft = indicatorIndex.value * unselectedWidth
       indicatorPlaceable.place(x = indicatorLeft.toInt(), y = 0)
@@ -292,9 +292,9 @@ private fun PLayBottomNavIndicator(
   shape: Shape = BottomNavIndicatorShape
 ) {
   Spacer(
-      modifier = Modifier
-          .fillMaxSize()
-          .then(BottomNavigationItemPadding)
-          .border(strokeWidth, color, shape)
+    modifier = Modifier
+      .fillMaxSize()
+      .then(BottomNavigationItemPadding)
+      .border(strokeWidth, color, shape)
   )
 }

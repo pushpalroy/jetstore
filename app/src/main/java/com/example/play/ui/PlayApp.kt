@@ -17,7 +17,7 @@ import com.google.accompanist.insets.ProvideWindowInsets
 fun PlayApp(backDispatcher: OnBackPressedDispatcher) {
   val navigator: Navigator<Destination> =
     rememberSaveable(
-        saver = Navigator.saver(backDispatcher)
+      saver = Navigator.saver(backDispatcher)
     ) {
       Navigator(Home, backDispatcher)
     }
@@ -26,16 +26,16 @@ fun PlayApp(backDispatcher: OnBackPressedDispatcher) {
     PlayTheme {
       val springSpec = remember {
         SpringSpec<Float>(
-            stiffness = 200f,
-            dampingRatio = 0.4f
+          stiffness = 200f,
+          dampingRatio = 0.4f
         )
       }
       Crossfade(navigator.current, animationSpec = springSpec) { destination ->
         when (destination) {
           Home -> Main(actions.selectApp)
           is Destination.AppDetail -> AppDetails(
-              appId = destination.appId,
-              backPress = actions.upPress
+            appId = destination.appId,
+            backPress = actions.upPress
           )
         }
       }

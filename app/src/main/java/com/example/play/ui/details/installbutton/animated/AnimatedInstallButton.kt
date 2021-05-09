@@ -28,32 +28,32 @@ fun InstallButtonPanel(
   isPressed: MutableState<Boolean>
 ) {
   Row(
-      modifier = Modifier.padding(8.dp)
+    modifier = Modifier.padding(8.dp)
   ) {
     val openButtonWidthState = animateDpAsState(
-        targetValue = if (isPressed.value) 150.dp else 0.dp,
-        animationSpec = tween(
-            durationMillis = 800,
-            delayMillis = if (isPressed.value) 0 else 1500
-        )
+      targetValue = if (isPressed.value) 150.dp else 0.dp,
+      animationSpec = tween(
+        durationMillis = 800,
+        delayMillis = if (isPressed.value) 0 else 1500
+      )
     )
     OpenButton(
-        isPressed = isPressed,
-        modifier = Modifier.size(openButtonWidthState.value, 38.dp)
+      isPressed = isPressed,
+      modifier = Modifier.size(openButtonWidthState.value, 38.dp)
     )
 
     val installButtonWidthState = animateDpAsState(
-        targetValue = if (isPressed.value) 150.dp else 340.dp,
-        animationSpec = tween(
-            durationMillis = 1500,
-            delayMillis = if (isPressed.value) 800 else 0
-        )
+      targetValue = if (isPressed.value) 150.dp else 340.dp,
+      animationSpec = tween(
+        durationMillis = 1500,
+        delayMillis = if (isPressed.value) 800 else 0
+      )
     )
     InstallButton(
-        isPressed = isPressed,
-        modifier = Modifier
-            .size(installButtonWidthState.value, 38.dp)
-            .weight(1f, true)
+      isPressed = isPressed,
+      modifier = Modifier
+        .size(installButtonWidthState.value, 38.dp)
+        .weight(1f, true)
     )
   }
 }
@@ -64,37 +64,37 @@ fun InstallButton(
   modifier: Modifier
 ) {
   val buttonBorderColorState = animateColorAsState(
-      targetValue = if (isPressed.value) Color.White else Color(0xff01875f)
+    targetValue = if (isPressed.value) Color.White else Color(0xff01875f)
   )
   val buttonBorderWidthState = animateDpAsState(
-      targetValue = if (isPressed.value) 0.dp else 1.dp,
+    targetValue = if (isPressed.value) 0.dp else 1.dp,
   )
   val buttonBgColorState = animateColorAsState(
-      targetValue = if (isPressed.value) Color.White else Color(0xff01875f),
-      animationSpec = tween(
-          durationMillis = 3000
-      )
+    targetValue = if (isPressed.value) Color.White else Color(0xff01875f),
+    animationSpec = tween(
+      durationMillis = 3000
+    )
   )
   val buttonCornersState = animateIntAsState(
-      targetValue = if (isPressed.value) 50 else 10,
-      animationSpec = tween(
-          durationMillis = 3000,
-          easing = FastOutLinearInEasing,
-      )
+    targetValue = if (isPressed.value) 50 else 10,
+    animationSpec = tween(
+      durationMillis = 3000,
+      easing = FastOutLinearInEasing,
+    )
   )
   Button(
-      border = BorderStroke(
-          buttonBorderWidthState.value,
-          buttonBorderColorState.value
-      ),
-      colors = ButtonDefaults.buttonColors(
-          backgroundColor = buttonBgColorState.value
-      ),
-      shape = RoundedCornerShape(buttonCornersState.value),
-      modifier = modifier,
-      onClick = {
-        isPressed.value = isPressed.value.not()
-      }
+    border = BorderStroke(
+      buttonBorderWidthState.value,
+      buttonBorderColorState.value
+    ),
+    colors = ButtonDefaults.buttonColors(
+      backgroundColor = buttonBgColorState.value
+    ),
+    shape = RoundedCornerShape(buttonCornersState.value),
+    modifier = modifier,
+    onClick = {
+      isPressed.value = isPressed.value.not()
+    }
   ) {
     ButtonContent(isPressed = isPressed.value)
   }
@@ -106,27 +106,27 @@ fun OpenButton(
   modifier: Modifier
 ) {
   Button(
-      border = BorderStroke(1.dp, PlayTheme.colors.accent),
-      colors = ButtonDefaults.buttonColors(
-          backgroundColor = PlayTheme.colors.uiBackground
-      ),
-      shape = RoundedCornerShape(50),
-      modifier = modifier,
-      onClick = {}
+    border = BorderStroke(1.dp, PlayTheme.colors.accent),
+    colors = ButtonDefaults.buttonColors(
+      backgroundColor = PlayTheme.colors.uiBackground
+    ),
+    shape = RoundedCornerShape(50),
+    modifier = modifier,
+    onClick = {}
   ) {
     Text(
-        "Open",
-        softWrap = false,
-        color = PlayTheme.colors.accent
+      "Open",
+      softWrap = false,
+      color = PlayTheme.colors.accent
     )
   }
   val buttonGapWidthState = animateDpAsState(
-      targetValue = if (isPressed.value) 8.dp else 0.dp,
-      animationSpec = tween(
-          durationMillis = 800,
-          delayMillis = if (isPressed.value) 800 else 1500,
-          easing = LinearEasing
-      )
+    targetValue = if (isPressed.value) 8.dp else 0.dp,
+    animationSpec = tween(
+      durationMillis = 800,
+      delayMillis = if (isPressed.value) 800 else 1500,
+      easing = LinearEasing
+    )
   )
   Spacer(modifier = Modifier.width(buttonGapWidthState.value))
 }

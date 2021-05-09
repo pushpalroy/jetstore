@@ -19,7 +19,7 @@ fun TopSellingLayout(
 ) {
   Column(modifier = modifier) {
     TopSellingMoviesList(
-        movies = moviesCollection
+      movies = moviesCollection
     )
   }
 }

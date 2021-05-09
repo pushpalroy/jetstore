@@ -31,51 +31,51 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 fun Modifier.diagonalGradientTint(
-    colors: List<Color>,
-    blendMode: BlendMode
+  colors: List<Color>,
+  blendMode: BlendMode
 ) = drawWithContent {
-    drawContent()
-    drawRect(
-        brush = Brush.linearGradient(colors),
-        blendMode = blendMode
-    )
+  drawContent()
+  drawRect(
+    brush = Brush.linearGradient(colors),
+    blendMode = blendMode
+  )
 }
 
 fun Modifier.offsetGradientBackground(
-    colors: List<Color>,
-    width: Float,
-    offset: Float = 0f
+  colors: List<Color>,
+  width: Float,
+  offset: Float = 0f
 ) = background(
-    Brush.horizontalGradient(
-        colors,
-        startX = -offset,
-        endX = width - offset,
-        tileMode = TileMode.Mirror
-    )
+  Brush.horizontalGradient(
+    colors,
+    startX = -offset,
+    endX = width - offset,
+    tileMode = TileMode.Mirror
+  )
 )
 
 fun Modifier.diagonalGradientBorder(
-    colors: List<Color>,
-    borderSize: Dp = 2.dp,
-    shape: Shape
+  colors: List<Color>,
+  borderSize: Dp = 2.dp,
+  shape: Shape
 ) = border(
-    width = borderSize,
-    brush = Brush.linearGradient(colors),
-    shape = shape
+  width = borderSize,
+  brush = Brush.linearGradient(colors),
+  shape = shape
 )
 
 fun Modifier.fadeInDiagonalGradientBorder(
-    showBorder: Boolean,
-    colors: List<Color>,
-    borderSize: Dp = 2.dp,
-    shape: Shape
+  showBorder: Boolean,
+  colors: List<Color>,
+  borderSize: Dp = 2.dp,
+  shape: Shape
 ) = composed {
-    val animatedColors = List(colors.size) { i ->
-        animateColorAsState(if (showBorder) colors[i] else colors[i].copy(alpha = 0f)).value
-    }
-    diagonalGradientBorder(
-        colors = animatedColors,
-        borderSize = borderSize,
-        shape = shape
-    )
+  val animatedColors = List(colors.size) { i ->
+    animateColorAsState(if (showBorder) colors[i] else colors[i].copy(alpha = 0f)).value
+  }
+  diagonalGradientBorder(
+    colors = animatedColors,
+    borderSize = borderSize,
+    shape = shape
+  )
 }

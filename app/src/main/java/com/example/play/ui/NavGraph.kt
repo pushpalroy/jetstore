@@ -25,22 +25,22 @@ import kotlinx.android.parcel.Parcelize
  * Models the screens in the app and any arguments they require.
  */
 sealed class Destination : Parcelable {
-    @Parcelize
-    object Home : Destination()
+  @Parcelize
+  object Home : Destination()
 
-    @Immutable
-    @Parcelize
-    data class AppDetail(val appId: Long) : Destination()
+  @Immutable
+  @Parcelize
+  data class AppDetail(val appId: Long) : Destination()
 }
 
 /**
  * Models the navigation actions in the app.
  */
 class Actions(navigator: Navigator<Destination>) {
-    val selectApp: (Long) -> Unit = { appId: Long ->
-        navigator.navigate(Destination.AppDetail(appId))
-    }
-    val upPress: () -> Unit = {
-        navigator.back()
-    }
+  val selectApp: (Long) -> Unit = { appId: Long ->
+    navigator.navigate(Destination.AppDetail(appId))
+  }
+  val upPress: () -> Unit = {
+    navigator.back()
+  }
 }

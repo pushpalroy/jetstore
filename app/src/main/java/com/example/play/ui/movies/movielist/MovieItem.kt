@@ -39,81 +39,81 @@ fun MovieItem(
   modifier: Modifier = Modifier
 ) {
   PlayCard(
-      elevation = 0.dp,
-      shape = MaterialTheme.shapes.large,
-      modifier = modifier
-          .size(
-              width = 120.dp,
-              height = 240.dp
-          )
-          .padding(bottom = 8.dp)
+    elevation = 0.dp,
+    shape = MaterialTheme.shapes.large,
+    modifier = modifier
+      .size(
+        width = 120.dp,
+        height = 240.dp
+      )
+      .padding(bottom = 8.dp)
   ) {
     Column(
-        modifier = Modifier
-            .clickable(onClick = {})
-            .fillMaxSize()
+      modifier = Modifier
+        .clickable(onClick = {})
+        .fillMaxSize()
     ) {
       Box(
-          modifier = Modifier
-              .height(180.dp)
-              .fillMaxWidth()
+        modifier = Modifier
+          .height(180.dp)
+          .fillMaxWidth()
       ) {
         RoundedCornerAppImage(
-            imageUrl = movie.imageUrl,
-            modifier = Modifier
-                .width(120.dp)
-                .height(180.dp)
-                .align(Alignment.TopStart)
-                .padding(8.dp),
-            cornerPercent = 10
+          imageUrl = movie.imageUrl,
+          modifier = Modifier
+            .width(120.dp)
+            .height(180.dp)
+            .align(Alignment.TopStart)
+            .padding(8.dp),
+          cornerPercent = 10
         )
       }
       Spacer(modifier = Modifier.height(3.dp))
       Text(
-          text = movie.name,
-          style = TextStyle(
-              fontWeight = FontWeight.Normal,
-              fontSize = 12.sp,
-              letterSpacing = 0.15.sp
-          ),
-          color = PlayTheme.colors.textPrimary,
-          maxLines = 1,
-          overflow = Ellipsis,
-          modifier = Modifier.padding(start = 8.dp)
+        text = movie.name,
+        style = TextStyle(
+          fontWeight = FontWeight.Normal,
+          fontSize = 12.sp,
+          letterSpacing = 0.15.sp
+        ),
+        color = PlayTheme.colors.textPrimary,
+        maxLines = 1,
+        overflow = Ellipsis,
+        modifier = Modifier.padding(start = 8.dp)
       )
       Spacer(modifier = Modifier.height(4.dp))
       Row(modifier = Modifier.padding(start = 8.dp)) {
         Text(
-            text = movie.ratings,
-            style = TextStyle(
-                fontWeight = FontWeight.Light,
-                fontSize = 12.sp,
-                letterSpacing = 0.15.sp
-            ),
-            color = PlayTheme.colors.textSecondaryDark,
-            maxLines = 1,
-            overflow = Ellipsis
+          text = movie.ratings,
+          style = TextStyle(
+            fontWeight = FontWeight.Light,
+            fontSize = 12.sp,
+            letterSpacing = 0.15.sp
+          ),
+          color = PlayTheme.colors.textSecondaryDark,
+          maxLines = 1,
+          overflow = Ellipsis
         )
         Icon(
-            imageVector = Icons.Outlined.Star,
-            tint = PlayTheme.colors.iconTint,
-            modifier = Modifier
-                .padding(start = 2.dp, end = 8.dp)
-                .width(8.dp)
-                .height(8.dp)
-                .align(Alignment.CenterVertically),
-            contentDescription = null
+          imageVector = Icons.Outlined.Star,
+          tint = PlayTheme.colors.iconTint,
+          modifier = Modifier
+            .padding(start = 2.dp, end = 8.dp)
+            .width(8.dp)
+            .height(8.dp)
+            .align(Alignment.CenterVertically),
+          contentDescription = null
         )
         Text(
-            text = movie.price,
-            style = TextStyle(
-                fontWeight = FontWeight.Light,
-                fontSize = 12.sp,
-                letterSpacing = 0.15.sp
-            ),
-            color = PlayTheme.colors.textSecondaryDark,
-            maxLines = 1,
-            overflow = Ellipsis
+          text = movie.price,
+          style = TextStyle(
+            fontWeight = FontWeight.Light,
+            fontSize = 12.sp,
+            letterSpacing = 0.15.sp
+          ),
+          color = PlayTheme.colors.textSecondaryDark,
+          maxLines = 1,
+          overflow = Ellipsis
         )
       }
     }
@@ -126,101 +126,101 @@ fun TopSellingMovieItem(
   modifier: Modifier = Modifier
 ) {
   PlaySurface(
-      modifier = modifier
-          .fillMaxWidth()
-          .clickable(onClick = { })
+    modifier = modifier
+      .fillMaxWidth()
+      .clickable(onClick = { })
   ) {
     Row(modifier = Modifier.padding(start = 16.dp, end = 8.dp, top = 4.dp, bottom = 4.dp)) {
       Text(
-          text = movie.id.toString(),
-          style = TextStyle(
-              fontWeight = FontWeight.Normal,
-              fontSize = 14.sp
-          ),
-          textAlign = Center,
-          color = PlayTheme.colors.textSecondary,
-          modifier = Modifier
-              .align(Alignment.CenterVertically)
-              .width(30.dp)
-              .padding(end = 8.dp)
+        text = movie.id.toString(),
+        style = TextStyle(
+          fontWeight = FontWeight.Normal,
+          fontSize = 14.sp
+        ),
+        textAlign = Center,
+        color = PlayTheme.colors.textSecondary,
+        modifier = Modifier
+          .align(Alignment.CenterVertically)
+          .width(30.dp)
+          .padding(end = 8.dp)
       )
       Box(
-          modifier = Modifier
-              .height(90.dp)
-              .width(65.dp)
+        modifier = Modifier
+          .height(90.dp)
+          .width(65.dp)
       ) {
         RoundedCornerAppImage(
-            imageUrl = movie.imageUrl,
-            modifier = Modifier
-                .fillMaxWidth()
-                .align(Alignment.TopStart)
-                .padding(8.dp),
-            cornerPercent = 5
+          imageUrl = movie.imageUrl,
+          modifier = Modifier
+            .fillMaxWidth()
+            .align(Alignment.TopStart)
+            .padding(8.dp),
+          cornerPercent = 5
         )
       }
       Column(
-          modifier = Modifier
-              .padding(top = 4.dp, start = 8.dp)
-              .align(Alignment.Top)
+        modifier = Modifier
+          .padding(top = 4.dp, start = 8.dp)
+          .align(Alignment.Top)
       ) {
         Text(
-            text = movie.name,
-            style = TextStyle(
-                fontWeight = FontWeight.Normal,
-                fontSize = 14.sp,
-                letterSpacing = 0.15.sp
-            ),
-            color = PlayTheme.colors.textPrimary,
-            maxLines = 1,
-            modifier = Modifier.padding(bottom = 3.dp),
-            overflow = Ellipsis
+          text = movie.name,
+          style = TextStyle(
+            fontWeight = FontWeight.Normal,
+            fontSize = 14.sp,
+            letterSpacing = 0.15.sp
+          ),
+          color = PlayTheme.colors.textPrimary,
+          maxLines = 1,
+          modifier = Modifier.padding(bottom = 3.dp),
+          overflow = Ellipsis
         )
         Text(
-            text = movie.category,
-            style = TextStyle(
-                fontWeight = FontWeight.Normal,
-                fontSize = 12.sp,
-                letterSpacing = 0.15.sp
-            ),
-            color = PlayTheme.colors.textSecondary,
-            maxLines = 1,
-            overflow = Ellipsis,
-            modifier = Modifier.padding(bottom = 2.dp)
+          text = movie.category,
+          style = TextStyle(
+            fontWeight = FontWeight.Normal,
+            fontSize = 12.sp,
+            letterSpacing = 0.15.sp
+          ),
+          color = PlayTheme.colors.textSecondary,
+          maxLines = 1,
+          overflow = Ellipsis,
+          modifier = Modifier.padding(bottom = 2.dp)
         )
         Row(modifier = Modifier.padding(bottom = 2.dp)) {
           Text(
-              text = movie.ratings,
-              style = TextStyle(
-                  fontWeight = FontWeight.Light,
-                  fontSize = 12.sp,
-                  letterSpacing = 0.15.sp
-              ),
-              color = PlayTheme.colors.textSecondaryDark,
-              maxLines = 1,
-              overflow = Ellipsis
-          )
-          Icon(
-              imageVector = Icons.Outlined.Star,
-              tint = PlayTheme.colors.iconTint,
-              modifier = Modifier
-                  .padding(start = 2.dp, end = 8.dp)
-                  .width(8.dp)
-                  .height(8.dp)
-                  .align(Alignment.CenterVertically),
-              contentDescription = null
-          )
-        }
-        Text(
-            text = movie.price,
+            text = movie.ratings,
             style = TextStyle(
-                fontWeight = FontWeight.Light,
-                fontSize = 12.sp,
-                letterSpacing = 0.15.sp
+              fontWeight = FontWeight.Light,
+              fontSize = 12.sp,
+              letterSpacing = 0.15.sp
             ),
             color = PlayTheme.colors.textSecondaryDark,
             maxLines = 1,
-            overflow = Ellipsis,
-            modifier = Modifier.padding(bottom = 2.dp),
+            overflow = Ellipsis
+          )
+          Icon(
+            imageVector = Icons.Outlined.Star,
+            tint = PlayTheme.colors.iconTint,
+            modifier = Modifier
+              .padding(start = 2.dp, end = 8.dp)
+              .width(8.dp)
+              .height(8.dp)
+              .align(Alignment.CenterVertically),
+            contentDescription = null
+          )
+        }
+        Text(
+          text = movie.price,
+          style = TextStyle(
+            fontWeight = FontWeight.Light,
+            fontSize = 12.sp,
+            letterSpacing = 0.15.sp
+          ),
+          color = PlayTheme.colors.textSecondaryDark,
+          maxLines = 1,
+          overflow = Ellipsis,
+          modifier = Modifier.padding(bottom = 2.dp),
         )
       }
     }
@@ -233,7 +233,7 @@ fun PlayMovieItemPreview() {
   PlayTheme {
     val movie = AppRepo.getMovie(2L)
     MovieItem(
-        movie = movie
+      movie = movie
     )
   }
 }
@@ -244,7 +244,7 @@ fun TopSellingMovieItemPreview() {
   PlayTheme {
     val movie = AppRepo.getMovie(1L)
     TopSellingMovieItem(
-        movie = movie
+      movie = movie
     )
   }
 }

@@ -22,22 +22,22 @@ fun getAppRatingBarState(
   val currentState = if (showProgress) AppRatingBarState.END else AppRatingBarState.START
   val transition = updateTransition(targetState = currentState, label = "appRatingBarState")
   return transition.animateFloat(
-      transitionSpec = {
-        when {
-          AppRatingBarState.START isTransitioningTo AppRatingBarState.END ->
-            tween(
-                easing = FastOutSlowInEasing,
-                durationMillis = durationMillis
-            )
-          AppRatingBarState.END isTransitioningTo AppRatingBarState.START -> {
-            tween(
-                easing = FastOutSlowInEasing,
-                durationMillis = durationMillis
-            )
-          }
-          else -> snap()
+    transitionSpec = {
+      when {
+        AppRatingBarState.START isTransitioningTo AppRatingBarState.END ->
+          tween(
+            easing = FastOutSlowInEasing,
+            durationMillis = durationMillis
+          )
+        AppRatingBarState.END isTransitioningTo AppRatingBarState.START -> {
+          tween(
+            easing = FastOutSlowInEasing,
+            durationMillis = durationMillis
+          )
         }
-      }, label = "appRatingBarState"
+        else -> snap()
+      }
+    }, label = "appRatingBarState"
   ) { appRatingBarState ->
     when (appRatingBarState) {
       AppRatingBarState.START -> 0f

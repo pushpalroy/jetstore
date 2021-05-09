@@ -21,16 +21,16 @@ fun getInstallButtonOpacityState(
   val currentState = if (isPressed) PRESSED else IDLE
   val transition = updateTransition(targetState = currentState, label = "installButtonOpacityState")
   return transition.animateFloat(
-      transitionSpec = {
-        when {
-          IDLE isTransitioningTo PRESSED ->
-            tween(durationMillis = 1500)
-          PRESSED isTransitioningTo IDLE -> {
-            tween(durationMillis = 2000)
-          }
-          else -> snap()
+    transitionSpec = {
+      when {
+        IDLE isTransitioningTo PRESSED ->
+          tween(durationMillis = 1500)
+        PRESSED isTransitioningTo IDLE -> {
+          tween(durationMillis = 2000)
         }
-      }, label = "installButtonOpacityState"
+        else -> snap()
+      }
+    }, label = "installButtonOpacityState"
   ) { installButtonOpacityState ->
     when (installButtonOpacityState) {
       IDLE -> 0f

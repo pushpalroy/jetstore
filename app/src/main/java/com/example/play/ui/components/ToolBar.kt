@@ -30,59 +30,59 @@ import com.google.accompanist.insets.statusBarsPadding
 fun ToolBar(modifier: Modifier = Modifier) {
   PlaySurface(modifier = modifier.statusBarsPadding()) {
     PlaySurface(
-        shape = RoundedCornerShape(5.dp),
-        modifier = Modifier.padding(top = 16.dp, start = 16.dp, end = 16.dp, bottom = 8.dp),
-        elevation = 4.dp,
-        color = PlayTheme.colors.uiBackground
+      shape = RoundedCornerShape(5.dp),
+      modifier = Modifier.padding(top = 16.dp, start = 16.dp, end = 16.dp, bottom = 8.dp),
+      elevation = 4.dp,
+      color = PlayTheme.colors.uiBackground
     ) {
       TopAppBar(
-          backgroundColor = PlayTheme.colors.uiBackground.copy(alpha = AlphaNearOpaque),
-          contentColor = PlayTheme.colors.textSecondary
+        backgroundColor = PlayTheme.colors.uiBackground.copy(alpha = AlphaNearOpaque),
+        contentColor = PlayTheme.colors.textSecondary
       ) {
         IconButton(
-            onClick = {},
-            modifier = Modifier
-                .align(Alignment.CenterVertically)
-                .weight(1f, false)
+          onClick = {},
+          modifier = Modifier
+            .align(Alignment.CenterVertically)
+            .weight(1f, false)
         ) {
           Icon(
-              imageVector = Icons.Outlined.Menu,
-              tint = PlayTheme.colors.iconTint,
-              contentDescription = null
+            imageVector = Icons.Outlined.Menu,
+            tint = PlayTheme.colors.iconTint,
+            contentDescription = null
           )
         }
         Text(
-            text = "Search for apps & games",
-            color = PlayTheme.colors.textSecondary,
-            textAlign = TextAlign.Start,
-            maxLines = 1,
-            style = TextStyle(
-                fontWeight = FontWeight.Light,
-                fontSize = 16.sp
-            ),
-            overflow = Ellipsis,
-            modifier = Modifier
-                .align(Alignment.CenterVertically)
-                .weight(4f, true)
+          text = "Search for apps & games",
+          color = PlayTheme.colors.textSecondary,
+          textAlign = TextAlign.Start,
+          maxLines = 1,
+          style = TextStyle(
+            fontWeight = FontWeight.Light,
+            fontSize = 16.sp
+          ),
+          overflow = Ellipsis,
+          modifier = Modifier
+            .align(Alignment.CenterVertically)
+            .weight(4f, true)
         )
         IconButton(
-            onClick = {},
-            modifier = Modifier
-                .align(Alignment.CenterVertically)
-                .weight(1f, false)
+          onClick = {},
+          modifier = Modifier
+            .align(Alignment.CenterVertically)
+            .weight(1f, false)
         ) {
           Icon(
-              imageVector = Icons.Outlined.Mic,
-              tint = PlayTheme.colors.iconTint,
-              contentDescription = null
+            imageVector = Icons.Outlined.Mic,
+            tint = PlayTheme.colors.iconTint,
+            contentDescription = null
           )
         }
         CircularLocalImage(
-            resId = R.drawable.user_profile_pic,
-            modifier = Modifier
-                .sizeIn(maxHeight = 40.dp, maxWidth = 40.dp)
-                .weight(1f, false)
-                .clickable(onClick = {})
+          resId = R.drawable.user_profile_pic,
+          modifier = Modifier
+            .sizeIn(maxHeight = 40.dp, maxWidth = 40.dp)
+            .weight(1f, false)
+            .clickable(onClick = {})
         )
       }
     }
