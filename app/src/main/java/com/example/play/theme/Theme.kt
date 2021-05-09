@@ -40,6 +40,7 @@ private val LightColorPalette = PlayColorPalette(
   gradient2_1 = listOf(Shadow4, Shadow11),
   gradient2_2 = listOf(Ocean3, Shadow3),
   progressIndicatorBg = LightGrey,
+  switchColor = Green,
   isDark = false
 )
 
@@ -69,6 +70,7 @@ private val DarkColorPalette = PlayColorPalette(
   gradient2_1 = listOf(Ocean3, Shadow3),
   gradient2_2 = listOf(Ocean7, Shadow7),
   progressIndicatorBg = LightGrey,
+  switchColor = Green,
   isDark = true
 )
 
@@ -136,6 +138,7 @@ class PlayColorPalette(
   error: Color,
   notificationBadge: Color = error,
   progressIndicatorBg: Color,
+  switchColor: Color,
   isDark: Boolean
 ) {
   var gradient6_1 by mutableStateOf(gradient6_1)
@@ -196,6 +199,8 @@ class PlayColorPalette(
     private set
   var progressIndicatorBg by mutableStateOf(progressIndicatorBg)
     private set
+  var switchColor by mutableStateOf(switchColor)
+    private set
   var isDark by mutableStateOf(isDark)
     private set
 
@@ -224,6 +229,7 @@ class PlayColorPalette(
     iconInteractiveInactive = other.iconInteractiveInactive
     error = other.error
     notificationBadge = other.notificationBadge
+    switchColor = other.switchColor
     isDark = other.isDark
   }
 }
