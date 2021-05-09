@@ -10,10 +10,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.tooling.preview.Preview
 import com.example.play.theme.PlayTheme
+import com.google.accompanist.coil.rememberCoilPainter
 
 @Composable
 fun CircularAppImage(
@@ -27,8 +28,10 @@ fun CircularAppImage(
       shape = CircleShape,
       modifier = modifier
   ) {
-    CoilImage(
-        data = imageUrl,
+    Image(
+        painter = rememberCoilPainter(
+            request = imageUrl
+        ),
         contentScale = ContentScale.Crop,
         modifier = Modifier.fillMaxSize(),
         contentDescription = null
@@ -70,8 +73,10 @@ fun RoundedCornerAppImage(
       shape = RoundedCornerShape(cornerPercent),
       modifier = modifier
   ) {
-    CoilImage(
-        data = imageUrl,
+    Image(
+        painter = rememberCoilPainter(
+            request = imageUrl
+        ),
         contentScale = ContentScale.Crop,
         modifier = Modifier.fillMaxSize(),
         contentDescription = null

@@ -26,7 +26,6 @@ fun PlayApp(backDispatcher: OnBackPressedDispatcher) {
     PlayTheme {
       val springSpec = remember {
         SpringSpec<Float>(
-            // Determined experimentally
             stiffness = 200f,
             dampingRatio = 0.4f
         )

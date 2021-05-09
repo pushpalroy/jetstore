@@ -4,6 +4,7 @@ import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -19,16 +20,24 @@ fun Screenshots(
   onImageClick: () -> Unit = {},
   modifier: Modifier = Modifier
 ) {
-  val scrollState = rememberScrollState(0)
+  //val scrollState = rememberScrollState(0)
+  Spacer(modifier = Modifier.width(16.dp))
   LazyRow(
-      modifier = modifier.horizontalScroll(state = scrollState)
+      modifier = modifier
   ) {
-    Spacer(modifier = Modifier.width(16.dp))
-    imageUrlList.forEach { imageUrl ->
-      AppImageItem(imageUrl, onImageClick)
-      Spacer(modifier = Modifier.width(8.dp))
+    items(imageUrlList) { imageUrlItem ->
+      ScreenshotListItem(imageUrlItem, onImageClick)
     }
   }
+}
+
+@Composable
+fun ScreenshotListItem(
+  imageUrl: String,
+  onImageClick: () -> Unit
+) {
+  AppImageItem(imageUrl, onImageClick)
+  Spacer(modifier = Modifier.width(8.dp))
 }
 
 @Preview("App Images")

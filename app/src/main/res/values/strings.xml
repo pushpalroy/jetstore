@@ -1,5 +1,5 @@
 <resources>
-  <string name="app_name">PlayApp</string>
+  <string name="app_name">JetStore</string>
 
   <!-- Home Tabs -->
   <string name="home_games">Games</string>

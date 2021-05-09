@@ -17,8 +17,6 @@ import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
@@ -31,10 +29,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.play.R.drawable
-import com.example.play.anim.AppIconExplodeState.EXPLODED
-import com.example.play.anim.AppIconState.IDLE
-import com.example.play.anim.appIconExplodePadding
-import com.example.play.anim.getAppIconExplodeTransitionDefinition
 import com.example.play.data.App
 import com.example.play.data.AppRepo
 import com.example.play.data.apps
@@ -157,7 +151,7 @@ fun PlayFeaturedAppItem(
                     .width(8.dp)
                     .height(8.dp)
                     .align(Alignment.CenterVertically),
-              contentDescription = null
+                contentDescription = null
             )
             Text(
                 text = app.size,
@@ -177,22 +171,22 @@ fun PlayFeaturedAppItem(
   }
 }
 
-
 @Composable
 fun AppItem(
   app: App,
   onAppClick: (Long) -> Unit,
   modifier: Modifier = Modifier
 ) {
-  val currentState by remember { mutableStateOf(EXPLODED) }
-  val (appIconExplodeState, updateAppIconExplode) = remember { mutableStateOf(IDLE) }
-  val appIconExplodeTransitionDef = getAppIconExplodeTransitionDefinition()
-  val toState = IDLE
-  val state = transition(
-      definition = appIconExplodeTransitionDef,
-      initState = appIconExplodeState,
-      toState = toState
-  )
+//  val currentState by remember { mutableStateOf(EXPLODED) }
+//  val (appIconExplodeState, updateAppIconExplode) = remember { mutableStateOf(IDLE) }
+//  val appIconExplodeTransitionDef = getAppIconExplodeTransitionDefinition()
+//  val toState = IDLE
+//  val state = transition(
+//      definition = appIconExplodeTransitionDef,
+//      initState = appIconExplodeState,
+//      toState = toState
+//  )
+
   PlayCard(
       elevation = 0.dp,
       shape = MaterialTheme.shapes.large,
@@ -206,7 +200,7 @@ fun AppItem(
     Column(
         modifier = Modifier
             .clickable(onClick = {
-              updateTransition(currentState)
+              //updateTransition(currentState)
               onAppClick(app.id)
             })
             .fillMaxSize()
@@ -221,7 +215,8 @@ fun AppItem(
             modifier = Modifier
                 .size(120.dp)
                 .align(Alignment.TopStart)
-                .padding(state[appIconExplodePadding]),
+                //.padding(state[appIconExplodePadding]),
+                .padding(8.dp),
             cornerPercent = 20
         )
       }
@@ -295,7 +290,8 @@ fun TopChartAppItem(
         )
       }
       Column(
-          modifier = Modifier.padding(start = 8.dp)
+          modifier = Modifier
+              .padding(start = 8.dp)
               .align(Alignment.CenterVertically)
       ) {
         Text(
@@ -363,7 +359,7 @@ fun TopChartAppItem(
                   .width(8.dp)
                   .height(8.dp)
                   .align(Alignment.CenterVertically),
-            contentDescription = null
+              contentDescription = null
           )
           Text(
               text = app.size,

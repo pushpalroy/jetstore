@@ -23,7 +23,7 @@ import com.example.play.ui.main.AppsCategory.EditorsChoice
 import com.example.play.ui.main.AppsCategory.ForYou
 import com.example.play.ui.main.AppsCategory.TopCharts
 import com.example.play.ui.main.AppsCategoryTabs
-import dev.chrisbanes.accompanist.insets.navigationBarsPadding
+import com.google.accompanist.insets.navigationBarsPadding
 
 @Composable
 fun Apps(

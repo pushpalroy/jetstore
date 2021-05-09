@@ -1,9 +1,7 @@
 package com.example.play.ui.details.header
 
-import android.annotation.SuppressLint
-import androidx.compose.animation.core.Transition
-import androidx.compose.animation.core.animateDp
-import androidx.compose.animation.core.updateTransition
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -15,7 +13,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -32,26 +30,18 @@ import com.example.play.theme.Typography
 import com.example.play.ui.components.PlaySurface
 import com.example.play.ui.components.RoundedCornerAppImage
 
-private enum class AppIconState {
-  IDLE,
-  INSTALLING
-}
-
-@SuppressLint("Range")
 @Composable
 fun Header(
   app: App,
-  showProgress: Boolean
+  showProgress: MutableState<Boolean>
 ) {
-  val toState by remember { mutableStateOf(AppIconState.IDLE) }
-  val transition: Transition<AppIconState> = updateTransition(targetState = toState)
-
-  val appIconSize by transition.animateDp { state ->
-    when (state) {
-      AppIconState.IDLE -> 1.dp
-      AppIconState.INSTALLING -> 0.dp
-    }
-  }
+  val appIconSize = animateDpAsState(
+      targetValue = if (showProgress.value) 80.dp else 100.dp,
+      animationSpec = tween(
+          durationMillis = 500,
+          delayMillis = 500
+      )
+  )
 
   Row(modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 8.dp)) {
     Box(
@@ -59,7 +49,7 @@ fun Header(
             .height(100.dp)
             .width(100.dp)
     ) {
-      if (showProgress) {
+      if (showProgress.value) {
         CircularProgressIndicator(
             color = PlayTheme.colors.accent,
             strokeWidth = 2.dp,
@@ -69,8 +59,8 @@ fun Header(
       RoundedCornerAppImage(
           imageUrl = app.imageUrl,
           modifier = Modifier
-              .width(appIconSize)
-              .height(appIconSize)
+              .width(appIconSize.value)
+              .height(appIconSize.value)
               .align(Alignment.Center)
               .padding(8.dp),
           cornerPercent = 20
@@ -115,7 +105,9 @@ private fun HeaderPreview() {
     PlaySurface {
       Header(
           app = AppRepo.getApp(1L),
-          showProgress = true
+          showProgress = remember {
+            mutableStateOf(true)
+          }
       )
     }
   }
@@ -128,7 +120,9 @@ private fun HeaderDarkPreview() {
     PlaySurface {
       Header(
           app = AppRepo.getApp(1L),
-          showProgress = true
+          showProgress = remember {
+            mutableStateOf(false)
+          }
       )
     }
   }

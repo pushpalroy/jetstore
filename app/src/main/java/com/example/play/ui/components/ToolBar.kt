@@ -41,7 +41,8 @@ fun ToolBar(modifier: Modifier = Modifier) {
       ) {
         IconButton(
             onClick = {},
-            modifier = Modifier.align(Alignment.CenterVertically)
+            modifier = Modifier
+                .align(Alignment.CenterVertically)
                 .weight(1f, false)
         ) {
           Icon(
@@ -66,7 +67,8 @@ fun ToolBar(modifier: Modifier = Modifier) {
         )
         IconButton(
             onClick = {},
-            modifier = Modifier.align(Alignment.CenterVertically)
+            modifier = Modifier
+                .align(Alignment.CenterVertically)
                 .weight(1f, false)
         ) {
           Icon(
@@ -78,9 +80,7 @@ fun ToolBar(modifier: Modifier = Modifier) {
         CircularLocalImage(
             resId = R.drawable.user_profile_pic,
             modifier = Modifier
-                .sizeIn(maxHeight = 45.dp, maxWidth = 45.dp)
-                .align(Alignment.CenterVertically)
-                .padding(end = 8.dp)
+                .sizeIn(maxHeight = 40.dp, maxWidth = 40.dp)
                 .weight(1f, false)
                 .clickable(onClick = {})
         )

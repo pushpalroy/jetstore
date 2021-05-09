@@ -11,15 +11,15 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons.Outlined
 import androidx.compose.material.icons.outlined.ArrowForward
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.play.anim.AppRatingBarState
-import com.example.play.anim.getAppRatingBarTransitionDefinition
 import com.example.play.data.AppRepo
 import com.example.play.theme.PlayTheme
 import com.example.play.theme.Typography
@@ -103,6 +103,7 @@ private fun RatingsAndReviewsHeader() {
 
 @Composable
 private fun AppRatingBars(modifier: Modifier) {
+  val showProgress = remember { mutableStateOf(false) }
   Column(modifier = modifier) {
     Row {
       Text(
@@ -112,8 +113,10 @@ private fun AppRatingBars(modifier: Modifier) {
           modifier = Modifier.align(Alignment.CenterVertically)
       )
       AnimatedProgressIndicator(
-          state = getAppRatingBarState(progress = 0.8f, 4000),
-          color = PlayTheme.colors.accent
+          progress = 0.8f,
+          durationMillis = 4000,
+          color = PlayTheme.colors.accent,
+          showProgress = showProgress
       )
     }
     Spacer(modifier = Modifier.height(3.dp))
@@ -125,8 +128,9 @@ private fun AppRatingBars(modifier: Modifier) {
           modifier = Modifier.align(Alignment.CenterVertically)
       )
       AnimatedProgressIndicator(
-          state = getAppRatingBarState(progress = 0.5f),
-          color = PlayTheme.colors.accent
+          progress = 0.5f,
+          color = PlayTheme.colors.accent,
+          showProgress = showProgress
       )
     }
     Spacer(modifier = Modifier.height(3.dp))
@@ -138,8 +142,10 @@ private fun AppRatingBars(modifier: Modifier) {
           modifier = Modifier.align(Alignment.CenterVertically)
       )
       AnimatedProgressIndicator(
-          state = getAppRatingBarState(progress = 0.3f, 4000),
-          color = PlayTheme.colors.accent
+          progress = 0.3f,
+          durationMillis = 4000,
+          color = PlayTheme.colors.accent,
+          showProgress = showProgress
       )
     }
     Spacer(modifier = Modifier.height(3.dp))
@@ -151,8 +157,9 @@ private fun AppRatingBars(modifier: Modifier) {
           modifier = Modifier.align(Alignment.CenterVertically)
       )
       AnimatedProgressIndicator(
-          state = getAppRatingBarState(progress = 0.1f),
-          color = PlayTheme.colors.accent
+          progress = 0.1f,
+          color = PlayTheme.colors.accent,
+          showProgress = showProgress
       )
     }
     Spacer(modifier = Modifier.height(3.dp))
@@ -164,25 +171,14 @@ private fun AppRatingBars(modifier: Modifier) {
           modifier = Modifier.align(Alignment.CenterVertically)
       )
       AnimatedProgressIndicator(
-          state = getAppRatingBarState(progress = 0.2f, 4000),
-          color = PlayTheme.colors.accent
+          progress = 0.2f,
+          durationMillis = 4000,
+          color = PlayTheme.colors.accent,
+          showProgress = showProgress
       )
     }
   }
-}
-
-@Composable
-fun getAppRatingBarState(
-  progress: Float,
-  durationMillis: Int = 3000
-): TransitionState {
-  val appRatingTransitionDef =
-    getAppRatingBarTransitionDefinition(progress, durationMillis)
-  return transition(
-      definition = appRatingTransitionDef,
-      initState = AppRatingBarState.START,
-      toState = AppRatingBarState.END
-  )
+  showProgress.value = true
 }
 
 @Preview("Ratings and Reviews")

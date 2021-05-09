@@ -1,6 +1,11 @@
 package com.example.play.ui.details.installbutton.animated
 
-import android.annotation.SuppressLint
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.FastOutLinearInEasing
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.animateIntAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -9,68 +14,45 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.play.anim.*
-import com.example.play.anim.ButtonState.IDLE
-import com.example.play.anim.ButtonState.PRESSED
 import com.example.play.theme.PlayTheme
-
-@SuppressLint("Range")
-@Composable
-fun AnimatedInstallButton(
-  updateProgress: (Boolean) -> Unit,
-  updateAppIconSize: (AppIconState) -> Unit
-) {
-  val installButtonState = remember { mutableStateOf(PRESSED) }
-  val transitionDefinition = getInstallButtonTransitions()
-
-  val toState = if (installButtonState.value == IDLE) {
-    PRESSED
-  } else {
-    IDLE
-  }
-
-  val transitionState = transition(
-      definition = transitionDefinition,
-      initState = installButtonState.value,
-      toState = toState
-  )
-
-  InstallButtonPanel(
-      installButtonState,
-      transitionState = transitionState,
-      updateProgress,
-      updateAppIconSize
-  )
-}
 
 @Composable
 fun InstallButtonPanel(
-  installButtonState: MutableState<ButtonState>,
-  transitionState: TransitionState,
-  updateProgress: (Boolean) -> Unit,
-  updateAppIconSize: (AppIconState) -> Unit
+  isPressed: MutableState<Boolean>
 ) {
   Row(
       modifier = Modifier.padding(8.dp)
   ) {
+    val openButtonWidthState = animateDpAsState(
+        targetValue = if (isPressed.value) 150.dp else 0.dp,
+        animationSpec = tween(
+            durationMillis = 800,
+            delayMillis = if (isPressed.value) 0 else 1500
+        )
+    )
     OpenButton(
-        transitionState = transitionState,
-        modifier = Modifier.size(transitionState[openButtonWidth], 38.dp)
+        isPressed = isPressed,
+        modifier = Modifier.size(openButtonWidthState.value, 38.dp)
+    )
+
+    val installButtonWidthState = animateDpAsState(
+        targetValue = if (isPressed.value) 150.dp else 340.dp,
+        animationSpec = tween(
+            durationMillis = 1500,
+            delayMillis = if (isPressed.value) 800 else 0
+        )
     )
     InstallButton(
-        installButtonState = installButtonState,
-        transitionState = transitionState,
-        updateProgress = updateProgress,
-        updateAppIconSize = updateAppIconSize,
+        isPressed = isPressed,
         modifier = Modifier
-            .size(transitionState[installButtonWidth], 38.dp)
+            .size(installButtonWidthState.value, 38.dp)
             .weight(1f, true)
     )
   }
@@ -78,44 +60,56 @@ fun InstallButtonPanel(
 
 @Composable
 fun InstallButton(
-  installButtonState: MutableState<ButtonState>,
-  transitionState: TransitionState,
-  updateProgress: (Boolean) -> Unit,
-  updateAppIconSize: (AppIconState) -> Unit,
+  isPressed: MutableState<Boolean>,
   modifier: Modifier
 ) {
+  val buttonBorderColorState = animateColorAsState(
+      targetValue = if (isPressed.value) Color.White else Color(0xff01875f)
+  )
+  val buttonBorderWidthState = animateDpAsState(
+      targetValue = if (isPressed.value) 0.dp else 1.dp,
+  )
+  val buttonBgColorState = animateColorAsState(
+      targetValue = if (isPressed.value) Color.White else Color(0xff01875f),
+      animationSpec = tween(
+          durationMillis = 3000
+      )
+  )
+  val buttonCornersState = animateIntAsState(
+      targetValue = if (isPressed.value) 50 else 10,
+      animationSpec = tween(
+          durationMillis = 3000,
+          easing = FastOutLinearInEasing,
+      )
+  )
   Button(
       border = BorderStroke(
-          transitionState[installButtonBorderWidth],
-          transitionState[installButtonBorderColor]
+          buttonBorderWidthState.value,
+          buttonBorderColorState.value
       ),
-      backgroundColor = transitionState[installButtonBgColor],
-      shape = RoundedCornerShape(transitionState[installButtonCorners]),
+      colors = ButtonDefaults.buttonColors(
+          backgroundColor = buttonBgColorState.value
+      ),
+      shape = RoundedCornerShape(buttonCornersState.value),
       modifier = modifier,
       onClick = {
-        if (installButtonState.value == IDLE) {
-          installButtonState.value = PRESSED
-          updateAppIconSize(AppIconState.INSTALLING)
-          updateProgress(false)
-        } else {
-          installButtonState.value = IDLE
-          updateAppIconSize(AppIconState.IDLE)
-          updateProgress(true)
-        }
+        isPressed.value = isPressed.value.not()
       }
   ) {
-    ButtonContent(installButtonState, transitionState)
+    ButtonContent(isPressed = isPressed.value)
   }
 }
 
 @Composable
 fun OpenButton(
-  transitionState: TransitionState,
+  isPressed: MutableState<Boolean>,
   modifier: Modifier
 ) {
   Button(
       border = BorderStroke(1.dp, PlayTheme.colors.accent),
-      backgroundColor = PlayTheme.colors.uiBackground,
+      colors = ButtonDefaults.buttonColors(
+          backgroundColor = PlayTheme.colors.uiBackground
+      ),
       shape = RoundedCornerShape(50),
       modifier = modifier,
       onClick = {}
@@ -126,6 +120,14 @@ fun OpenButton(
         color = PlayTheme.colors.accent
     )
   }
-  Spacer(modifier = Modifier.width(transitionState[buttonsGapWidth]))
+  val buttonGapWidthState = animateDpAsState(
+      targetValue = if (isPressed.value) 8.dp else 0.dp,
+      animationSpec = tween(
+          durationMillis = 800,
+          delayMillis = if (isPressed.value) 800 else 1500,
+          easing = LinearEasing
+      )
+  )
+  Spacer(modifier = Modifier.width(buttonGapWidthState.value))
 }
 

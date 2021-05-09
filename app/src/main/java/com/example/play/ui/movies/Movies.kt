@@ -6,8 +6,9 @@ import androidx.compose.animation.core.TweenSpec
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.savedinstancestate.savedInstanceState
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.play.data.AppRepo
@@ -32,7 +33,10 @@ fun Movies(
   val forYouData = remember { AppRepo.getForYouMovies() }
   val topSellingData = remember { AppRepo.getTopSellingMovies() }
   val newReleasesData = remember { AppRepo.getNewReleasesMovies() }
-  val (currentCategory, setCurrentCategory) = savedInstanceState { ForYou }
+
+  val (currentCategory, setCurrentCategory) = rememberSaveable {
+    mutableStateOf(ForYou)
+  }
 
   PlaySurface(modifier = modifier.fillMaxSize()) {
     Column(modifier = Modifier.navigationBarsPadding(left = true, right = true)) {

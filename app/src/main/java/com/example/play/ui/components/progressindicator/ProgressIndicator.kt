@@ -13,12 +13,16 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.example.play.anim.getAppRatingBarState
 import com.example.play.theme.PlayTheme
 
 /**
@@ -32,32 +36,39 @@ import com.example.play.theme.PlayTheme
  */
 @Composable
 fun AnimatedProgressIndicator(
-    modifier: Modifier = Modifier.padding(start = 8.dp, end = 8.dp),
-    state: TransitionState,
-    color: Color = MaterialTheme.colors.primary,
-    strokeWidth: Dp = 9.dp,
-    backgroundColor: Color = PlayTheme.colors.progressIndicatorBg
+  modifier: Modifier = Modifier.padding(start = 8.dp, end = 8.dp),
+  progress: Float,
+  durationMillis: Int = 3000,
+  color: Color = MaterialTheme.colors.primary,
+  strokeWidth: Dp = 9.dp,
+  backgroundColor: Color = PlayTheme.colors.progressIndicatorBg,
+  showProgress: MutableState<Boolean>
 ) {
+  val state = getAppRatingBarState(
+      progress = progress, durationMillis = durationMillis, showProgress = showProgress.value
+  )
   Canvas(
       modifier
-          .progressSemantics(state[appRatingBar])
+          .progressSemantics(state.value)
           .size(280.dp, strokeWidth)
   ) {
     drawRoundRect(
-        color = backgroundColor, cornerRadius = CornerRadius(15f, 15f), size = Size(size.width, size.height)
+        color = backgroundColor,
+        cornerRadius = CornerRadius(15f, 15f),
+        size = Size(size.width, size.height)
     )
     drawRoundRect(
         color = color, cornerRadius = CornerRadius(15f, 15f),
-        size = Size(state[appRatingBar] * size.width, size.height)
+        size = Size(state.value * size.width, size.height)
     )
   }
 }
 
 @Composable
 fun StarRatings(
-    modifier: Modifier = Modifier,
-    ratings: Double = 3.5,
-    sizeInDp: Dp = 15.dp
+  modifier: Modifier = Modifier,
+  ratings: Double = 3.5,
+  sizeInDp: Dp = 15.dp
 ) {
   Box(modifier = modifier) {
     Row {
@@ -80,17 +91,17 @@ fun Star(sizeInDp: Dp) {
       modifier = Modifier
           .height(sizeInDp)
           .width(sizeInDp),
-    contentDescription = null
+      contentDescription = null
   )
 }
 
 @Composable
 fun StarFilled(sizeInDp: Dp) {
   Icon(
-    imageVector = Icons.Filled.Star, tint = PlayTheme.colors.accent,
+      imageVector = Icons.Filled.Star, tint = PlayTheme.colors.accent,
       modifier = Modifier
           .height(sizeInDp)
           .width(sizeInDp),
-    contentDescription = null
+      contentDescription = null
   )
 }
