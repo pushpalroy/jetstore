@@ -11,6 +11,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
 import com.example.play.data.AppRepo
 import com.example.play.theme.PlayTheme
 import com.example.play.ui.apps.applist.ForYouLayout
@@ -27,7 +28,7 @@ import com.google.accompanist.insets.navigationBarsPadding
 
 @Composable
 fun Games(
-  onAppClick: (Long) -> Unit,
+  navController: NavHostController?,
   modifier: Modifier = Modifier,
   appsCategories: List<AppsCategory> = listOf(
     ForYou, TopCharts, Categories, EditorsChoice, EarlyAccess
@@ -52,9 +53,9 @@ fun Games(
       }
       Crossfade(currentCategory, animationSpec = tweenSpec) { category ->
         when (category) {
-          ForYou -> ForYouLayout(forYouData, onAppClick)
-          TopCharts -> TopChartsLayout(topChartsData, onAppClick)
-          else -> ForYouLayout(forYouData, onAppClick)
+          ForYou -> ForYouLayout(forYouData, navController = navController)
+          TopCharts -> TopChartsLayout(topChartsData, navController = navController)
+          else -> ForYouLayout(forYouData, navController = navController)
         }
       }
     }
@@ -65,7 +66,7 @@ fun Games(
 @Composable
 fun GamesPreview() {
   PlayTheme {
-    Games(onAppClick = {})
+    Games(navController = null)
   }
 }
 
@@ -73,6 +74,6 @@ fun GamesPreview() {
 @Composable
 fun GamesDarkPreview() {
   PlayTheme(darkTheme = true) {
-    Games(onAppClick = {})
+    Games(navController = null)
   }
 }

@@ -15,6 +15,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
 import com.example.play.R
 import com.example.play.theme.PlayTheme
 import com.example.play.ui.apps.Apps
@@ -25,7 +26,9 @@ import com.example.play.ui.games.Games
 import com.example.play.ui.movies.Movies
 
 @Composable
-fun Main(onAppSelected: (Long) -> Unit) {
+fun Main(
+  navController: NavHostController?
+) {
   val (currentSection, setCurrentSection) = rememberSaveable {
     mutableStateOf(NavSections.Games)
   }
@@ -46,11 +49,11 @@ fun Main(onAppSelected: (Long) -> Unit) {
       Crossfade(currentSection) { section ->
         when (section) {
           NavSections.Games -> Games(
-            onAppClick = onAppSelected,
+            navController = navController,
             modifier = modifier
           )
           NavSections.Apps -> Apps(
-            onAppClick = onAppSelected,
+            navController = navController,
             modifier = modifier
           )
           NavSections.Movies -> Movies(
@@ -92,7 +95,7 @@ enum class NavSections(
 private fun PlayBottomNavPreview() {
   PlayTheme {
     Main(
-      onAppSelected = {}
+      navController = null
     )
   }
 }

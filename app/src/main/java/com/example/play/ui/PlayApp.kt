@@ -1,42 +1,47 @@
 package com.example.play.ui
 
 import androidx.activity.OnBackPressedDispatcher
-import androidx.compose.animation.Crossfade
-import androidx.compose.animation.core.SpringSpec
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.navArgument
+import androidx.navigation.compose.rememberNavController
 import com.example.play.theme.PlayTheme
-import com.example.play.ui.Destination.Home
 import com.example.play.ui.details.AppDetails
 import com.example.play.ui.main.Main
-import com.example.play.utils.Navigator
 import com.google.accompanist.insets.ProvideWindowInsets
 
 @Composable
-fun PlayApp(backDispatcher: OnBackPressedDispatcher) {
-  val navigator: Navigator<Destination> =
-    rememberSaveable(
-      saver = Navigator.saver(backDispatcher)
-    ) {
-      Navigator(Home, backDispatcher)
-    }
-  val actions = remember(navigator) { Actions(navigator) }
+fun PlayApp() {
+
+  /*
+   * NavController is stateful and keeps track of the back stack of composables
+   * that make up the screens in your app and the state of each screen.
+   */
+  val navController = rememberNavController()
 
   ProvideWindowInsets {
     PlayTheme {
-      val springSpec = remember {
-        SpringSpec<Float>(
-          stiffness = 200f,
-          dampingRatio = 0.4f
-        )
-      }
-      Crossfade(navigator.current, animationSpec = springSpec) { destination ->
-        when (destination) {
-          Home -> Main(actions.selectApp)
-          is Destination.AppDetail -> AppDetails(
-            appId = destination.appId,
-            backPress = actions.upPress
+      /*
+       * The NavHost links the NavController with a navigation graph that specifies the composable destinations
+       * that you should be able to navigate between. As you navigate between composables, the content of the NavHost
+       * is automatically recomposed. Each composable destination in your navigation graph is associated with a route.
+       */
+      NavHost(
+        navController = navController,
+        startDestination = "main"
+      ) {
+        composable("main") {
+          Main(navController = navController)
+        }
+        composable(
+          "details/{appId}",
+          arguments = listOf(navArgument("appId") { type = NavType.LongType })
+        ) { backStackEntry ->
+          AppDetails(
+            backStackEntry.arguments?.getLong("appId"),
+            navController = navController
           )
         }
       }

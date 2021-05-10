@@ -24,6 +24,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.play.data.App
 import com.example.play.data.AppCollection
 import com.example.play.data.AppRepo
@@ -34,7 +35,7 @@ import com.google.accompanist.insets.navigationBarsPadding
 @Composable
 fun ForYouLayout(
   data: List<AppCollection>,
-  onAppClick: (Long) -> Unit,
+  navController: NavHostController?,
   modifier: Modifier = Modifier
 ) {
   Spacer(
@@ -46,7 +47,7 @@ fun ForYouLayout(
       key(appCollection.id) {
         ForYou(
           appCollection = appCollection,
-          onAppClick = onAppClick,
+          navController = navController
         )
       }
     }
@@ -61,7 +62,7 @@ fun ForYouLayout(
 @Composable
 fun ForYou(
   appCollection: AppCollection,
-  onAppClick: (Long) -> Unit,
+  navController: NavHostController?,
   modifier: Modifier = Modifier,
   featured: Boolean = true
 ) {
@@ -95,9 +96,9 @@ fun ForYou(
       }
     }
     if (featured && appCollection.type == CollectionType.Featured) {
-      FeaturedAppsList(appCollection.apps, onAppClick)
+      FeaturedAppsList(appCollection.apps, navController)
     } else {
-      AppsList(appCollection.apps, onAppClick)
+      AppsList(appCollection.apps, navController)
     }
   }
 }
@@ -105,11 +106,11 @@ fun ForYou(
 @Composable
 private fun FeaturedAppsList(
   apps: List<App>,
-  onAppClick: (Long) -> Unit
+  navController: NavHostController?
 ) {
   LazyRow(modifier = Modifier.padding(start = 16.dp)) {
     items(apps) { app ->
-      PlayFeaturedAppItem(app, onAppClick)
+      PlayFeaturedAppItem(app, navController = navController)
       Spacer(modifier = Modifier.width(1.dp))
     }
   }
@@ -118,11 +119,11 @@ private fun FeaturedAppsList(
 @Composable
 private fun AppsList(
   apps: List<App>,
-  onAppClick: (Long) -> Unit
+  navController: NavHostController?
 ) {
   LazyRow(modifier = Modifier.padding(start = 16.dp)) {
     items(apps) { app ->
-      AppItem(app, onAppClick)
+      AppItem(app, navController)
       Spacer(modifier = Modifier.width(1.dp))
     }
   }
@@ -132,7 +133,7 @@ private fun AppsList(
 @Composable
 fun ForYouListPreview() {
   PlayTheme {
-    ForYouLayout(data = AppRepo.getApps(), onAppClick = {})
+    ForYouLayout(data = AppRepo.getApps(), navController = null)
   }
 }
 
@@ -140,6 +141,6 @@ fun ForYouListPreview() {
 @Composable
 fun ForYouListDarkPreview() {
   PlayTheme(darkTheme = true) {
-    ForYouLayout(data = AppRepo.getApps(), onAppClick = {})
+    ForYouLayout(data = AppRepo.getApps(), navController = null)
   }
 }

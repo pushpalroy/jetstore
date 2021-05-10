@@ -18,11 +18,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.style.TextOverflow.Ellipsis
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.play.R.drawable
 import com.example.play.data.App
 import com.example.play.data.AppRepo
 import com.example.play.theme.PlayTheme
@@ -147,9 +145,9 @@ fun Stats(app: App) {
 private fun StatsPreview() {
   PlayTheme {
     PlaySurface {
-      Stats(
-        AppRepo.getApp(1L)
-      )
+      AppRepo.getApp(1L)?.let { safeApp ->
+        Stats(safeApp)
+      }
     }
   }
 }
@@ -159,9 +157,9 @@ private fun StatsPreview() {
 private fun StatsDarkPreview() {
   PlayTheme(darkTheme = true) {
     PlaySurface {
-      Stats(
-        AppRepo.getApp(1L)
-      )
+      AppRepo.getApp(1L)?.let { safeApp ->
+        Stats(safeApp)
+      }
     }
   }
 }

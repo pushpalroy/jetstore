@@ -14,11 +14,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.example.play.theme.PlayTheme
 import com.google.accompanist.insets.statusBarsPadding
 
 @Composable
-fun AppBarLayout(upPress: () -> Unit) {
+fun AppBarLayout(
+  navController: NavHostController?
+) {
   Row(
     modifier = Modifier
       .fillMaxWidth()
@@ -27,7 +30,8 @@ fun AppBarLayout(upPress: () -> Unit) {
       .size(24.dp)
   ) {
     BackButton(
-      modifier = Modifier.weight(1f), upPress = upPress
+      modifier = Modifier.weight(1f),
+      navController = navController
     )
     SearchButton(Modifier)
     MoreButton(Modifier)
@@ -37,11 +41,11 @@ fun AppBarLayout(upPress: () -> Unit) {
 @Composable
 fun BackButton(
   modifier: Modifier,
-  upPress: () -> Unit
+  navController: NavHostController?
 ) {
   PlaySurface(modifier = modifier) {
     IconButton(
-      onClick = upPress
+      onClick = { navController?.popBackStack() }
     ) {
       Icon(
         imageVector = Outlined.ArrowBack,
@@ -86,7 +90,7 @@ private fun BackButtonPreview() {
   PlayTheme {
     PlaySurface {
       AppBarLayout(
-        upPress = {}
+        navController = null
       )
     }
   }
@@ -98,7 +102,7 @@ private fun BackButtonDarkPreview() {
   PlayTheme(darkTheme = true) {
     PlaySurface {
       AppBarLayout(
-        upPress = {}
+        navController = null
       )
     }
   }

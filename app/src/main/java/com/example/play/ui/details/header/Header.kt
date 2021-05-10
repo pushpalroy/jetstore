@@ -96,12 +96,14 @@ fun Header(
 private fun HeaderPreview() {
   PlayTheme {
     PlaySurface {
-      Header(
-        app = AppRepo.getApp(1L),
-        showProgress = remember {
-          mutableStateOf(true)
-        }
-      )
+      AppRepo.getApp(1L)?.let { safeApp ->
+        Header(
+          app = safeApp,
+          showProgress = remember {
+            mutableStateOf(true)
+          }
+        )
+      }
     }
   }
 }
@@ -111,12 +113,14 @@ private fun HeaderPreview() {
 private fun HeaderDarkPreview() {
   PlayTheme(darkTheme = true) {
     PlaySurface {
-      Header(
-        app = AppRepo.getApp(1L),
-        showProgress = remember {
-          mutableStateOf(false)
-        }
-      )
+      AppRepo.getApp(1L)?.let { safeApp ->
+        Header(
+          app = safeApp,
+          showProgress = remember {
+            mutableStateOf(false)
+          }
+        )
+      }
     }
   }
 }

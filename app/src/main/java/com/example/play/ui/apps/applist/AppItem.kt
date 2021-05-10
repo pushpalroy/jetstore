@@ -1,6 +1,5 @@
 package com.example.play.ui.apps.applist
 
-import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -28,6 +27,8 @@ import androidx.compose.ui.text.style.TextOverflow.Ellipsis
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.navigate
 import com.example.play.R.drawable
 import com.example.play.data.App
 import com.example.play.data.AppRepo
@@ -40,7 +41,7 @@ import com.example.play.ui.components.RoundedCornerAppImage
 @Composable
 fun PlayFeaturedAppItem(
   app: App,
-  onAppClick: (Long) -> Unit,
+  navController: NavHostController?,
   modifier: Modifier = Modifier
 ) {
   PlayCard(
@@ -55,7 +56,9 @@ fun PlayFeaturedAppItem(
   ) {
     Column(
       modifier = Modifier
-        .clickable(onClick = { onAppClick(app.id) })
+        .clickable(onClick = {
+          navController?.navigate("details/${app.id}")
+        })
         .fillMaxSize()
     ) {
       RoundedCornerAppImage(
@@ -174,19 +177,9 @@ fun PlayFeaturedAppItem(
 @Composable
 fun AppItem(
   app: App,
-  onAppClick: (Long) -> Unit,
+  navController: NavHostController?,
   modifier: Modifier = Modifier
 ) {
-//  val currentState by remember { mutableStateOf(EXPLODED) }
-//  val (appIconExplodeState, updateAppIconExplode) = remember { mutableStateOf(IDLE) }
-//  val appIconExplodeTransitionDef = getAppIconExplodeTransitionDefinition()
-//  val toState = IDLE
-//  val state = transition(
-//      definition = appIconExplodeTransitionDef,
-//      initState = appIconExplodeState,
-//      toState = toState
-//  )
-
   PlayCard(
     elevation = 0.dp,
     shape = MaterialTheme.shapes.large,
@@ -200,8 +193,7 @@ fun AppItem(
     Column(
       modifier = Modifier
         .clickable(onClick = {
-          //updateTransition(currentState)
-          onAppClick(app.id)
+          navController?.navigate("details/${app.id}")
         })
         .fillMaxSize()
     ) {
@@ -215,7 +207,6 @@ fun AppItem(
           modifier = Modifier
             .size(120.dp)
             .align(Alignment.TopStart)
-            //.padding(state[appIconExplodePadding]),
             .padding(8.dp),
           cornerPercent = 20
         )
@@ -253,13 +244,15 @@ fun AppItem(
 @Composable
 fun TopChartAppItem(
   app: App,
-  onAppClick: (Long) -> Unit,
+  navController: NavHostController?,
   modifier: Modifier = Modifier
 ) {
   PlaySurface(
     modifier = modifier
       .fillMaxWidth()
-      .clickable(onClick = { onAppClick(app.id) })
+      .clickable(onClick = {
+        navController?.navigate("details/${app.id}")
+      })
   ) {
     Row(modifier = Modifier.padding(start = 16.dp, end = 8.dp, top = 4.dp, bottom = 4.dp)) {
       Text(
@@ -385,7 +378,7 @@ fun PlayFeaturedAppItemPreview() {
     val app = apps.first()
     PlayFeaturedAppItem(
       app = app,
-      onAppClick = { }
+      navController = null
     )
   }
 }
@@ -397,7 +390,7 @@ fun PlayAppItemPreview() {
     val app = apps.first()
     AppItem(
       app = app,
-      onAppClick = { }
+      navController = null
     )
   }
 }
@@ -407,9 +400,11 @@ fun PlayAppItemPreview() {
 fun TopChartAppItemPreview() {
   PlayTheme {
     val app = AppRepo.getApp(2L)
-    TopChartAppItem(
-      app = app,
-      onAppClick = { }
-    )
+    app?.let { safeApp ->
+      TopChartAppItem(
+        app = safeApp,
+        navController = null
+      )
+    }
   }
 }

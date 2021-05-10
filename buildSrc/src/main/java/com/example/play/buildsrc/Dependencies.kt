@@ -56,6 +56,7 @@ object Libs {
       const val animation = "androidx.compose.animation:animation:${version}"
       const val tooling = "androidx.compose.ui:ui-tooling:${version}"
       const val iconsExtended = "androidx.compose.material:material-icons-extended:$version"
+      const val navigation = "androidx.navigation:navigation-compose:1.0.0-alpha10"
     }
 
     object Lifecycle {

@@ -30,7 +30,7 @@ enum class CollectionType {
  */
 object AppRepo {
   fun getApps() = appCollections
-  fun getApp(appId: Long) = products.find { it.id == appId }!!
+  fun getApp(appId: Long?) = products.find { it.id == appId }
   fun getForYouApps(): List<AppCollection> = forYouAppsCollection
   fun getTopChartsApps(): List<App> = topChartsAppCollection
 

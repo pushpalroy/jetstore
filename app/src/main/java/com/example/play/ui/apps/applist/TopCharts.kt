@@ -16,6 +16,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.play.data.App
 import com.example.play.data.AppRepo
 import com.example.play.theme.PlayTheme
@@ -25,7 +26,7 @@ import com.example.play.ui.components.Switch
 @Composable
 fun TopChartsLayout(
   appCollection: List<App>,
-  onAppClick: (Long) -> Unit,
+  navController: NavHostController?,
   modifier: Modifier = Modifier
 ) {
   val (filterSelected, setFilterSelected: (Int) -> Unit) = remember { mutableStateOf(1) }
@@ -35,7 +36,7 @@ fun TopChartsLayout(
       appCollection.filter { app ->
         app.filterCategory == AppRepo.getFilter(filterSelected)?.name
       },
-      onAppClick
+      navController
     )
   }
 }
@@ -74,12 +75,12 @@ private fun TopChartsHeader(
 @Composable
 private fun TopChartAppsList(
   apps: List<App>,
-  onAppClick: (Long) -> Unit,
+  navController: NavHostController?,
   modifier: Modifier = Modifier
 ) {
   LazyColumn(modifier = modifier) {
     items(apps) { app ->
-      TopChartAppItem(app, onAppClick)
+      TopChartAppItem(app, navController = navController)
     }
   }
 }
@@ -88,8 +89,10 @@ private fun TopChartAppsList(
 @Composable
 fun TopChartsPreview() {
   PlayTheme {
-    TopChartsLayout(appCollection = AppRepo.getTopChartsApps(),
-      onAppClick = {})
+    TopChartsLayout(
+      appCollection = AppRepo.getTopChartsApps(),
+      navController = null
+    )
   }
 }
 
@@ -97,7 +100,9 @@ fun TopChartsPreview() {
 @Composable
 fun TopChartsDarkPreview() {
   PlayTheme(darkTheme = true) {
-    TopChartsLayout(appCollection = AppRepo.getTopChartsApps(),
-      onAppClick = {})
+    TopChartsLayout(
+      appCollection = AppRepo.getTopChartsApps(),
+      navController = null
+    )
   }
 }

@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     setContent {
       val systemUiController = remember { SystemUiController(window) }
       CompositionLocalProvider(LocalSysUiController provides systemUiController) {
-        PlayApp(onBackPressedDispatcher)
+        PlayApp()
       }
     }
   }
