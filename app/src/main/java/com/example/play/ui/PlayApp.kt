@@ -22,6 +22,7 @@ fun PlayApp(backDispatcher: OnBackPressedDispatcher) {
       Navigator(Home, backDispatcher)
     }
   val actions = remember(navigator) { Actions(navigator) }
+
   ProvideWindowInsets {
     PlayTheme {
       val springSpec = remember {

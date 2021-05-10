@@ -70,12 +70,11 @@ private fun Color.withElevation(elevation: Dp): Color {
   return foreground.compositeOver(this)
 }
 
-// TODO: b/145802792 - clarify this algorithm
 /**
  * @return the alpha-modified [Color.White] to overlay on top of the surface color to produce
  * the resultant color.
  */
 private fun calculateForeground(elevation: Dp): Color {
-  val alpha = ((4.5f * ln(elevation.value + 1)) + 2f) / 100f
+  val alpha = ((4.5f * ln(elevation.value + 1)) + 2f) / 20f
   return Color.White.copy(alpha = alpha)
 }

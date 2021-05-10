@@ -1,5 +1,5 @@
 # jetstore
-Building a Google Playstore clone with animations in Android using Jetpack compose.
+A clone of Google PlayStore app with animations in Android built using Jetpack compose.
 
 ### This sample app showcases the following:
 
@@ -9,10 +9,14 @@ Building a Google Playstore clone with animations in Android using Jetpack compo
  * Horizontal and vertical scrollable list
  * Animations using transitions
 
-### Screenshots
-<img src="screenshots/demo.gif" width=240 /> <img src="screenshots/screenshot_4.png" width=240 /> <img src="screenshots/screenshot_5.png" width=240 />
-<br>
-<img src="screenshots/screenshot_6.png" width=240 /> <img src="screenshots/screenshot_2.png" width=240 /> <img src="screenshots/screenshot_3.png" width=240 />
+### Screens
+Demo UI             |  Games (Top Chart) | App Details 
+:-------------------------:|:-------------------------: | :-------------------------: 
+<img src="screenshots/demo.gif" width=240 />  |  <img src="screenshots/screenshot_4.png" width=240 /> | <img src="screenshots/screenshot_5.png" width=240 /> 
+
+App Reviews             |  Apps (Dark) | Movies (Dark)
+:-------------------------:|:-------------------------: | :-------------------------: 
+<img src="screenshots/screenshot_6.png" width=240 />  |  <img src="screenshots/screenshot_2.png" width=240 /> | <img src="screenshots/screenshot_3.png" width=240 />
 
 ### Status: 🚧 In progress
 <p>JetStore is still under development and some screens are yet to be designed.</p>
@@ -22,10 +26,15 @@ Building a Google Playstore clone with animations in Android using Jetpack compo
 * [Jetpack Compose]
 * [Accompanist]
 * [Coroutines]
+* [Lottie Compose]
 
 [Jetpack Compose]: https://developer.android.com/jetpack/compose
 [Accompanist]: https://github.com/chrisbanes/accompanist
 [Coroutines]: https://developer.android.com/kotlin/coroutines
+[Lottie Compose]: https://github.com/airbnb/lottie
+
+### How to get started
+Please get Android Studio Arctic Fox 2020.3.1 Canary 15 or above to build this project from [from here](https://developer.android.com/studio/preview/).
 
 ### License
 ```
