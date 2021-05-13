@@ -40,7 +40,6 @@ import androidx.compose.ui.util.lerp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.KEY_ROUTE
 import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.navigate
 import com.example.play.anim.getBottomNavTintState
 import com.example.play.anim.getProgressState
 import com.example.play.theme.PlayTheme
@@ -59,6 +58,7 @@ private val BottomNavigationItemPadding = Modifier.padding(horizontal = 16.dp, v
 fun PlayBottomNav(
   navController: NavHostController,
   tabs: Array<BottomNavTabs>,
+  onTabSelected: (String, String) -> Unit,
   color: Color = PlayTheme.colors.iconPrimary,
   contentColor: Color = PlayTheme.colors.iconInteractive
 ) {
@@ -101,17 +101,7 @@ fun PlayBottomNav(
                 )
               },
               selected = selected,
-              onSelected = {
-                if (tab.route != currentRoute) {
-                  navController.navigate(tab.route) {
-                    // Pop up to the start destination of the graph to avoid building up a large
-                    // stack of destinations on the back stack as users select items
-                    popUpTo = navController.graph.startDestination
-                    // Avoid multiple copies of the same destination when re-selecting the same item
-                    launchSingleTop = true
-                  }
-                }
-              },
+              onSelected = { onTabSelected(tab.route, currentRoute) },
               animSpec = springSpec,
               modifier = BottomNavigationItemPadding
                 .clip(BottomNavIndicatorShape)

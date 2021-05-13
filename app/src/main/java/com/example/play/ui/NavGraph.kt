@@ -24,7 +24,6 @@ import androidx.compose.material.icons.outlined.Book
 import androidx.compose.material.icons.outlined.Games
 import androidx.compose.material.icons.outlined.Movie
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.lifecycle.Lifecycle
@@ -69,11 +68,10 @@ fun NavGraph(
   modifier: Modifier = Modifier,
   finishActivity: () -> Unit = {},
   navController: NavHostController = rememberNavController(),
-  startDestination: String = MainDestinations.MAIN_ROUTE
+  actions: MainActions,
+  startDestination: String = MainDestinations.MAIN_ROUTE,
+  shouldShowAppBar: (Boolean) -> Unit
 ) {
-
-  val actions = remember(navController) { MainActions(navController) }
-
   NavHost(
     navController = navController,
     startDestination = startDestination
@@ -82,11 +80,9 @@ fun NavGraph(
     /*
      * Add the PlayApp composable to the NavGraphBuilder
      */
-    composable(MainDestinations.MAIN_ROUTE) {
-      // Intercept back in Main: make it finish the activity
-      BackHandler {
-        finishActivity()
-      }
+    composable(
+      route = MainDestinations.MAIN_ROUTE
+    ) {
       PlayApp { finishActivity() }
     }
 
@@ -97,6 +93,11 @@ fun NavGraph(
       route = "${MainDestinations.APP_DETAILS_ROUTE}/{${MainDestinations.APP_ID_KEY}}",
       arguments = listOf(navArgument(MainDestinations.APP_ID_KEY) { type = NavType.LongType })
     ) { backStackEntry: NavBackStackEntry ->
+      // Intercept back in App Details
+      BackHandler {
+        shouldShowAppBar(true)
+        navController.navigateUp()
+      }
       AppDetails(
         backStackEntry.arguments?.getLong(MainDestinations.APP_ID_KEY),
         upPress = { actions.upPress(backStackEntry) }
@@ -121,16 +122,36 @@ fun NavGraph(
 /**
  * Models the navigation actions in the app.
  */
-class MainActions(navController: NavHostController) {
+class MainActions(
+  navController: NavHostController,
+  shouldShowAppBar: (Boolean) -> Unit
+) {
   val openAppDetails = { appId: Long, from: NavBackStackEntry ->
     // In order to discard duplicated navigation events, we check the Lifecycle
     if (from.lifecycleIsResumed()) {
-      navController.navigate(route = "${MainDestinations.APP_DETAILS_ROUTE}/$appId")
+      shouldShowAppBar(false)
+      navController.navigate(route = "${MainDestinations.APP_DETAILS_ROUTE}/$appId") {
+        //popUpTo = navController.graph.startDestination
+        launchSingleTop = true
+      }
+    }
+  }
+  val switchAppCategory = { tabRoute: String, currentRoute: String ->
+    //shouldShowAppBar(true)
+    if (tabRoute != currentRoute) {
+      navController.navigate(route = tabRoute) {
+        // Pop up to the start destination of the graph to avoid building up a large
+        // stack of destinations on the back stack as users select items
+        popUpTo = navController.graph.startDestination
+        // Avoid multiple copies of the same destination when re-selecting the same item
+        launchSingleTop = true
+      }
     }
   }
   val upPress: (rom: NavBackStackEntry) -> Unit = { from ->
     // In order to discard duplicated navigation events, we check the Lifecycle
     if (from.lifecycleIsResumed()) {
+      shouldShowAppBar(true)
       navController.navigateUp()
     }
   }
