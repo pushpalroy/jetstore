@@ -24,7 +24,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavHostController
 import com.example.play.data.App
 import com.example.play.data.AppCollection
 import com.example.play.data.AppRepo
@@ -35,7 +34,7 @@ import com.google.accompanist.insets.navigationBarsPadding
 @Composable
 fun ForYouLayout(
   data: List<AppCollection>,
-  navController: NavHostController?,
+  onAppSelected: (Long) -> Unit,
   modifier: Modifier = Modifier
 ) {
   Spacer(
@@ -47,7 +46,7 @@ fun ForYouLayout(
       key(appCollection.id) {
         ForYou(
           appCollection = appCollection,
-          navController = navController
+          onAppSelected = onAppSelected
         )
       }
     }
@@ -62,7 +61,7 @@ fun ForYouLayout(
 @Composable
 fun ForYou(
   appCollection: AppCollection,
-  navController: NavHostController?,
+  onAppSelected: (Long) -> Unit,
   modifier: Modifier = Modifier,
   featured: Boolean = true
 ) {
@@ -96,9 +95,9 @@ fun ForYou(
       }
     }
     if (featured && appCollection.type == CollectionType.Featured) {
-      FeaturedAppsList(appCollection.apps, navController)
+      FeaturedAppsList(appCollection.apps, onAppSelected)
     } else {
-      AppsList(appCollection.apps, navController)
+      AppsList(appCollection.apps, onAppSelected)
     }
   }
 }
@@ -106,11 +105,11 @@ fun ForYou(
 @Composable
 private fun FeaturedAppsList(
   apps: List<App>,
-  navController: NavHostController?
+  onAppSelected: (Long) -> Unit
 ) {
   LazyRow(modifier = Modifier.padding(start = 16.dp)) {
     items(apps) { app ->
-      PlayFeaturedAppItem(app, navController = navController)
+      PlayFeaturedAppItem(app, onAppSelected = onAppSelected)
       Spacer(modifier = Modifier.width(1.dp))
     }
   }
@@ -119,11 +118,11 @@ private fun FeaturedAppsList(
 @Composable
 private fun AppsList(
   apps: List<App>,
-  navController: NavHostController?
+  onAppSelected: (Long) -> Unit
 ) {
   LazyRow(modifier = Modifier.padding(start = 16.dp)) {
     items(apps) { app ->
-      AppItem(app, navController)
+      AppItem(app = app, onAppSelected = onAppSelected)
       Spacer(modifier = Modifier.width(1.dp))
     }
   }
@@ -133,7 +132,7 @@ private fun AppsList(
 @Composable
 fun ForYouListPreview() {
   PlayTheme {
-    ForYouLayout(data = AppRepo.getApps(), navController = null)
+    ForYouLayout(data = AppRepo.getApps(), onAppSelected = {})
   }
 }
 
@@ -141,6 +140,6 @@ fun ForYouListPreview() {
 @Composable
 fun ForYouListDarkPreview() {
   PlayTheme(darkTheme = true) {
-    ForYouLayout(data = AppRepo.getApps(), navController = null)
+    ForYouLayout(data = AppRepo.getApps(), onAppSelected = {})
   }
 }

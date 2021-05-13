@@ -11,28 +11,25 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavHostController
 import com.example.play.data.AppRepo
 import com.example.play.theme.PlayTheme
+import com.example.play.ui.AppsCategory
+import com.example.play.ui.AppsCategory.Categories
+import com.example.play.ui.AppsCategory.EarlyAccess
+import com.example.play.ui.AppsCategory.EditorsChoice
+import com.example.play.ui.AppsCategory.ForYou
+import com.example.play.ui.AppsCategory.TopCharts
 import com.example.play.ui.apps.applist.ForYouLayout
 import com.example.play.ui.apps.applist.TopChartsLayout
 import com.example.play.ui.components.PlaySurface
-import com.example.play.ui.main.AppsCategory
-import com.example.play.ui.main.AppsCategory.Categories
-import com.example.play.ui.main.AppsCategory.EarlyAccess
-import com.example.play.ui.main.AppsCategory.EditorsChoice
-import com.example.play.ui.main.AppsCategory.ForYou
-import com.example.play.ui.main.AppsCategory.TopCharts
-import com.example.play.ui.main.AppsCategoryTabs
+import com.example.play.ui.AppsCategoryTabs
 import com.google.accompanist.insets.navigationBarsPadding
 
 @Composable
 fun Games(
-  navController: NavHostController?,
+  onAppSelected: (Long) -> Unit,
   modifier: Modifier = Modifier,
-  appsCategories: List<AppsCategory> = listOf(
-    ForYou, TopCharts, Categories, EditorsChoice, EarlyAccess
-  )
+  appsCategories: List<AppsCategory> = getGamesCategoriesList()
 ) {
   val forYouData = remember { AppRepo.getForYouGames() }
   val topChartsData = remember { AppRepo.getTopChartsGames() }
@@ -45,28 +42,35 @@ fun Games(
         selectedCategory = currentCategory,
         onCategorySelected = setCurrentCategory
       )
-      val tweenSpec = remember {
-        TweenSpec<Float>(
-          durationMillis = 600,
-          easing = LinearOutSlowInEasing
-        )
-      }
+      val tweenSpec = remember { getAnimSpec() }
+
       Crossfade(currentCategory, animationSpec = tweenSpec) { category ->
         when (category) {
-          ForYou -> ForYouLayout(forYouData, navController = navController)
-          TopCharts -> TopChartsLayout(topChartsData, navController = navController)
-          else -> ForYouLayout(forYouData, navController = navController)
+          ForYou -> ForYouLayout(forYouData, onAppSelected = onAppSelected)
+          TopCharts -> TopChartsLayout(topChartsData, onAppSelected = onAppSelected)
+          else -> ForYouLayout(forYouData, onAppSelected = onAppSelected)
         }
       }
     }
   }
 }
 
+private fun getAnimSpec(): TweenSpec<Float> {
+  return TweenSpec(
+    durationMillis = 600,
+    easing = LinearOutSlowInEasing
+  )
+}
+
+private fun getGamesCategoriesList() = listOf(
+  ForYou, TopCharts, Categories, EditorsChoice, EarlyAccess
+)
+
 @Preview("Games")
 @Composable
 fun GamesPreview() {
   PlayTheme {
-    Games(navController = null)
+    Games(onAppSelected = {})
   }
 }
 
@@ -74,6 +78,6 @@ fun GamesPreview() {
 @Composable
 fun GamesDarkPreview() {
   PlayTheme(darkTheme = true) {
-    Games(navController = null)
+    Games(onAppSelected = {})
   }
 }

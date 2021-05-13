@@ -1,19 +1,18 @@
 package com.example.play.ui
 
-import androidx.activity.OnBackPressedDispatcher
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavType
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.navArgument
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import com.example.play.theme.PlayTheme
-import com.example.play.ui.details.AppDetails
-import com.example.play.ui.main.Main
+import com.example.play.ui.components.PlayScaffold
+import com.example.play.ui.components.ToolBar
 import com.google.accompanist.insets.ProvideWindowInsets
 
 @Composable
-fun PlayApp() {
+fun PlayApp(finishActivity: () -> Unit) {
 
   /*
    * NavController is stateful and keeps track of the back stack of composables
@@ -23,28 +22,25 @@ fun PlayApp() {
 
   ProvideWindowInsets {
     PlayTheme {
-      /*
-       * The NavHost links the NavController with a navigation graph that specifies the composable destinations
-       * that you should be able to navigate between. As you navigate between composables, the content of the NavHost
-       * is automatically recomposed. Each composable destination in your navigation graph is associated with a route.
-       */
-      NavHost(
-        navController = navController,
-        startDestination = "main"
-      ) {
-        composable("main") {
-          Main(navController = navController)
-        }
-        composable(
-          "details/{appId}",
-          arguments = listOf(navArgument("appId") { type = NavType.LongType })
-        ) { backStackEntry ->
-          AppDetails(
-            backStackEntry.arguments?.getLong("appId"),
-            navController = navController
-          )
-        }
+      val tabItems = remember { BottomNavTabs.values() }
+      PlayScaffold(
+        topBar = { ToolBar() },
+        bottomBar = { PlayBottomNav(navController = navController, tabs = tabItems) }
+      ) { innerPaddingModifier ->
+        NavGraph(
+          finishActivity = finishActivity,
+          navController = navController,
+          modifier = Modifier.padding(innerPaddingModifier),
+        )
       }
     }
+  }
+}
+
+@Preview
+@Composable
+private fun PlayAppPreview() {
+  PlayTheme {
+    PlayApp {}
   }
 }

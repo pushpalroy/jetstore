@@ -1,4 +1,4 @@
-package com.example.play.ui.main
+package com.example.play.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Spacer
@@ -21,13 +21,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.play.R
 import com.example.play.theme.PlayTheme
-import com.example.play.ui.main.AppsCategory.Categories
-import com.example.play.ui.main.AppsCategory.EarlyAccess
-import com.example.play.ui.main.AppsCategory.EditorsChoice
-import com.example.play.ui.main.AppsCategory.ForYou
-import com.example.play.ui.main.AppsCategory.TopCharts
-import com.example.play.ui.main.MoviesCategory.NewReleases
-import com.example.play.ui.main.MoviesCategory.TopSelling
+import com.example.play.ui.AppsCategory.Categories
+import com.example.play.ui.AppsCategory.EarlyAccess
+import com.example.play.ui.AppsCategory.EditorsChoice
+import com.example.play.ui.AppsCategory.ForYou
+import com.example.play.ui.AppsCategory.TopCharts
+import com.example.play.ui.MoviesCategory.NewReleases
+import com.example.play.ui.MoviesCategory.TopSelling
 
 @Composable
 fun AppsCategoryTabs(

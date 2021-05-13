@@ -10,7 +10,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
 import com.example.play.data.AppRepo
 import com.example.play.theme.PlayTheme
 import com.example.play.ui.components.AppBarLayout
@@ -25,7 +24,7 @@ import com.example.play.ui.details.stats.Stats
 @Composable
 fun AppDetails(
   appId: Long?,
-  navController: NavHostController?
+  upPress: () -> Unit
 ) {
   val app = remember(appId) { AppRepo.getApp(appId) }
   val isInstalling = remember { mutableStateOf(false) }
@@ -33,7 +32,7 @@ fun AppDetails(
   PlaySurface(
     modifier = Modifier.fillMaxSize()
   ) {
-    AppBarLayout(navController = navController)
+    AppBarLayout(upPress = upPress)
     LazyColumn(
       horizontalAlignment = Alignment.CenterHorizontally,
       modifier = Modifier
@@ -60,7 +59,7 @@ private fun AppDetailPreview() {
   PlayTheme {
     AppDetails(
       appId = 1L,
-      navController = null
+      upPress = {}
     )
   }
 }
@@ -71,7 +70,7 @@ private fun AppDetailDarkPreview() {
   PlayTheme(darkTheme = true) {
     AppDetails(
       appId = 1L,
-      navController = null
+      upPress = {}
     )
   }
 }

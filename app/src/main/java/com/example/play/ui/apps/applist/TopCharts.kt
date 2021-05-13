@@ -4,8 +4,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.Text
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -16,7 +16,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavHostController
 import com.example.play.data.App
 import com.example.play.data.AppRepo
 import com.example.play.theme.PlayTheme
@@ -26,7 +25,7 @@ import com.example.play.ui.components.Switch
 @Composable
 fun TopChartsLayout(
   appCollection: List<App>,
-  navController: NavHostController?,
+  onAppSelected: (Long) -> Unit,
   modifier: Modifier = Modifier
 ) {
   val (filterSelected, setFilterSelected: (Int) -> Unit) = remember { mutableStateOf(1) }
@@ -36,7 +35,7 @@ fun TopChartsLayout(
       appCollection.filter { app ->
         app.filterCategory == AppRepo.getFilter(filterSelected)?.name
       },
-      navController
+      onAppSelected = onAppSelected
     )
   }
 }
@@ -75,12 +74,12 @@ private fun TopChartsHeader(
 @Composable
 private fun TopChartAppsList(
   apps: List<App>,
-  navController: NavHostController?,
+  onAppSelected: (Long) -> Unit,
   modifier: Modifier = Modifier
 ) {
   LazyColumn(modifier = modifier) {
     items(apps) { app ->
-      TopChartAppItem(app, navController = navController)
+      TopChartAppItem(app, onAppSelected = onAppSelected)
     }
   }
 }
@@ -91,7 +90,7 @@ fun TopChartsPreview() {
   PlayTheme {
     TopChartsLayout(
       appCollection = AppRepo.getTopChartsApps(),
-      navController = null
+      onAppSelected = {}
     )
   }
 }
@@ -102,7 +101,7 @@ fun TopChartsDarkPreview() {
   PlayTheme(darkTheme = true) {
     TopChartsLayout(
       appCollection = AppRepo.getTopChartsApps(),
-      navController = null
+      onAppSelected = {}
     )
   }
 }

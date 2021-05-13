@@ -1,4 +1,4 @@
-package com.example.play.ui.main
+package com.example.play.ui
 
 import androidx.annotation.FloatRange
 import androidx.compose.animation.core.Animatable
@@ -37,6 +37,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.KEY_ROUTE
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.navigate
 import com.example.play.anim.getBottomNavTintState
 import com.example.play.anim.getProgressState
 import com.example.play.theme.PlayTheme
@@ -53,61 +57,69 @@ private val BottomNavigationItemPadding = Modifier.padding(horizontal = 16.dp, v
 // Bottom Navigation
 @Composable
 fun PlayBottomNav(
-  currentSection: NavSections,
-  onSectionSelected: (NavSections) -> Unit,
-  items: List<NavSections>,
+  navController: NavHostController,
+  tabs: Array<BottomNavTabs>,
   color: Color = PlayTheme.colors.iconPrimary,
   contentColor: Color = PlayTheme.colors.iconInteractive
 ) {
+  val navBackStackEntry by navController.currentBackStackEntryAsState()
+  val currentRoute = navBackStackEntry?.arguments?.getString(KEY_ROUTE) ?: BottomNavTabs.Games.route
+  val routes = remember { BottomNavTabs.values().map { it.route } }
+
   PlaySurface(
     color = color,
     contentColor = contentColor
   ) {
-    val springSpec = remember {
-      SpringSpec<Float>(
-        // Determined experimentally
-        stiffness = 200f,
-        dampingRatio = 0.9f
-      )
-    }
-    Column {
-      PlayBottomNavLayout(
-        selectedIndex = currentSection.ordinal,
-        itemCount = items.size,
-        indicator = { PLayBottomNavIndicator() },
-        animSpec = springSpec,
-        modifier = Modifier.navigationBarsPadding(left = false, right = false)
-      ) {
-        items.forEach { section ->
-          val selected = section == currentSection
-          val tint by getBottomNavTintState(selected = selected)
+    val springSpec = remember { getAnimSpec() }
+    if (currentRoute in routes) {
+      Column {
+        PlayBottomNavLayout(
+          selectedIndex = routes.indexOf(currentRoute),
+          itemCount = tabs.size,
+          indicator = { PLayBottomNavIndicator() },
+          animSpec = springSpec,
+          modifier = Modifier.navigationBarsPadding(left = false, right = false)
+        ) {
+          tabs.forEach { tab ->
+            val selected = currentRoute == tab.route
+            val tint by getBottomNavTintState(selected = selected)
 
-          PlayBottomNavigationItem(
-            icon = {
-              Icon(
-                imageVector = section.icon,
-                tint = tint,
-                contentDescription = null
-              )
-            },
-            text = {
-              Text(
-                text = stringResource(section.title).toUpperCase(Locale.ROOT),
-                color = tint,
-                style = MaterialTheme.typography.button,
-                maxLines = 1
-              )
-            },
-            selected = selected,
-            onSelected = { onSectionSelected(section) },
-            animSpec = springSpec,
-            modifier = BottomNavigationItemPadding
-              .clip(BottomNavIndicatorShape)
-          )
+            PlayBottomNavigationItem(
+              icon = {
+                Icon(
+                  imageVector = tab.icon,
+                  tint = tint,
+                  contentDescription = null
+                )
+              },
+              text = {
+                Text(
+                  text = stringResource(tab.title).toUpperCase(Locale.ROOT),
+                  color = tint,
+                  style = MaterialTheme.typography.button,
+                  maxLines = 1
+                )
+              },
+              selected = selected,
+              onSelected = {
+                if (tab.route != currentRoute) {
+                  navController.navigate(tab.route) {
+                    // Pop up to the start destination of the graph to avoid building up a large
+                    // stack of destinations on the back stack as users select items
+                    popUpTo = navController.graph.startDestination
+                    // Avoid multiple copies of the same destination when re-selecting the same item
+                    launchSingleTop = true
+                  }
+                }
+              },
+              animSpec = springSpec,
+              modifier = BottomNavigationItemPadding
+                .clip(BottomNavIndicatorShape)
+            )
+          }
         }
       }
     }
-
   }
 }
 
@@ -290,5 +302,13 @@ private fun PLayBottomNavIndicator(
       .fillMaxSize()
       .then(BottomNavigationItemPadding)
       .border(strokeWidth, color, shape)
+  )
+}
+
+private fun getAnimSpec(): SpringSpec<Float> {
+  return SpringSpec(
+    // Determined experimentally
+    stiffness = 200f,
+    dampingRatio = 0.9f
   )
 }

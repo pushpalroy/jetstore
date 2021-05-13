@@ -27,8 +27,6 @@ import androidx.compose.ui.text.style.TextOverflow.Ellipsis
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.navigate
 import com.example.play.R.drawable
 import com.example.play.data.App
 import com.example.play.data.AppRepo
@@ -41,7 +39,7 @@ import com.example.play.ui.components.RoundedCornerAppImage
 @Composable
 fun PlayFeaturedAppItem(
   app: App,
-  navController: NavHostController?,
+  onAppSelected: (Long) -> Unit,
   modifier: Modifier = Modifier
 ) {
   PlayCard(
@@ -57,7 +55,7 @@ fun PlayFeaturedAppItem(
     Column(
       modifier = Modifier
         .clickable(onClick = {
-          navController?.navigate("details/${app.id}")
+          onAppSelected(app.id)
         })
         .fillMaxSize()
     ) {
@@ -177,7 +175,8 @@ fun PlayFeaturedAppItem(
 @Composable
 fun AppItem(
   app: App,
-  navController: NavHostController?,
+  //navController: NavHostController?,
+  onAppSelected: (Long) -> Unit,
   modifier: Modifier = Modifier
 ) {
   PlayCard(
@@ -193,7 +192,7 @@ fun AppItem(
     Column(
       modifier = Modifier
         .clickable(onClick = {
-          navController?.navigate("details/${app.id}")
+          onAppSelected(app.id)
         })
         .fillMaxSize()
     ) {
@@ -244,14 +243,15 @@ fun AppItem(
 @Composable
 fun TopChartAppItem(
   app: App,
-  navController: NavHostController?,
+  //navController: NavHostController?,
+  onAppSelected: (Long) -> Unit,
   modifier: Modifier = Modifier
 ) {
   PlaySurface(
     modifier = modifier
       .fillMaxWidth()
       .clickable(onClick = {
-        navController?.navigate("details/${app.id}")
+        onAppSelected(app.id)
       })
   ) {
     Row(modifier = Modifier.padding(start = 16.dp, end = 8.dp, top = 4.dp, bottom = 4.dp)) {
@@ -378,7 +378,7 @@ fun PlayFeaturedAppItemPreview() {
     val app = apps.first()
     PlayFeaturedAppItem(
       app = app,
-      navController = null
+      onAppSelected = {}
     )
   }
 }
@@ -390,7 +390,7 @@ fun PlayAppItemPreview() {
     val app = apps.first()
     AppItem(
       app = app,
-      navController = null
+      onAppSelected = {}
     )
   }
 }
@@ -403,7 +403,7 @@ fun TopChartAppItemPreview() {
     app?.let { safeApp ->
       TopChartAppItem(
         app = safeApp,
-        navController = null
+        onAppSelected = {}
       )
     }
   }

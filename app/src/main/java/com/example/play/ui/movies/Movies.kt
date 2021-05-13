@@ -13,12 +13,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.play.data.AppRepo
 import com.example.play.theme.PlayTheme
+import com.example.play.ui.MoviesCategory
+import com.example.play.ui.MoviesCategory.ForYou
+import com.example.play.ui.MoviesCategory.NewReleases
+import com.example.play.ui.MoviesCategory.TopSelling
 import com.example.play.ui.components.PlaySurface
-import com.example.play.ui.main.MoviesCategory
-import com.example.play.ui.main.MoviesCategory.ForYou
-import com.example.play.ui.main.MoviesCategory.NewReleases
-import com.example.play.ui.main.MoviesCategory.TopSelling
-import com.example.play.ui.main.MoviesCategoryTabs
+import com.example.play.ui.MoviesCategoryTabs
 import com.example.play.ui.movies.movielist.MoviesForYouLayout
 import com.example.play.ui.movies.movielist.TopSellingLayout
 import com.google.accompanist.insets.navigationBarsPadding
