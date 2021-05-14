@@ -45,12 +45,7 @@ fun Movies(
         selectedCategory = currentCategory,
         onCategorySelected = setCurrentCategory
       )
-      val tweenSpec = remember {
-        TweenSpec<Float>(
-          durationMillis = 600,
-          easing = LinearOutSlowInEasing
-        )
-      }
+      val tweenSpec = remember { getAnimSpec() }
       Crossfade(currentCategory, animationSpec = tweenSpec) { category ->
         when (category) {
           ForYou -> MoviesForYouLayout(forYouData)
@@ -60,6 +55,13 @@ fun Movies(
       }
     }
   }
+}
+
+private fun getAnimSpec(): TweenSpec<Float> {
+  return TweenSpec(
+    durationMillis = 600,
+    easing = LinearOutSlowInEasing
+  )
 }
 
 @Preview("Movies")

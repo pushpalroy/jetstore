@@ -1,12 +1,11 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
+
 import com.example.play.buildsrc.Libs
-import com.example.play.buildsrc.Versions
 
 buildscript {
   repositories {
     google()
-    jcenter()
     mavenCentral()
   }
   dependencies {
@@ -21,7 +20,7 @@ buildscript {
 subprojects {
   repositories {
     google()
-    jcenter()
+    mavenCentral()
 
     if (!Libs.AndroidX.Compose.snapshot.isEmpty()) {
       maven {

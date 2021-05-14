@@ -1,18 +1,47 @@
 # jetstore
+
 A clone of Google PlayStore app with animations in Android built using Jetpack compose.
+
+<div align="left">
+    <a href = "https://developer.android.com/jetpack/androidx/versions/all-channel#december_16_2020">
+        <img src = "https://img.shields.io/badge/Jetpack%20Compose-1.0.0%20beta05-brightgreen" />
+    </a>
+</div>
+<br>
+<div align="left">
+    <a href = "https://github.com/pushpalroy/jetstore/network/">
+        <img src = "https://img.shields.io/github/forks/pushpalroy/jetstore" />
+    </a>
+    <a href = "https://github.com/pushpalroy/jetstore/stargazers">
+        <img src = "https://img.shields.io/github/stars/pushpalroy/jetstore" />
+    </a>
+    <a href = "https://github.com/pushpalroy/jetstore/issues">
+        <img src = "https://img.shields.io/github/issues/pushpalroy/jetstore" />
+    </a>  
+    <a href = "https://github.com/Gurupreet/ComposeCookBook/blob/master/LICENSE">
+        <img src = "https://img.shields.io/github/license/pushpalroy/jetstore" />
+    </a>
+    <a href="">
+        <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg"/>
+    </a>
+    <a href = "https://twitter.com/pushpalroy">
+        <img src = "https://img.shields.io/twitter/url?label=follow&style=social&url=https%3A%2F%2Ftwitter.com%2Fpushpalroy" />
+    </a>
+</div>
 
 ### This sample app showcases the following:
 
- * Working with bottom nav bar and tabs
- * Implementation of Chips to filter
- * Light and dark theme using custom color palette
- * Horizontal and vertical scrollable list
- * Animations using transitions
+* Working with bottom nav bar and tabs
+* Implementation of Chips to filter
+* Light and dark theme using custom color palette
+* Horizontal and vertical scrollable list
+* Using Animation APIs
+* Testing compose layouts
 
 ### Screens
-Demo UI             |  Games (Top Chart) | App Details 
+Demo UI             |  Games (Top Chart) | App Details
 :-------------------------:|:-------------------------: | :-------------------------: 
-<img src="screenshots/demo.gif" width=240 />  |  <img src="screenshots/screenshot_4.png" width=240 /> | <img src="screenshots/screenshot_5.png" width=240 /> 
+<img src="screenshots/demo.gif" width=240 />  |  <img src="screenshots/screenshot_4.png" width=240 /> | <img src="screenshots/screenshot_5.png" width=240 />
 
 App Reviews             |  Apps (Dark) | Movies (Dark)
 :-------------------------:|:-------------------------: | :-------------------------: 
@@ -27,14 +56,19 @@ App Reviews             |  Apps (Dark) | Movies (Dark)
 * [Accompanist]
 * [Coroutines]
 * [Lottie Compose]
+* [Compose Navigation]
+* [Compose Test]
 
 [Jetpack Compose]: https://developer.android.com/jetpack/compose
 [Accompanist]: https://github.com/chrisbanes/accompanist
 [Coroutines]: https://developer.android.com/kotlin/coroutines
 [Lottie Compose]: https://github.com/airbnb/lottie
+[Compose Navigation]: https://developer.android.com/jetpack/compose/navigation
+[Compose Test]: https://developer.android.com/jetpack/compose/testing
 
 ### How to get started
-Please get Android Studio Arctic Fox 2020.3.1 Canary 15 or above to build this project from [from here](https://developer.android.com/studio/preview/).
+Please get Android Studio Arctic Fox 2020.3.1 Canary 15 or above to build this project
+from [from here](https://developer.android.com/studio/preview/).
 
 ### License
 ```

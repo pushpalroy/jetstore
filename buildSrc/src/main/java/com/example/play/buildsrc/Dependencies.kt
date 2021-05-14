@@ -15,7 +15,7 @@ object Libs {
   }
 
   object Kotlin {
-     const val version = "1.4.32"
+    const val version = "1.4.32"
     const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version"
     const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
     const val extensions = "org.jetbrains.kotlin:kotlin-android-extensions:$version"
@@ -57,6 +57,12 @@ object Libs {
       const val tooling = "androidx.compose.ui:ui-tooling:${version}"
       const val iconsExtended = "androidx.compose.material:material-icons-extended:$version"
       const val navigation = "androidx.navigation:navigation-compose:1.0.0-alpha10"
+
+      // Test rules and transitive dependencies
+      const val uiTestJunit = "androidx.compose.ui:ui-test-junit4:$version"
+
+      // Needed for createComposeRule, but not createAndroidComposeRule
+      const val uiTestManifest = "androidx.compose.ui:ui-test-manifest:$version"
     }
 
     object Lifecycle {

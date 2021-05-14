@@ -47,6 +47,11 @@ android {
     kotlinCompilerVersion Libs.Kotlin.version
     kotlinCompilerExtensionVersion Libs.AndroidX.Compose.version
   }
+  packagingOptions {
+    // https://github.com/Kotlin/kotlinx.coroutines/issues/2023
+    exclude 'META-INF/AL2.0'
+    exclude 'META-INF/LGPL2.1'
+  }
 }
 
 dependencies {
@@ -68,4 +73,7 @@ dependencies {
   implementation Libs.Accompanist.insets
   implementation Libs.LottieView.lottie
   implementation Libs.LottieView.lottieCompose
+
+  androidTestImplementation Libs.AndroidX.Compose.uiTestJunit
+  debugImplementation Libs.AndroidX.Compose.uiTestManifest
 }
