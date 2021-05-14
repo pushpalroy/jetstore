@@ -3,8 +3,8 @@
 A clone of Google PlayStore app with animations in Android built using Jetpack compose.
 
 <div align="left">
-    <a href = "https://developer.android.com/jetpack/androidx/versions/all-channel#december_16_2020">
-        <img src = "https://img.shields.io/badge/Jetpack%20Compose-1.0.0%20beta05-brightgreen" />
+    <a href = "https://developer.android.com/jetpack/androidx/versions/all-channel#may_5_2021">
+        <img src = "https://img.shields.io/badge/Jetpack%20Compose-1.0.0%20beta06-brightgreen" />
     </a>
 </div>
 <br>
@@ -36,10 +36,10 @@ A clone of Google PlayStore app with animations in Android built using Jetpack c
 * Light and dark theme using custom color palette
 * Horizontal and vertical scrollable list
 * Using Animation APIs
-* Testing compose layouts
+* Test compose layouts
 
 ### Screens
-Demo UI             |  Games (Top Chart) | App Details
+Demo UI             |  Games | App Details
 :-------------------------:|:-------------------------: | :-------------------------: 
 <img src="screenshots/demo.gif" width=240 />  |  <img src="screenshots/screenshot_4.png" width=240 /> | <img src="screenshots/screenshot_5.png" width=240 />
 
