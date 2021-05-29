@@ -38,7 +38,6 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.KEY_ROUTE
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.play.anim.getBottomNavTintState
 import com.example.play.anim.getProgressState
@@ -63,7 +62,7 @@ fun PlayBottomNav(
   contentColor: Color = PlayTheme.colors.iconInteractive
 ) {
   val navBackStackEntry by navController.currentBackStackEntryAsState()
-  val currentRoute = navBackStackEntry?.arguments?.getString(KEY_ROUTE) ?: BottomNavTabs.Games.route
+  val currentRoute = navBackStackEntry?.destination?.route ?: BottomNavTabs.Games.route
   val routes = remember { BottomNavTabs.values().map { it.route } }
 
   PlaySurface(
