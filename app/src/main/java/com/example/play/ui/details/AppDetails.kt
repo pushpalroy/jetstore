@@ -64,13 +64,12 @@ private fun AppDetailPreview() {
   }
 }
 
-@Preview("App Detail Dark")
-@Composable
-private fun AppDetailDarkPreview() {
-  PlayTheme(darkTheme = true) {
-    AppDetails(
-      appId = 1L,
-      upPress = {}
-    )
-  }
-}
+//@Preview("App Detail Dark")
+//@Composable
+//private fun AppDetailDarkPreview() {
+//  PlayTheme(darkTheme = true) {
+//    AppDetails(
+//      appId = 1L,
+//      upPress = {}
+//    )
+//  }

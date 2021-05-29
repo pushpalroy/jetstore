@@ -34,9 +34,8 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navArgument
-import androidx.navigation.compose.navigate
-import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navigation
 import com.example.play.R
 import com.example.play.ui.apps.Apps
 import com.example.play.ui.books.Books
@@ -142,7 +141,7 @@ class MainActions(
       navController.navigate(route = tabRoute) {
         // Pop up to the start destination of the graph to avoid building up a large
         // stack of destinations on the back stack as users select items
-        popUpTo = navController.graph.startDestination
+        popUpTo(navController.graph.startDestinationId)
         // Avoid multiple copies of the same destination when re-selecting the same item
         launchSingleTop = true
       }

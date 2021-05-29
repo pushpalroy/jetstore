@@ -16,7 +16,7 @@ android {
     targetSdkVersion 30
     versionCode 1
     versionName "1.0"
-
+    vectorDrawables.useSupportLibrary true
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
   }
 
@@ -45,7 +45,7 @@ android {
   }
   composeOptions {
     kotlinCompilerVersion Libs.Kotlin.version
-    kotlinCompilerExtensionVersion Libs.AndroidX.Compose.version
+    kotlinCompilerExtensionVersion Libs.AndroidX.Compose.composeVer
   }
   packagingOptions {
     // https://github.com/Kotlin/kotlinx.coroutines/issues/2023
@@ -57,8 +57,9 @@ android {
 dependencies {
   implementation Libs.Kotlin.stdlib
   implementation Libs.AndroidX.coreKtx
-  implementation Libs.AndroidX.appcompat
+  implementation Libs.AndroidX.navigation
   implementation Libs.AndroidX.Activity.activityCompose
+
   implementation Libs.AndroidX.Compose.runtime
   implementation Libs.AndroidX.Compose.foundation
   implementation Libs.AndroidX.Compose.layout
@@ -68,11 +69,13 @@ dependencies {
   implementation Libs.AndroidX.Compose.animation
   implementation Libs.AndroidX.Compose.iconsExtended
   implementation Libs.AndroidX.Compose.tooling
-  implementation Libs.AndroidX.Compose.navigation
+
+  implementation Libs.Accompanist.systemuicontroller
   implementation Libs.Accompanist.coil
   implementation Libs.Accompanist.insets
-  implementation Libs.LottieView.lottie
-  implementation Libs.LottieView.lottieCompose
+
+  //implementation Libs.LottieView.lottie
+  //implementation Libs.LottieView.lottieCompose
 
   androidTestImplementation Libs.AndroidX.Compose.uiTestJunit
   debugImplementation Libs.AndroidX.Compose.uiTestManifest

@@ -13,7 +13,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
-import com.example.play.utils.LocalSysUiController
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 private val LightColorPalette = PlayColorPalette(
   brand = White,
@@ -81,7 +81,7 @@ fun PlayTheme(
 ) {
   val colors = if (darkTheme) DarkColorPalette else LightColorPalette
 
-  val sysUiController = LocalSysUiController.current
+  val sysUiController = rememberSystemUiController()
   SideEffect {
     sysUiController.setSystemBarsColor(
       color = colors.uiBackground.copy(alpha = AlphaNearOpaque)

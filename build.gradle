@@ -1,6 +1,5 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
-
 import com.example.play.buildsrc.Libs
 
 buildscript {
@@ -35,7 +34,6 @@ subprojects {
     kotlinOptions {
       jvmTarget = '1.8'
       allWarningsAsErrors = true
-      freeCompilerArgs += '-Xallow-jvm-ir-dependencies'
       // Opt-in to experimental compose APIs
       freeCompilerArgs += '-Xopt-in=kotlin.RequiresOptIn'
     }
