@@ -1,10 +1,10 @@
-# jetstore
+# JetStore
 
 A clone of Google PlayStore app with animations in Android built using Jetpack compose.
 
 <div align="left">
     <a href = "https://developer.android.com/jetpack/androidx/versions/all-channel#may_5_2021">
-        <img src = "https://img.shields.io/badge/Jetpack%20Compose-1.0.0%20beta06-brightgreen" />
+        <img src = "https://img.shields.io/badge/Jetpack%20Compose-1.0.0%20beta07-brightgreen" />
     </a>
 </div>
 <br>
@@ -67,7 +67,7 @@ App Reviews             |  Apps (Dark) | Movies (Dark)
 [Compose Test]: https://developer.android.com/jetpack/compose/testing
 
 ### How to get started
-Please get Android Studio Arctic Fox 2020.3.1 Canary 15 or above to build this project
+Please get Android Studio Arctic Fox 2020.3.1 Beta 3 or above to build this project
 from [from here](https://developer.android.com/studio/preview/).
 
 ### License
